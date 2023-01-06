@@ -2,6 +2,7 @@ import edu.wpi.first.gradlerio.deploy.roborio.RoboRIO
 
 plugins {
     id "idea"
+    id 'maven-publish'
     id "org.jetbrains.kotlin.jvm" version "1.6.10"
     id "edu.wpi.first.GradleRIO" version "2023.1.1"
     id "com.diffplug.spotless" version "6.3.0"
@@ -83,7 +84,8 @@ dependencies {
     nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
     simulationRelease wpi.sim.enableRelease()
 
-    implementation 'org.jetbrains.kotlin:kotlin-test-junit5'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
 
     // We need to add the Kotlin stdlib in order to use most Kotlin language features.
     // compile "org.jetbrains.kotlin:kotlin-stdlib"
@@ -103,6 +105,18 @@ jar {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'org.team4099.lib'
+            artifactId = 'falconutils'
+            version = '0.1'
+
+            from components.kotlin
+        }
+    }
 }
 
 // Disabling unwanted unit tests tasks
