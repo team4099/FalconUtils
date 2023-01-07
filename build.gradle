@@ -92,6 +92,8 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.2"
 	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
 
+	implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
 	// We need to add the Kotlin stdlib in order to use most Kotlin language features.
 	// compile "org.jetbrains.kotlin:kotlin-stdlib"
 }
@@ -122,9 +124,9 @@ publishing {
 		mavenJava(MavenPublication) {
 			groupId = 'org.team4099'
 			artifactId = 'falconutils'
-			version = 'test1'
+			version = 'test2'
 
-			from components.kotlin
+			from(components["java"])
 		}
 	}
 }
