@@ -5,7 +5,7 @@ plugins {
 	id 'maven-publish'
 	id "org.jetbrains.kotlin.jvm" version "1.6.10"
 	id "edu.wpi.first.GradleRIO" version "2023.1.1"
-	id "com.diffplug.spotless" version "6.3.0"
+	id "com.diffplug.spotless" version "6.10.0"
 	id "com.peterabeles.gversion" version "1.10"
 	id "org.jetbrains.kotlinx.kover" version "0.4.2"
 }
@@ -13,10 +13,9 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
-def TEAM = 4099
 // do not change main class (does not run without it being Main
 def ROBOT_MAIN_CLASS = "frc.robot.Main"
-def includeDesktopSupport = true
+def TEAM = 4099
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
@@ -47,6 +46,13 @@ deploy {
 	}
 }
 def deployArtifact = deploy.targets.roborio.artifacts.frcJava
+
+// Set to true to use debug for JNI.
+wpi.java.debugJni = false
+
+// Set this to true to enable desktop support.
+def includeDesktopSupport = true
+
 repositories {
 	mavenCentral()
 	jcenter()
@@ -68,7 +74,6 @@ configurations.all {
 dependencies {
 	implementation wpi.java.deps.wpilib()
 	implementation wpi.java.vendor.java()
-	implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
 
 	roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
 	roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
@@ -84,8 +89,7 @@ dependencies {
 	nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
 	simulationRelease wpi.sim.enableRelease()
 
-	testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.2"
-	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
+	testImplementation 'junit:junit:4.13.1'
 
 	// We need to add the Kotlin stdlib in order to use most Kotlin language features.
 	// compile "org.jetbrains.kotlin:kotlin-stdlib"
@@ -107,13 +111,14 @@ test {
 	useJUnitPlatform()
 }
 
+java {
+	withSourcesJar()
+	withJavadocJar()
+}
+
 publishing {
 	publications {
-		mavenJava(MavenPublication) {
-			groupId = 'org.team4099.lib'
-			artifactId = 'falconutils'
-			version = '0.1'
-
+		maven(MavenPublication) {
 			from components.kotlin
 		}
 	}
