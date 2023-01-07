@@ -1,5 +1,7 @@
 package com.team4099.units
 
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.team4099.lib.units.derived.coulombs
 import org.team4099.lib.units.derived.inAttocoulombs
 import org.team4099.lib.units.derived.inCenticoulombs
@@ -22,8 +24,6 @@ import org.team4099.lib.units.derived.inYoctocoulombs
 import org.team4099.lib.units.derived.inYottacoulombs
 import org.team4099.lib.units.derived.inZeptocoulombs
 import org.team4099.lib.units.derived.inZetacoulombs
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
 
 /* Unit tests for Charge units */
 class ChargeTest {

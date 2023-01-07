@@ -1,14 +1,14 @@
 package org.team4099.lib.geometry
 
+import edu.wpi.first.math.VecBuilder
+import edu.wpi.first.math.Vector
+import edu.wpi.first.math.numbers.N3
 import org.team4099.lib.units.base.Length
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.Angle
 import org.team4099.lib.units.derived.inRadians
 import org.team4099.lib.units.derived.radians
-import edu.wpi.first.math.VecBuilder
-import edu.wpi.first.math.Vector
-import edu.wpi.first.math.numbers.N3
 
 data class Quaternion(val w: Angle, val v: Vector<N3>) {
   val x: Length = v[0, 0].meters

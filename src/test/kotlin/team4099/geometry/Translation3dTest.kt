@@ -1,16 +1,16 @@
 package com.team4099.geometry
 
+import edu.wpi.first.math.VecBuilder
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 import org.team4099.lib.geometry.Rotation3d
 import org.team4099.lib.geometry.Translation2d
 import org.team4099.lib.geometry.Translation3d
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.degrees
-import edu.wpi.first.math.VecBuilder
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotEquals
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
 import kotlin.math.sqrt
 
 internal class Translation3dTest {

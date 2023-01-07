@@ -1,13 +1,13 @@
 package org.team4099.lib.pathfollow
 
+import edu.wpi.first.math.spline.PoseWithCurvature
+import edu.wpi.first.math.spline.SplineHelper
+import edu.wpi.first.math.spline.SplineParameterizer
 import org.team4099.lib.geometry.Pose2d
 import org.team4099.lib.geometry.Translation2d
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.derived.Angle
 import org.team4099.lib.units.derived.radians
-import edu.wpi.first.math.spline.PoseWithCurvature
-import edu.wpi.first.math.spline.SplineHelper
-import edu.wpi.first.math.spline.SplineParameterizer
 import kotlin.math.PI
 import kotlin.math.atan2
 

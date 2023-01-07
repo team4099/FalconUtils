@@ -1,5 +1,7 @@
 package com.team4099.units
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.team4099.lib.units.base.SECONDS_PER_HOUR
 import org.team4099.lib.units.base.SECONDS_PER_MINUTE
 import org.team4099.lib.units.base.hours
@@ -18,8 +20,6 @@ import org.team4099.lib.units.base.inYoctoseconds
 import org.team4099.lib.units.base.inZeptoseconds
 import org.team4099.lib.units.base.minutes
 import org.team4099.lib.units.base.seconds
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 
 /* Unit tests for Time units */
 class TimeTest {

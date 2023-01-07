@@ -1,9 +1,5 @@
 package com.team4099.geometry
 
-import org.team4099.lib.geometry.Rotation3d
-import org.team4099.lib.units.derived.degrees
-import org.team4099.lib.units.derived.inRadians
-import org.team4099.lib.units.derived.radians
 import edu.wpi.first.math.MatBuilder
 import edu.wpi.first.math.Matrix
 import edu.wpi.first.math.Nat
@@ -13,6 +9,10 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
+import org.team4099.lib.geometry.Rotation3d
+import org.team4099.lib.units.derived.degrees
+import org.team4099.lib.units.derived.inRadians
+import org.team4099.lib.units.derived.radians
 
 internal class Rotation3dTest {
   private val kEpsilon = 1E-9

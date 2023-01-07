@@ -1,5 +1,7 @@
 package com.team4099.units
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.team4099.lib.units.base.METERS_PER_FOOT
 import org.team4099.lib.units.base.METERS_PER_INCH
 import org.team4099.lib.units.base.METERS_PER_THOU
@@ -31,8 +33,6 @@ import org.team4099.lib.units.base.inZetameters
 import org.team4099.lib.units.base.inches
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.base.thou
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 
 /* Unit tests for Length units */
 class LengthTest {

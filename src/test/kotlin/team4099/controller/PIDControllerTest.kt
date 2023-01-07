@@ -1,5 +1,6 @@
 package com.team4099.controller
 
+import org.junit.jupiter.api.Test
 import org.team4099.lib.controller.PIDController
 import org.team4099.lib.units.Fraction
 import org.team4099.lib.units.base.Meter
@@ -9,7 +10,6 @@ import org.team4099.lib.units.base.seconds
 import org.team4099.lib.units.derived.ProportionalGain
 import org.team4099.lib.units.derived.metersPerSecondPerMetersPerSecond
 import org.team4099.lib.units.perSecond
-import org.junit.jupiter.api.Test
 
 class PIDControllerTest {
 

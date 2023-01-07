@@ -1,5 +1,7 @@
 package com.team4099.units
 
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.team4099.lib.units.derived.inAttonewtons
 import org.team4099.lib.units.derived.inCentinewtons
 import org.team4099.lib.units.derived.inDecanewtons
@@ -22,8 +24,6 @@ import org.team4099.lib.units.derived.inYottanewtons
 import org.team4099.lib.units.derived.inZeptonewtons
 import org.team4099.lib.units.derived.inZetanewtons
 import org.team4099.lib.units.derived.newtons
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
 
 /* Unit tests for Force units */
 class ForceTest {

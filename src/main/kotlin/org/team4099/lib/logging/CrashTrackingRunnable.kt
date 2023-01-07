@@ -1,7 +1,5 @@
 package org.team4099.lib.logging
 
-import org.team4099.lib.logging.CrashTracker
-
 /**
  * A runnable which catches exceptions and reports them to [CrashTracker].
  *

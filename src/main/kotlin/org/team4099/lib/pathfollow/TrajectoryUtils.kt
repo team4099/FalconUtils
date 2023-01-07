@@ -1,6 +1,7 @@
 package org.team4099.lib.pathfollow
 
 import com.pathplanner.lib.PathPlannerTrajectory
+import edu.wpi.first.math.trajectory.TrajectoryParameterizer
 import org.team4099.lib.geometry.Pose2d
 import org.team4099.lib.geometry.Translation2d
 import org.team4099.lib.units.LinearVelocity
@@ -11,7 +12,6 @@ import org.team4099.lib.units.derived.radians
 import org.team4099.lib.units.inMetersPerSecond
 import org.team4099.lib.units.inMetersPerSecondPerSecond
 import org.team4099.lib.units.perSecond
-import edu.wpi.first.math.trajectory.TrajectoryParameterizer
 
 fun trajectoryFromPath(
   startVelocity: LinearVelocity,

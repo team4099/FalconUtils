@@ -1,5 +1,7 @@
 package com.team4099.units
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.team4099.lib.units.base.GRAMS_PER_POUND
 import org.team4099.lib.units.base.grams
 import org.team4099.lib.units.base.inAttograms
@@ -25,8 +27,6 @@ import org.team4099.lib.units.base.inYottagrams
 import org.team4099.lib.units.base.inZeptograms
 import org.team4099.lib.units.base.inZetagrams
 import org.team4099.lib.units.base.pounds
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 
 /* Unit tests for Mass units */
 class MassTest {

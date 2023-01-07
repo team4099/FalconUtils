@@ -1,5 +1,7 @@
 package com.team4099.units
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.team4099.lib.units.base.amps
 import org.team4099.lib.units.base.inAmperes
 import org.team4099.lib.units.base.inAttoamps
@@ -22,8 +24,6 @@ import org.team4099.lib.units.base.inYoctoamps
 import org.team4099.lib.units.base.inYottaamps
 import org.team4099.lib.units.base.inZeptoamps
 import org.team4099.lib.units.base.inZetaamps
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 
 /* Unit tests for Current units */
 class CurrentTest {

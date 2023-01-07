@@ -13,9 +13,9 @@ import org.team4099.lib.units.perSecond
 import edu.wpi.first.math.kinematics.ChassisSpeeds as ChassisSpeedsWPILIB
 
 class ChassisAccels(
-    val ax: LinearAcceleration,
-    val ay: LinearAcceleration,
-    val alpha: AngularAcceleration
+  val ax: LinearAcceleration,
+  val ay: LinearAcceleration,
+  val alpha: AngularAcceleration
 ) {
   constructor() :
     this(
@@ -33,10 +33,10 @@ class ChassisAccels(
 
   companion object {
     fun fromFieldRelativeAccels(
-        ax: LinearAcceleration,
-        ay: LinearAcceleration,
-        alpha: AngularAcceleration,
-        robotAngle: Angle
+      ax: LinearAcceleration,
+      ay: LinearAcceleration,
+      alpha: AngularAcceleration,
+      robotAngle: Angle
     ): ChassisAccels {
       return ChassisAccels(
         ax * robotAngle.cos + ay * robotAngle.sin,
@@ -46,8 +46,8 @@ class ChassisAccels(
     }
 
     fun fromFieldRelativeAccels(
-        fieldRelativeAccels: ChassisAccels,
-        robotAngle: Angle
+      fieldRelativeAccels: ChassisAccels,
+      robotAngle: Angle
     ): ChassisAccels {
       return fromFieldRelativeAccels(
         fieldRelativeAccels.ax, fieldRelativeAccels.ay, fieldRelativeAccels.alpha, robotAngle

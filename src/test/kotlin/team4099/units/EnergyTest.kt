@@ -1,5 +1,7 @@
 package com.team4099.units
 
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.team4099.lib.units.derived.inAttojoules
 import org.team4099.lib.units.derived.inCentijoules
 import org.team4099.lib.units.derived.inDecajoules
@@ -22,8 +24,6 @@ import org.team4099.lib.units.derived.inYottajoules
 import org.team4099.lib.units.derived.inZeptojoules
 import org.team4099.lib.units.derived.inZetajoules
 import org.team4099.lib.units.derived.joules
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
 
 /* Unit tests for Energy units */
 class EnergyTest {
