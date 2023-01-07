@@ -51,7 +51,7 @@ publishing {
 		release(MavenPublication) {
 			groupId = 'org.team4099'
 			artifactId = 'falconutils'
-			version = 'test6'
+			version = '1.0'
 
 			from(components["kotlin"])
 		}
