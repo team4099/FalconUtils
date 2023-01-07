@@ -3,7 +3,7 @@ package org.team4099.lib.units
 import kotlin.math.absoluteValue
 
 @JvmInline
-value class Value<T : UnitKey>(internal val value: Double) : Comparable<Value<T>> {
+value class Value<T : UnitKey>(val value: Double) : Comparable<Value<T>> {
   val absoluteValue: Value<T>
     get() = Value(value.absoluteValue)
 
