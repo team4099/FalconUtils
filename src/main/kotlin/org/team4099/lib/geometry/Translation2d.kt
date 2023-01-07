@@ -1,11 +1,11 @@
-package com.team4099.lib.geometry
+package org.team4099.lib.geometry
 
-import com.team4099.lib.units.base.Length
-import com.team4099.lib.units.base.inMeters
-import com.team4099.lib.units.base.meters
-import com.team4099.lib.units.derived.Angle
-import com.team4099.lib.units.derived.cos
-import com.team4099.lib.units.derived.sin
+import org.team4099.lib.units.base.Length
+import org.team4099.lib.units.base.inMeters
+import org.team4099.lib.units.base.meters
+import org.team4099.lib.units.derived.Angle
+import org.team4099.lib.units.derived.cos
+import org.team4099.lib.units.derived.sin
 import kotlin.math.hypot
 
 /**

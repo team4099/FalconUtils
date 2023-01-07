@@ -1,19 +1,19 @@
-package com.team4099.lib.geometry
+package org.team4099.lib.geometry
 
-import com.team4099.lib.units.base.Length
-import com.team4099.lib.units.base.inMeters
-import com.team4099.lib.units.base.meters
-import com.team4099.lib.units.derived.Angle
-import com.team4099.lib.units.derived.inRadians
-import com.team4099.lib.units.derived.radians
+import org.team4099.lib.units.base.Length
+import org.team4099.lib.units.base.inMeters
+import org.team4099.lib.units.base.meters
+import org.team4099.lib.units.derived.Angle
+import org.team4099.lib.units.derived.inRadians
+import org.team4099.lib.units.derived.radians
 
 data class Twist3d(
-  val dx: Length,
-  val dy: Length,
-  val dz: Length,
-  val rx: Angle,
-  val ry: Angle,
-  val rz: Angle
+    val dx: Length,
+    val dy: Length,
+    val dz: Length,
+    val rx: Angle,
+    val ry: Angle,
+    val rz: Angle
 ) {
   val twist3d: Twist3dWPILIB =
     Twist3dWPILIB(dx.inMeters, dy.inMeters, dz.inMeters, rx.inRadians, ry.inRadians, rz.inRadians)

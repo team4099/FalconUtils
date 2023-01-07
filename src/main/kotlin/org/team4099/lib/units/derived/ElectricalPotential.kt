@@ -1,7 +1,7 @@
-package com.team4099.lib.units.derived
+package org.team4099.lib.units.derived
 
-import com.team4099.lib.units.Fraction
-import com.team4099.lib.units.Value
+import org.team4099.lib.units.Fraction
+import org.team4099.lib.units.Value
 
 val BATTERY_VOLTAGE = 12.volts
 

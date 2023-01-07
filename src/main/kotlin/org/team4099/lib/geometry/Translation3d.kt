@@ -1,9 +1,9 @@
-package com.team4099.lib.geometry
+package org.team4099.lib.geometry
 
-import com.team4099.lib.units.base.Length
-import com.team4099.lib.units.base.inMeters
-import com.team4099.lib.units.base.meters
-import com.team4099.lib.units.derived.radians
+import org.team4099.lib.units.base.Length
+import org.team4099.lib.units.base.inMeters
+import org.team4099.lib.units.base.meters
+import org.team4099.lib.units.derived.radians
 import kotlin.math.pow
 import kotlin.math.sqrt
 

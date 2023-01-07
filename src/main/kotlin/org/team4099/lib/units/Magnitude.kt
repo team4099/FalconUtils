@@ -1,4 +1,4 @@
-package com.team4099.lib.units
+package org.team4099.lib.units
 
 object Magnitude {
   const val YOTTA = 1E24

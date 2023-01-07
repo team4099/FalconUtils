@@ -1,17 +1,17 @@
-package com.team4099.lib.units.derived
+package org.team4099.lib.units.derived
 
-import com.team4099.lib.units.Fraction
-import com.team4099.lib.units.Product
-import com.team4099.lib.units.UnitKey
-import com.team4099.lib.units.Unitless
-import com.team4099.lib.units.Value
-import com.team4099.lib.units.Velocity
-import com.team4099.lib.units.base.Ampere
-import com.team4099.lib.units.base.METERS_PER_FOOT
-import com.team4099.lib.units.base.METERS_PER_INCH
-import com.team4099.lib.units.base.Meter
-import com.team4099.lib.units.base.SECONDS_PER_MINUTE
-import com.team4099.lib.units.base.Second
+import org.team4099.lib.units.Fraction
+import org.team4099.lib.units.Product
+import org.team4099.lib.units.UnitKey
+import org.team4099.lib.units.Unitless
+import org.team4099.lib.units.Value
+import org.team4099.lib.units.Velocity
+import org.team4099.lib.units.base.Ampere
+import org.team4099.lib.units.base.METERS_PER_FOOT
+import org.team4099.lib.units.base.METERS_PER_INCH
+import org.team4099.lib.units.base.Meter
+import org.team4099.lib.units.base.SECONDS_PER_MINUTE
+import org.team4099.lib.units.base.Second
 
 typealias ProportionalGain<E, O> = Value<Fraction<O, E>>
 

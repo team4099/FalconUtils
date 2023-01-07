@@ -1,12 +1,12 @@
-package com.team4099.lib.controller
+package org.team4099.lib.controller
 
-import com.team4099.lib.units.Acceleration
-import com.team4099.lib.units.UnitKey
-import com.team4099.lib.units.Value
-import com.team4099.lib.units.Velocity
-import com.team4099.lib.units.base.Time
-import com.team4099.lib.units.base.inSeconds
-import com.team4099.lib.units.base.seconds
+import org.team4099.lib.units.Acceleration
+import org.team4099.lib.units.UnitKey
+import org.team4099.lib.units.Value
+import org.team4099.lib.units.Velocity
+import org.team4099.lib.units.base.Time
+import org.team4099.lib.units.base.inSeconds
+import org.team4099.lib.units.base.seconds
 import edu.wpi.first.math.trajectory.TrapezoidProfile as WPITrapezoidProfile
 
 class TrapezoidProfile<U : UnitKey>(

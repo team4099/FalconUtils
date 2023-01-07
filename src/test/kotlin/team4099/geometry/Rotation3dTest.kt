@@ -1,9 +1,9 @@
 package com.team4099.geometry
 
-import com.team4099.lib.geometry.Rotation3d
-import com.team4099.lib.units.derived.degrees
-import com.team4099.lib.units.derived.inRadians
-import com.team4099.lib.units.derived.radians
+import org.team4099.lib.geometry.Rotation3d
+import org.team4099.lib.units.derived.degrees
+import org.team4099.lib.units.derived.inRadians
+import org.team4099.lib.units.derived.radians
 import edu.wpi.first.math.MatBuilder
 import edu.wpi.first.math.Matrix
 import edu.wpi.first.math.Nat

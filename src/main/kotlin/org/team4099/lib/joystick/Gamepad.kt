@@ -1,4 +1,4 @@
-package com.team4099.lib.joystick
+package org.team4099.lib.joystick
 
 /** Represents a generic controller which expresses a specific set of controls. */
 interface Gamepad {

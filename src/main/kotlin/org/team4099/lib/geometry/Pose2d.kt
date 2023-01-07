@@ -1,12 +1,12 @@
-package com.team4099.lib.geometry
+package org.team4099.lib.geometry
 
-import com.team4099.lib.units.base.Length
-import com.team4099.lib.units.base.Time
-import com.team4099.lib.units.base.inSeconds
-import com.team4099.lib.units.derived.Angle
-import com.team4099.lib.units.derived.angle
-import com.team4099.lib.units.derived.inRotation2ds
-import com.team4099.lib.units.derived.radians
+import org.team4099.lib.units.base.Length
+import org.team4099.lib.units.base.Time
+import org.team4099.lib.units.base.inSeconds
+import org.team4099.lib.units.derived.Angle
+import org.team4099.lib.units.derived.angle
+import org.team4099.lib.units.derived.inRotation2ds
+import org.team4099.lib.units.derived.radians
 
 data class Pose2d(val translation: Translation2d, val rotation: Angle) {
 

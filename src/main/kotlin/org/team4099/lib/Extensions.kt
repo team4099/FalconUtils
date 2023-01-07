@@ -1,7 +1,7 @@
-package com.team4099.lib
+package org.team4099.lib
 
-import com.team4099.lib.units.UnitKey
-import com.team4099.lib.units.Value
+import org.team4099.lib.units.UnitKey
+import org.team4099.lib.units.Value
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min

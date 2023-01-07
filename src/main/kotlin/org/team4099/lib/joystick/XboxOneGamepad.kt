@@ -1,6 +1,7 @@
-package com.team4099.lib.joystick
+package org.team4099.lib.joystick
 
 import edu.wpi.first.wpilibj.Joystick
+import org.team4099.lib.joystick.Gamepad
 
 /**
  * Controller Settings for Correct Mappings ---------------------------------------- X Emulation

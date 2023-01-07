@@ -1,4 +1,4 @@
-package com.team4099.lib.geometry
+package org.team4099.lib.geometry
 
 import edu.wpi.first.math.geometry.Pose2d
 import edu.wpi.first.math.geometry.Pose3d

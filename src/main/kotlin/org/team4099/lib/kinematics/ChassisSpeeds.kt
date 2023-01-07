@@ -1,19 +1,19 @@
-package com.team4099.lib.kinematics
+package org.team4099.lib.kinematics
 
-import com.team4099.lib.units.AngularVelocity
-import com.team4099.lib.units.LinearVelocity
-import com.team4099.lib.units.Value
-import com.team4099.lib.units.Velocity
-import com.team4099.lib.units.base.Meter
-import com.team4099.lib.units.base.meters
-import com.team4099.lib.units.derived.Angle
-import com.team4099.lib.units.derived.Radian
-import com.team4099.lib.units.derived.cos
-import com.team4099.lib.units.derived.radians
-import com.team4099.lib.units.derived.sin
-import com.team4099.lib.units.inMetersPerSecond
-import com.team4099.lib.units.inRadiansPerSecond
-import com.team4099.lib.units.perSecond
+import org.team4099.lib.units.AngularVelocity
+import org.team4099.lib.units.LinearVelocity
+import org.team4099.lib.units.Value
+import org.team4099.lib.units.Velocity
+import org.team4099.lib.units.base.Meter
+import org.team4099.lib.units.base.meters
+import org.team4099.lib.units.derived.Angle
+import org.team4099.lib.units.derived.Radian
+import org.team4099.lib.units.derived.cos
+import org.team4099.lib.units.derived.radians
+import org.team4099.lib.units.derived.sin
+import org.team4099.lib.units.inMetersPerSecond
+import org.team4099.lib.units.inRadiansPerSecond
+import org.team4099.lib.units.perSecond
 import edu.wpi.first.math.kinematics.ChassisSpeeds as WPIChassisSpeeds
 
 class ChassisSpeeds(val vx: LinearVelocity, val vy: LinearVelocity, val omega: AngularVelocity) {

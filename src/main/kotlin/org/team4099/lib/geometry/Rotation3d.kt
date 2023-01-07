@@ -1,8 +1,8 @@
-package com.team4099.lib.geometry
+package org.team4099.lib.geometry
 
-import com.team4099.lib.units.derived.Angle
-import com.team4099.lib.units.derived.inRadians
-import com.team4099.lib.units.derived.radians
+import org.team4099.lib.units.derived.Angle
+import org.team4099.lib.units.derived.inRadians
+import org.team4099.lib.units.derived.radians
 import edu.wpi.first.math.Matrix
 import edu.wpi.first.math.Vector
 import edu.wpi.first.math.numbers.N3
@@ -13,9 +13,9 @@ class Rotation3d(quaternion: Quaternion) {
   constructor(rotation3dWPILIB: Rotation3dWPILIB) : this(Quaternion(rotation3dWPILIB.quaternion))
 
   constructor(
-    roll: Angle,
-    pitch: Angle,
-    yaw: Angle
+      roll: Angle,
+      pitch: Angle,
+      yaw: Angle
   ) : this(
     Quaternion(
       (

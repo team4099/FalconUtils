@@ -1,4 +1,4 @@
-package com.team4099.lib.logging
+package org.team4099.lib.logging
 
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget
 

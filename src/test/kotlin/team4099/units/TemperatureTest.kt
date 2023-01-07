@@ -1,11 +1,11 @@
 package com.team4099.units
 
-import com.team4099.lib.units.base.celsius
-import com.team4099.lib.units.base.fahrenheit
-import com.team4099.lib.units.base.inCelsius
-import com.team4099.lib.units.base.inFahrenheit
-import com.team4099.lib.units.base.inKelvins
-import com.team4099.lib.units.base.kelvin
+import org.team4099.lib.units.base.celsius
+import org.team4099.lib.units.base.fahrenheit
+import org.team4099.lib.units.base.inCelsius
+import org.team4099.lib.units.base.inFahrenheit
+import org.team4099.lib.units.base.inKelvins
+import org.team4099.lib.units.base.kelvin
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

@@ -1,8 +1,8 @@
-package com.team4099.lib.hal
+package org.team4099.lib.hal
 
-import com.team4099.lib.units.base.Time
-import com.team4099.lib.units.base.seconds
-import com.team4099.lib.units.micro
+import org.team4099.lib.units.base.Time
+import org.team4099.lib.units.base.seconds
+import org.team4099.lib.units.micro
 import edu.wpi.first.wpilibj.RobotController
 
 object Clock {

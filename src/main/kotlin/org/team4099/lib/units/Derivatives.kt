@@ -1,11 +1,11 @@
-package com.team4099.lib.units
+package org.team4099.lib.units
 
-import com.team4099.lib.units.base.METERS_PER_FOOT
-import com.team4099.lib.units.base.METERS_PER_INCH
-import com.team4099.lib.units.base.Meter
-import com.team4099.lib.units.base.SECONDS_PER_MINUTE
-import com.team4099.lib.units.base.Second
-import com.team4099.lib.units.derived.Radian
+import org.team4099.lib.units.base.METERS_PER_FOOT
+import org.team4099.lib.units.base.METERS_PER_INCH
+import org.team4099.lib.units.base.Meter
+import org.team4099.lib.units.base.SECONDS_PER_MINUTE
+import org.team4099.lib.units.base.Second
+import org.team4099.lib.units.derived.Radian
 import kotlin.math.PI
 
 typealias Velocity<K> = Fraction<K, Second>

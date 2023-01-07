@@ -1,11 +1,11 @@
-package com.team4099.lib.units.derived
+package org.team4099.lib.units.derived
 
-import com.team4099.lib.units.Acceleration
-import com.team4099.lib.units.Fraction
-import com.team4099.lib.units.UnitKey
-import com.team4099.lib.units.Value
-import com.team4099.lib.units.Velocity
-import com.team4099.lib.units.base.Meter
+import org.team4099.lib.units.Acceleration
+import org.team4099.lib.units.Fraction
+import org.team4099.lib.units.UnitKey
+import org.team4099.lib.units.Value
+import org.team4099.lib.units.Velocity
+import org.team4099.lib.units.base.Meter
 
 typealias StaticFeedforward = Value<Volt>
 

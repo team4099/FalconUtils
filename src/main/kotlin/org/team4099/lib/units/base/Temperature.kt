@@ -1,7 +1,7 @@
-package com.team4099.lib.units.base
+package org.team4099.lib.units.base
 
-import com.team4099.lib.units.UnitKey
-import com.team4099.lib.units.Value
+import org.team4099.lib.units.UnitKey
+import org.team4099.lib.units.Value
 
 object Kelvin : UnitKey
 
