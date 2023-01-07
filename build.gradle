@@ -119,7 +119,11 @@ java {
 
 publishing {
 	publications {
-		maven(MavenPublication) {
+		mavenJava(MavenPublication) {
+			groupId = 'org.team4099'
+			artifactId = 'falconutils'
+			version = 'test1'
+
 			from components.kotlin
 		}
 	}
