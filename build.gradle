@@ -119,7 +119,7 @@ publishing {
 		mavenJava(MavenPublication) {
 			groupId = 'org.team4099'
 			artifactId = 'falconutils'
-			version = 'test2'
+			version = 'test3'
 
 			from(components["java"])
 		}
