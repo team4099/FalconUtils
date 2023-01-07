@@ -5,7 +5,6 @@ import com.team4099.lib.geometry.Translation2d
 import com.team4099.lib.units.base.inMeters
 import com.team4099.lib.units.derived.Angle
 import com.team4099.lib.units.derived.radians
-import com.team4099.robot2023.util.Alert
 import edu.wpi.first.math.spline.PoseWithCurvature
 import edu.wpi.first.math.spline.SplineHelper
 import edu.wpi.first.math.spline.SplineParameterizer
@@ -23,9 +22,6 @@ class Path constructor(val startingPose: Pose2d, val endingPose: Pose2d) {
   private val headingSplineMap = mutableMapOf<Int, Angle>()
   private val waypoints = mutableListOf<Translation2d>()
   var built = false
-  val addTranslationAlert: Alert =
-    Alert("Failed to add translation to built path", Alert.AlertType.ERROR)
-  val alreadyBuiltAlert: Alert = Alert("Failed build already built path", Alert.AlertType.ERROR)
 
   /**
    * Add a waypoint to the middle of this path.
@@ -40,7 +36,6 @@ class Path constructor(val startingPose: Pose2d, val endingPose: Pose2d) {
    */
   fun addWaypoint(nextTranslation: Translation2d, heading: Angle? = null) {
     if (built) {
-      addTranslationAlert.set(true)
       return
     }
 
@@ -53,7 +48,6 @@ class Path constructor(val startingPose: Pose2d, val endingPose: Pose2d) {
   /** Build the path after all desired waypoints have been added. */
   fun build() {
     if (built) {
-      alreadyBuiltAlert.set(true)
       return
     }
 

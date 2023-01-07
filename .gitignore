@@ -102,3 +102,6 @@ simgui-ds.json
 .glass
 
 **/.DS_Store
+
+# BuildConstants
+src/main/kotlin/org/team4099/lib/BuildConstants.kt

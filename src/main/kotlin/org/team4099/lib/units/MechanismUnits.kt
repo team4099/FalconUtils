@@ -1,7 +1,11 @@
-package com.team4099.lib.units
+package org.team4099.lib.units
 
 import com.ctre.phoenix.motorcontrol.can.BaseTalon
 import com.revrobotics.CANSparkMax
+import com.team4099.lib.units.Acceleration
+import com.team4099.lib.units.UnitKey
+import com.team4099.lib.units.Value
+import com.team4099.lib.units.Velocity
 import com.team4099.lib.units.base.Length
 import com.team4099.lib.units.base.Meter
 import com.team4099.lib.units.base.Time
@@ -33,6 +37,11 @@ import com.team4099.lib.units.derived.inVoltsPerRadiansPerSecond
 import com.team4099.lib.units.derived.inVoltsPerRadiansPerSecondPerSecond
 import com.team4099.lib.units.derived.radians
 import com.team4099.lib.units.derived.rotations
+import com.team4099.lib.units.inMetersPerSecond
+import com.team4099.lib.units.inRotationsPerSecond
+import com.team4099.lib.units.inRotationsPerSecondPerSecond
+import com.team4099.lib.units.milli
+import com.team4099.lib.units.perSecond
 import kotlin.math.PI
 
 enum class Timescale(val velocity: Time, val acceleration: Time) {

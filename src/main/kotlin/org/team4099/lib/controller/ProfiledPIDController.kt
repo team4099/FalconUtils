@@ -11,7 +11,6 @@ import com.team4099.lib.units.base.seconds
 import com.team4099.lib.units.derived.DerivativeGain
 import com.team4099.lib.units.derived.IntegralGain
 import com.team4099.lib.units.derived.ProportionalGain
-import com.team4099.robot2023.config.constants.Constants
 import edu.wpi.first.math.controller.ProfiledPIDController as WPIProfiledPIDController
 
 class ProfiledPIDController<E : UnitKey, O : UnitKey>(
@@ -90,13 +89,7 @@ class ProfiledPIDController<E : UnitKey, O : UnitKey>(
     integralGain: IntegralGain<E, O>,
     derivativeGain: DerivativeGain<E, O>,
     constraints: TrapezoidProfile.Constraints<E>
-  ) : this(
-    proportionalGain,
-    integralGain,
-    derivativeGain,
-    constraints,
-    Constants.Universal.LOOP_PERIOD_TIME
-  )
+  ) : this(proportionalGain, integralGain, derivativeGain, constraints, 0.02.seconds)
 
   fun setGoal(goal: Value<E>) {
     wpiPidController.setGoal(goal.value)
