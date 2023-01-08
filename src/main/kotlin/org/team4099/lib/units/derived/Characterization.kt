@@ -5,13 +5,14 @@ import org.team4099.lib.units.Fraction
 import org.team4099.lib.units.UnitKey
 import org.team4099.lib.units.Value
 import org.team4099.lib.units.Velocity
+import org.team4099.lib.units.base.Ampere
 import org.team4099.lib.units.base.Meter
 
-typealias StaticFeedforward = Value<Volt>
+typealias StaticFeedforward<O> = Value<O>
 
-typealias VelocityFeedforward<T> = Value<Fraction<Volt, Velocity<T>>>
+typealias VelocityFeedforward<O, E> = Value<Fraction<O, Velocity<E>>>
 
-typealias AccelerationFeedforward<T> = Value<Fraction<Volt, Acceleration<T>>>
+typealias AccelerationFeedforward<O, E> = Value<Fraction<O, Acceleration<E>>>
 
 typealias AngularGravityFeedforward = Value<Fraction<Volt, Radian>>
 
@@ -23,8 +24,14 @@ val <K : UnitKey> Value<K>.perMeterPerSecondPerSecond
 val <K : UnitKey> Value<K>.perRadianPerSecondPerSecond
   get() = Value<Fraction<K, Acceleration<Radian>>>(value)
 
-val AccelerationFeedforward<Radian>.inVoltsPerRadianPerSecondPerSecond
+val AccelerationFeedforward<Volt, Radian>.inVoltsPerRadianPerSecondPerSecond
   get() = value
 
-val AccelerationFeedforward<Meter>.inVoltsPerMeterPerSecondPerSecond
+val AccelerationFeedforward<Volt, Meter>.inVoltsPerMeterPerSecondPerSecond
+  get() = value
+
+val AccelerationFeedforward<Ampere, Radian>.inAmpsPerRadianPerSecondPerSecond
+  get() = value
+
+val AccelerationFeedforward<Ampere, Meter>.inAmpsPerMeterPerSecondPerSecond
   get() = value

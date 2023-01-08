@@ -4,8 +4,8 @@ Import into  robot project by adding this into your `build.gradle`. Make sure to
 ```
 dependencies{
 
-   // other dependencies
-   
-   implementation 'com.github.team4099:FalconUtils:<release_tag>'
+// other dependencies
+
+implementation 'com.github.team4099:FalconUtils:<release_tag>'
 }
 ```

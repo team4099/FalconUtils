@@ -10,21 +10,19 @@ import org.team4099.lib.units.derived.AccelerationFeedforward
 import org.team4099.lib.units.derived.ElectricalPotential
 import org.team4099.lib.units.derived.StaticFeedforward
 import org.team4099.lib.units.derived.VelocityFeedforward
-import org.team4099.lib.units.derived.inVolts
 import org.team4099.lib.units.derived.volts
 import edu.wpi.first.math.controller.SimpleMotorFeedforward as WPISimpleFeedforward
 
-class SimpleMotorFeedforward<U : UnitKey>(
-  val kS: StaticFeedforward,
-  val kV: VelocityFeedforward<U>,
-  val kA: AccelerationFeedforward<U>
+class SimpleMotorFeedforward<U : UnitKey, T : UnitKey>(
+  val kS: StaticFeedforward<U>,
+  val kV: VelocityFeedforward<U, T>,
+  val kA: AccelerationFeedforward<U, T>
 ) {
-  private val feedforward: WPISimpleFeedforward =
-    WPISimpleFeedforward(kS.inVolts, kV.value, kA.value)
+  private val feedforward: WPISimpleFeedforward = WPISimpleFeedforward(kS.value, kV.value, kA.value)
 
   constructor(
-    kS: ElectricalPotential,
-    kV: VelocityFeedforward<U>
+    kS: StaticFeedforward<U>,
+    kV: VelocityFeedforward<U, T>
   ) : this(kS, kV, AccelerationFeedforward(0.0))
 
   fun calculate(
@@ -38,42 +36,43 @@ class SimpleMotorFeedforward<U : UnitKey>(
     currentVelocitySetpoint: Value<Velocity<U>>,
     nextVelocitySetpoint: Value<Velocity<U>>,
     dT: Time
-  ): ElectricalPotential {
-    return feedforward.calculate(
-      currentVelocitySetpoint.value, nextVelocitySetpoint.value, dT.inSeconds
+  ): Value<U> {
+    return Value(
+      feedforward.calculate(
+        currentVelocitySetpoint.value, nextVelocitySetpoint.value, dT.inSeconds
+      )
     )
-      .volts
   }
 
-  fun calculate(velocity: Value<Velocity<U>>): ElectricalPotential {
-    return feedforward.calculate(velocity.value).volts
+  fun calculate(velocity: Value<Velocity<T>>): Value<U> {
+    return Value(feedforward.calculate(velocity.value))
   }
 
   fun maxAchievableVelocity(
-    maxVoltage: ElectricalPotential,
-    acceleration: Value<Acceleration<U>>
-  ): Value<Velocity<U>> {
-    return Value(feedforward.maxAchievableVelocity(maxVoltage.inVolts, acceleration.value))
+    maxControlOutput: Value<U>,
+    acceleration: Value<Acceleration<T>>
+  ): Value<Velocity<T>> {
+    return Value(feedforward.maxAchievableVelocity(maxControlOutput.value, acceleration.value))
   }
 
   fun minAchievableVelocity(
-    maxVoltage: ElectricalPotential,
-    acceleration: Value<Acceleration<U>>
-  ): Value<Velocity<U>> {
-    return Value(feedforward.minAchievableVelocity(maxVoltage.inVolts, acceleration.value))
+    maxControlOutput: Value<U>,
+    acceleration: Value<Acceleration<T>>
+  ): Value<Velocity<T>> {
+    return Value(feedforward.minAchievableVelocity(maxControlOutput.value, acceleration.value))
   }
 
   fun maxAchievableAcceleration(
-    maxVoltage: ElectricalPotential,
-    velocity: Value<Velocity<U>>
-  ): Value<Acceleration<U>> {
-    return Value(feedforward.maxAchievableAcceleration(maxVoltage.inVolts, velocity.value))
+    maxControlOutput: Value<U>,
+    velocity: Value<Velocity<T>>
+  ): Value<Acceleration<T>> {
+    return Value(feedforward.maxAchievableAcceleration(maxControlOutput.value, velocity.value))
   }
 
   fun minAchievableAcceleration(
-    maxVoltage: ElectricalPotential,
-    velocity: Value<Velocity<U>>
-  ): Value<Acceleration<U>> {
-    return Value(feedforward.minAchievableAcceleration(maxVoltage.inVolts, velocity.value))
+    maxControlOutput: Value<U>,
+    velocity: Value<Velocity<T>>
+  ): Value<Acceleration<T>> {
+    return Value(feedforward.minAchievableAcceleration(maxControlOutput.value, velocity.value))
   }
 }
