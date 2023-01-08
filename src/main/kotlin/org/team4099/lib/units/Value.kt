@@ -1,11 +1,15 @@
 package org.team4099.lib.units
 
 import kotlin.math.absoluteValue
+import kotlin.math.sign
 
 @JvmInline
 value class Value<T : UnitKey>(val value: Double) : Comparable<Value<T>> {
   val absoluteValue: Value<T>
     get() = Value(value.absoluteValue)
+
+  val sign: Double
+    get() = sign(value)
 
   operator fun plus(o: Value<T>): Value<T> = Value(value + o.value)
   operator fun minus(o: Value<T>): Value<T> = Value(value - o.value)
