@@ -9,6 +9,7 @@ import org.team4099.lib.units.derived.ElectricalPotential
 import org.team4099.lib.units.derived.Radian
 import org.team4099.lib.units.derived.StaticFeedforward
 import org.team4099.lib.units.derived.VelocityFeedforward
+import org.team4099.lib.units.derived.Volt
 import org.team4099.lib.units.derived.inRadians
 import org.team4099.lib.units.derived.inVolts
 import org.team4099.lib.units.derived.inVoltsPerRadian
@@ -23,10 +24,10 @@ import org.team4099.lib.units.perSecond
 import edu.wpi.first.math.controller.ArmFeedforward as WPIArmFeedforward
 
 class ArmFeedforward(
-  kS: StaticFeedforward,
+  kS: StaticFeedforward<Volt>,
   kG: AngularGravityFeedforward,
-  kV: VelocityFeedforward<Radian>,
-  kA: AccelerationFeedforward<Radian>
+  kV: VelocityFeedforward<Radian, Volt>,
+  kA: AccelerationFeedforward<Radian, Volt>
 ) {
   private val feedforward =
     WPIArmFeedforward(
@@ -37,9 +38,9 @@ class ArmFeedforward(
     )
 
   constructor(
-    kS: StaticFeedforward,
+    kS: StaticFeedforward<Volt>,
     kG: AngularGravityFeedforward,
-    kV: VelocityFeedforward<Radian>
+    kV: VelocityFeedforward<Radian, Volt>
   ) : this(kS, kG, kV, 0.volts.perRadianPerSecondPerSecond)
 
   fun calculate(

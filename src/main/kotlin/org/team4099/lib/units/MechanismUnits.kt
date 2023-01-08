@@ -68,7 +68,7 @@ interface MechanismSensor<U : UnitKey> {
     derivativeGain: DerivativeGain<Velocity<U>, Volt>,
   ): Double
 
-  fun velocityFeedforwardToRawUnits(velocityFeedforward: VelocityFeedforward<U>): Double
+  fun velocityFeedforwardToRawUnits(velocityFeedforward: VelocityFeedforward<U, Volt>): Double
 }
 
 class LinearMechanismSensor(
@@ -155,7 +155,7 @@ class LinearMechanismSensor(
   }
 
   override fun velocityFeedforwardToRawUnits(
-    velocityFeedforward: VelocityFeedforward<Meter>
+    velocityFeedforward: VelocityFeedforward<Meter, Volt>
   ): Double {
     return velocityFeedforward.value * velocityToRawUnits(1.0.meters.perSecond) /
       compensationVoltage.inVolts * fullPowerThrottle
@@ -241,7 +241,7 @@ class AngularMechanismSensor(
   }
 
   override fun velocityFeedforwardToRawUnits(
-    velocityFeedforward: VelocityFeedforward<Radian>
+    velocityFeedforward: VelocityFeedforward<Radian, Volt>
   ): Double {
     return velocityFeedforward.value * velocityToRawUnits(1.0.radians.perSecond) /
       compensationVoltage.inVolts * fullPowerThrottle

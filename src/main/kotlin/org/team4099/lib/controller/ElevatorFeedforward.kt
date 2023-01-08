@@ -9,6 +9,7 @@ import org.team4099.lib.units.derived.ElectricalPotential
 import org.team4099.lib.units.derived.LinearGravityFeedforward
 import org.team4099.lib.units.derived.StaticFeedforward
 import org.team4099.lib.units.derived.VelocityFeedforward
+import org.team4099.lib.units.derived.Volt
 import org.team4099.lib.units.derived.inVolts
 import org.team4099.lib.units.derived.inVoltsPerMeterPerSecond
 import org.team4099.lib.units.derived.inVoltsPerMeterPerSecondPerSecond
@@ -20,10 +21,10 @@ import org.team4099.lib.units.perSecond
 import edu.wpi.first.math.controller.ElevatorFeedforward as WPIElevatorFeedforward
 
 class ElevatorFeedforward(
-  kS: StaticFeedforward,
+  kS: StaticFeedforward<Volt>,
   kG: LinearGravityFeedforward,
-  kV: VelocityFeedforward<Meter>,
-  kA: AccelerationFeedforward<Meter>
+  kV: VelocityFeedforward<Meter, Volt>,
+  kA: AccelerationFeedforward<Meter, Volt>
 ) {
   private val feedforward =
     WPIElevatorFeedforward(
@@ -31,9 +32,9 @@ class ElevatorFeedforward(
     )
 
   constructor(
-    kS: StaticFeedforward,
+    kS: StaticFeedforward<Volt>,
     kG: LinearGravityFeedforward,
-    kV: VelocityFeedforward<Meter>
+    kV: VelocityFeedforward<Meter, Volt>
   ) : this(kS, kG, kV, 0.0.volts.perMeterPerSecondPerSecond)
 
   fun calculate(velocity: LinearVelocity, acceleration: LinearAcceleration): ElectricalPotential {
