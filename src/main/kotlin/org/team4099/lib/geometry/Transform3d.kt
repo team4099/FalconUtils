@@ -14,6 +14,10 @@ class Transform3d(val translation: Translation3d, val rotation: Rotation3d) {
     last.rotation.minus(initial.rotation)
   )
 
+  constructor(
+    transform3dWPILIB: Transform3dWPILIB
+  ) : this(Translation3d(transform3dWPILIB.translation), Rotation3d(transform3dWPILIB.rotation)) {}
+
   constructor() : this(Translation3d(), Rotation3d())
 
   operator fun times(scalar: Double): Transform3d {
