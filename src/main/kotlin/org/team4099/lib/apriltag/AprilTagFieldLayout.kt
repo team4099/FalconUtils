@@ -27,7 +27,7 @@ class AprilTagFieldLayout(
   var origin = Pose3d()
 
   fun getTagPose(id: Int): Pose3d {
-    if (id < aprilTags.size) {
+    if (id > aprilTags.size) {
       return Pose3d((-1337).meters, (-1337).meters, (-1337).meters, Rotation3d())
     }
     return aprilTags[id - 1].pose
