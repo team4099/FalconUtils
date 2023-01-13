@@ -30,7 +30,7 @@ class AprilTagFieldLayout(
     if (id < aprilTags.size) {
       return Pose3d((-1337).meters, (-1337).meters, (-1337).meters, Rotation3d())
     }
-    return aprilTags[id].pose
+    return aprilTags[id - 1].pose
   }
 
   fun setOrigin(newOrigin: OriginPosition) {
