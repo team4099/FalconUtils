@@ -34,7 +34,7 @@ val Double.grams: Mass
   get() = Mass(this / 1000)
 
 val Double.pounds: Mass
-  get() = Mass(this * GRAMS_PER_POUND)
+  get() = Mass(this * GRAMS_PER_POUND / 1000)
 
 val Number.grams: Mass
   get() = toDouble().grams

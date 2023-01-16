@@ -2,7 +2,6 @@ package com.team4099.units
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.team4099.lib.units.base.GRAMS_PER_POUND
 import org.team4099.lib.units.base.grams
 import org.team4099.lib.units.base.inAttograms
 import org.team4099.lib.units.base.inCentigrams
@@ -35,13 +34,13 @@ class MassTest {
   @Test
   fun testGramsToPounds() {
     val weightGrams = 4099.grams
-    assertEquals(weightGrams.inPounds, weightGrams.inGrams / GRAMS_PER_POUND, kEpsilon)
+    assertEquals(weightGrams.inPounds, 9.036747529279591, kEpsilon)
   }
 
   @Test
   fun testPoundsToGrams() {
     val weightPounds = 4099.pounds
-    assertEquals(weightPounds.inGrams, weightPounds.inPounds * GRAMS_PER_POUND, kEpsilon)
+    assertEquals(weightPounds.inGrams, 1859275.2476, kEpsilon)
   }
 
   @Test
