@@ -1,4 +1,4 @@
-package com.team4099.apriltag
+package org.team4099.lib.apriltag
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout
 import org.team4099.lib.geometry.Pose3d
