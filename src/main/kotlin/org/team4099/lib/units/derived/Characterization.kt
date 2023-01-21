@@ -18,20 +18,20 @@ typealias AngularGravityFeedforward = Value<Fraction<Volt, Radian>>
 
 typealias LinearGravityFeedforward = Value<Volt>
 
-val <K : UnitKey> Value<K>.perMeterPerSecondPerSecond
+inline val <K : UnitKey> Value<K>.perMeterPerSecondPerSecond
   get() = Value<Fraction<K, Acceleration<Meter>>>(value)
 
-val <K : UnitKey> Value<K>.perRadianPerSecondPerSecond
+inline val <K : UnitKey> Value<K>.perRadianPerSecondPerSecond
   get() = Value<Fraction<K, Acceleration<Radian>>>(value)
 
-val AccelerationFeedforward<Radian, Volt>.inVoltsPerRadianPerSecondPerSecond
+inline val AccelerationFeedforward<Radian, Volt>.inVoltsPerRadianPerSecondPerSecond
   get() = value
 
-val AccelerationFeedforward<Meter, Volt>.inVoltsPerMeterPerSecondPerSecond
+inline val AccelerationFeedforward<Meter, Volt>.inVoltsPerMeterPerSecondPerSecond
   get() = value
 
-val AccelerationFeedforward<Radian, Ampere>.inAmpsPerRadianPerSecondPerSecond
+inline val AccelerationFeedforward<Radian, Ampere>.inAmpsPerRadianPerSecondPerSecond
   get() = value
 
-val AccelerationFeedforward<Meter, Ampere>.inAmpsPerMeterPerSecondPerSecond
+inline val AccelerationFeedforward<Meter, Ampere>.inAmpsPerMeterPerSecondPerSecond
   get() = value

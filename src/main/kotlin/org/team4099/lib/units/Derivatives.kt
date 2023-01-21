@@ -20,56 +20,56 @@ typealias LinearAcceleration = Value<Acceleration<Meter>>
 
 typealias AngularAcceleration = Value<Acceleration<Radian>>
 
-val <K : UnitKey> Value<K>.perSecond
+inline val <K : UnitKey> Value<K>.perSecond
   get() = Value<Velocity<K>>(value)
 
-val <K : UnitKey> Value<K>.perMinute
+inline val <K : UnitKey> Value<K>.perMinute
   get() = Value<Velocity<K>>(value / SECONDS_PER_MINUTE)
 
-val LinearVelocity.inMetersPerSecond: Double
+inline val LinearVelocity.inMetersPerSecond: Double
   get() = value
 
-val LinearVelocity.inFeetPerSecond: Double
+inline val LinearVelocity.inFeetPerSecond: Double
   get() = value / METERS_PER_FOOT
 
-val LinearVelocity.inFeetPerMinute: Double
+inline val LinearVelocity.inFeetPerMinute: Double
   get() = inFeetPerSecond * SECONDS_PER_MINUTE
 
-val LinearVelocity.inInchesPerSecond: Double
+inline val LinearVelocity.inInchesPerSecond: Double
   get() = value / METERS_PER_INCH
 
-val AngularVelocity.inRadiansPerSecond: Double
+inline val AngularVelocity.inRadiansPerSecond: Double
   get() = value
 
-val AngularVelocity.inDegreesPerSecond: Double
+inline val AngularVelocity.inDegreesPerSecond: Double
   get() = Math.toDegrees(value)
 
-val AngularVelocity.inRotationsPerSecond: Double
+inline val AngularVelocity.inRotationsPerSecond: Double
   get() = value / (2 * PI)
 
-val AngularVelocity.inRotationsPerMinute: Double
+inline val AngularVelocity.inRotationsPerMinute: Double
   get() = value * SECONDS_PER_MINUTE / (2 * PI)
 
-val LinearAcceleration.inMetersPerSecondPerSecond: Double
+inline val LinearAcceleration.inMetersPerSecondPerSecond: Double
   get() = value
 
-val LinearAcceleration.inFeetPerSecondPerSecond: Double
+inline val LinearAcceleration.inFeetPerSecondPerSecond: Double
   get() = value / METERS_PER_FOOT
 
-val LinearAcceleration.inFeetPerMinutePerSecond: Double
+inline val LinearAcceleration.inFeetPerMinutePerSecond: Double
   get() = inFeetPerSecondPerSecond * SECONDS_PER_MINUTE
 
-val LinearAcceleration.inInchesPerSecondPerSecond: Double
+inline val LinearAcceleration.inInchesPerSecondPerSecond: Double
   get() = value / METERS_PER_INCH
 
-val AngularAcceleration.inRadiansPerSecondPerSecond: Double
+inline val AngularAcceleration.inRadiansPerSecondPerSecond: Double
   get() = value
 
-val AngularAcceleration.inDegreesPerSecondPerSecond: Double
+inline val AngularAcceleration.inDegreesPerSecondPerSecond: Double
   get() = Math.toDegrees(value)
 
-val AngularAcceleration.inRotationsPerSecondPerSecond: Double
+inline val AngularAcceleration.inRotationsPerSecondPerSecond: Double
   get() = value / (2 * PI)
 
-val AngularAcceleration.inRotationsPerMinutePerMinute: Double
+inline val AngularAcceleration.inRotationsPerMinutePerMinute: Double
   get() = value * SECONDS_PER_MINUTE * SECONDS_PER_MINUTE / (2 * PI)

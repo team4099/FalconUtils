@@ -7,29 +7,29 @@ object Kelvin : UnitKey
 
 typealias Temperature = Value<Kelvin>
 
-val Double.kelvin: Temperature
+inline val Double.kelvin: Temperature
   get() = Temperature(this)
 
-val Double.celsius: Temperature
+inline val Double.celsius: Temperature
   get() = Temperature(this + 273.15)
 
-val Double.fahrenheit: Temperature
+inline val Double.fahrenheit: Temperature
   get() = Temperature((this - 32) * 5.0 / 9.0 + 273.15)
 
-val Number.kelvin: Temperature
+inline val Number.kelvin: Temperature
   get() = toDouble().kelvin
 
-val Number.celsius: Temperature
+inline val Number.celsius: Temperature
   get() = toDouble().celsius
 
-val Number.fahrenheit: Temperature
+inline val Number.fahrenheit: Temperature
   get() = toDouble().fahrenheit
 
-val Temperature.inKelvins: Double
+inline val Temperature.inKelvins: Double
   get() = value
 
-val Temperature.inCelsius: Double
+inline val Temperature.inCelsius: Double
   get() = value - 273.15
 
-val Temperature.inFahrenheit: Double
+inline val Temperature.inFahrenheit: Double
   get() = (value - 273.15) * 1.8 + 32

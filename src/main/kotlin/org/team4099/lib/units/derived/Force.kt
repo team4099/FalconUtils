@@ -32,71 +32,71 @@ typealias Newton = Fraction<Product<Kilogram, Meter>, Squared<Second>>
 
 typealias Force = Value<Newton>
 
-val Double.newtons
+inline val Double.newtons
   get() = Force(this)
 
-val Number.newtons
+inline val Number.newtons
   get() = Force(this.toDouble())
 
-val Force.inNewtons: Double
+inline val Force.inNewtons: Double
   get() = value
 
-val Force.inYottanewtons: Double
+inline val Force.inYottanewtons: Double
   get() = value * 1.yottainverse
 
-val Force.inZetanewtons: Double
+inline val Force.inZetanewtons: Double
   get() = value * 1.zetainverse
 
-val Force.inExanewtons: Double
+inline val Force.inExanewtons: Double
   get() = value * 1.exainverse
 
-val Force.inPetanewtons: Double
+inline val Force.inPetanewtons: Double
   get() = value * 1.petainverse
 
-val Force.inTeranewtons: Double
+inline val Force.inTeranewtons: Double
   get() = value * 1.terainverse
 
-val Force.inGiganewtons: Double
+inline val Force.inGiganewtons: Double
   get() = value * 1.gigainverse
 
-val Force.inMeganewtons: Double
+inline val Force.inMeganewtons: Double
   get() = value * 1.megainverse
 
-val Force.inKilonewtons: Double
+inline val Force.inKilonewtons: Double
   get() = value * 1.kiloinverse
 
-val Force.inHectonewtons: Double
+inline val Force.inHectonewtons: Double
   get() = value * 1.hectoinverse
 
-val Force.inDecanewtons: Double
+inline val Force.inDecanewtons: Double
   get() = value * 1.decainverse
 
-val Force.inDecinewtons: Double
+inline val Force.inDecinewtons: Double
   get() = value * 1.deciinverse
 
-val Force.inCentinewtons: Double
+inline val Force.inCentinewtons: Double
   get() = value * 1.centiinverse
 
-val Force.inMillinewtons: Double
+inline val Force.inMillinewtons: Double
   get() = value * 1.milliinverse
 
-val Force.inMicronewtons: Double
+inline val Force.inMicronewtons: Double
   get() = value * 1.microinverse
 
-val Force.inNanonewtons: Double
+inline val Force.inNanonewtons: Double
   get() = value * 1.nanoinverse
 
-val Force.inPiconewtons: Double
+inline val Force.inPiconewtons: Double
   get() = value * 1.picoinverse
 
-val Force.inFemtonewtons: Double
+inline val Force.inFemtonewtons: Double
   get() = value * 1.femtoinverse
 
-val Force.inAttonewtons: Double
+inline val Force.inAttonewtons: Double
   get() = value * 1.attoinverse
 
-val Force.inZeptonewtons: Double
+inline val Force.inZeptonewtons: Double
   get() = value * 1.zeptoinverse
 
-val Force.inYoctonewtons: Double
+inline val Force.inYoctonewtons: Double
   get() = value * 1.yoctoinverse

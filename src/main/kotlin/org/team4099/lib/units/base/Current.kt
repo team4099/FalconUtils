@@ -27,71 +27,71 @@ object Ampere : UnitKey
 
 typealias Current = Value<Ampere>
 
-val Double.amps: Current
+inline val Double.amps: Current
   get() = Current(this)
 
-val Number.amps: Current
+inline val Number.amps: Current
   get() = this.toDouble().amps
 
-val Current.inAmperes
+inline val Current.inAmperes
   get() = value
 
-val Current.inYottaamps
+inline val Current.inYottaamps
   get() = value * 1.yottainverse
 
-val Current.inZetaamps
+inline val Current.inZetaamps
   get() = value * 1.zetainverse
 
-val Current.inExaamps
+inline val Current.inExaamps
   get() = value * 1.exainverse
 
-val Current.inPetaamps
+inline val Current.inPetaamps
   get() = value * 1.petainverse
 
-val Current.inTeraamps
+inline val Current.inTeraamps
   get() = value * 1.terainverse
 
-val Current.inGigaamps
+inline val Current.inGigaamps
   get() = value * 1.gigainverse
 
-val Current.inMegaamps
+inline val Current.inMegaamps
   get() = value * 1.megainverse
 
-val Current.inKiloamps
+inline val Current.inKiloamps
   get() = value * 1.kiloinverse
 
-val Current.inHectoamps
+inline val Current.inHectoamps
   get() = value * 1.hectoinverse
 
-val Current.inDecaamps
+inline val Current.inDecaamps
   get() = value * 1.decainverse
 
-val Current.inDeciamps
+inline val Current.inDeciamps
   get() = value * 1.deciinverse
 
-val Current.inCentiamps
+inline val Current.inCentiamps
   get() = value * 1.centiinverse
 
-val Current.inMilliamps
+inline val Current.inMilliamps
   get() = value * 1.milliinverse
 
-val Current.inMicroamps
+inline val Current.inMicroamps
   get() = value * 1.microinverse
 
-val Current.inNanoamps
+inline val Current.inNanoamps
   get() = value * 1.nanoinverse
 
-val Current.inPicoamps
+inline val Current.inPicoamps
   get() = value * 1.picoinverse
 
-val Current.inFemtoamps
+inline val Current.inFemtoamps
   get() = value * 1.femtoinverse
 
-val Current.inAttoamps
+inline val Current.inAttoamps
   get() = value * 1.attoinverse
 
-val Current.inZeptoamps
+inline val Current.inZeptoamps
   get() = value * 1.zeptoinverse
 
-val Current.inYoctoamps
+inline val Current.inYoctoamps
   get() = value * 1.yoctoinverse

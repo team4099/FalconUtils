@@ -14,11 +14,11 @@ typealias Squared<K> = Product<K, K>
 
 typealias Cubed<K> = Product<K, Squared<K>>
 
-val Double.unitless: Value<Unitless>
+inline val Double.unitless: Value<Unitless>
   get() = Value(this)
 
-val Number.unitless: Value<Unitless>
+inline val Number.unitless: Value<Unitless>
   get() = this.toDouble().unitless
 
-val Value<Unitless>.asDouble
+inline val Value<Unitless>.asDouble
   get() = value

@@ -17,63 +17,63 @@ object Second : UnitKey
 
 typealias Time = Value<Second>
 
-internal const val SECONDS_PER_MINUTE = 60
+const val SECONDS_PER_MINUTE = 60
 
-internal const val SECONDS_PER_HOUR = SECONDS_PER_MINUTE * 60
+const val SECONDS_PER_HOUR = SECONDS_PER_MINUTE * 60
 
-val Double.seconds: Time
+inline val Double.seconds: Time
   get() = Time(this)
 
-val Double.minutes: Time
+inline val Double.minutes: Time
   get() = Time(this * SECONDS_PER_MINUTE)
 
-val Double.hours: Time
+inline val Double.hours: Time
   get() = Time(this * SECONDS_PER_HOUR)
 
-val Number.seconds: Time
+inline val Number.seconds: Time
   get() = toDouble().seconds
 
-val Number.minutes: Time
+inline val Number.minutes: Time
   get() = toDouble().minutes
 
-val Number.hours: Time
+inline val Number.hours: Time
   get() = toDouble().hours
 
-val Time.inSeconds: Double
+inline val Time.inSeconds: Double
   get() = value
 
-val Time.inMinutes: Double
+inline val Time.inMinutes: Double
   get() = value / SECONDS_PER_MINUTE
 
-val Time.inHours: Double
+inline val Time.inHours: Double
   get() = value / SECONDS_PER_HOUR
 
-val Time.inDeciseconds: Double
+inline val Time.inDeciseconds: Double
   get() = value * 1.deciinverse
 
-val Time.inCentiseconds: Double
+inline val Time.inCentiseconds: Double
   get() = value * 1.centiinverse
 
-val Time.inMilliseconds: Double
+inline val Time.inMilliseconds: Double
   get() = value * 1.milliinverse
 
-val Time.inMicroseconds: Double
+inline val Time.inMicroseconds: Double
   get() = value * 1.microinverse
 
-val Time.inNanoseconds: Double
+inline val Time.inNanoseconds: Double
   get() = value * 1.nanoinverse
 
-val Time.inPicoseconds: Double
+inline val Time.inPicoseconds: Double
   get() = value * 1.picoinverse
 
-val Time.inFemtoseconds: Double
+inline val Time.inFemtoseconds: Double
   get() = value * 1.femtoinverse
 
-val Time.inAttoseconds: Double
+inline val Time.inAttoseconds: Double
   get() = value * 1.attoinverse
 
-val Time.inZeptoseconds: Double
+inline val Time.inZeptoseconds: Double
   get() = value * 1.zeptoinverse
 
-val Time.inYoctoseconds: Double
+inline val Time.inYoctoseconds: Double
   get() = value * 1.yoctoinverse

@@ -44,242 +44,242 @@ object Magnitude {
   const val YOCTO_INVERSE = 1E24
 }
 
-val Double.yotta: Double
+inline val Double.yotta: Double
   get() = this * Magnitude.YOTTA
 
-val Double.zeta: Double
+inline val Double.zeta: Double
   get() = this * Magnitude.ZETA
 
-val Double.exa: Double
+inline val Double.exa: Double
   get() = this * Magnitude.EXA
 
-val Double.peta: Double
+inline val Double.peta: Double
   get() = this * Magnitude.PETA
 
-val Double.tera: Double
+inline val Double.tera: Double
   get() = this * Magnitude.TERA
 
-val Double.giga: Double
+inline val Double.giga: Double
   get() = this * Magnitude.GIGA
 
-val Double.mega: Double
+inline val Double.mega: Double
   get() = this * Magnitude.MEGA
 
-val Double.kilo: Double
+inline val Double.kilo: Double
   get() = this * Magnitude.KILO
 
-val Double.hecto: Double
+inline val Double.hecto: Double
   get() = this * Magnitude.HECTO
 
-val Double.deca: Double
+inline val Double.deca: Double
   get() = this * Magnitude.DECA
 
-val Double.deci: Double
+inline val Double.deci: Double
   get() = this * Magnitude.DECI
 
-val Double.centi: Double
+inline val Double.centi: Double
   get() = this * Magnitude.CENTI
 
-val Double.milli: Double
+inline val Double.milli: Double
   get() = this * Magnitude.MILLI
 
-val Double.micro: Double
+inline val Double.micro: Double
   get() = this * Magnitude.MICRO
 
-val Double.nano: Double
+inline val Double.nano: Double
   get() = this * Magnitude.NANO
 
-val Double.pico: Double
+inline val Double.pico: Double
   get() = this * Magnitude.PICO
 
-val Double.femto: Double
+inline val Double.femto: Double
   get() = this * Magnitude.FEMTO
 
-val Double.atto: Double
+inline val Double.atto: Double
   get() = this * Magnitude.ATTO
 
-val Double.zepto: Double
+inline val Double.zepto: Double
   get() = this * Magnitude.ZEPTO
 
-val Double.yocto: Double
+inline val Double.yocto: Double
   get() = this * Magnitude.YOCTO
 
-val Number.yotta: Double
+inline val Number.yotta: Double
   get() = this.toDouble() * Magnitude.YOTTA
 
-val Number.zeta: Double
+inline val Number.zeta: Double
   get() = this.toDouble() * Magnitude.ZETA
 
-val Number.exa: Double
+inline val Number.exa: Double
   get() = this.toDouble() * Magnitude.EXA
 
-val Number.peta: Double
+inline val Number.peta: Double
   get() = this.toDouble() * Magnitude.PETA
 
-val Number.tera: Double
+inline val Number.tera: Double
   get() = this.toDouble() * Magnitude.TERA
 
-val Number.giga: Double
+inline val Number.giga: Double
   get() = this.toDouble() * Magnitude.GIGA
 
-val Number.mega: Double
+inline val Number.mega: Double
   get() = this.toDouble() * Magnitude.MEGA
 
-val Number.kilo: Double
+inline val Number.kilo: Double
   get() = this.toDouble() * Magnitude.KILO
 
-val Number.hecto: Double
+inline val Number.hecto: Double
   get() = this.toDouble() * Magnitude.HECTO
 
-val Number.deca: Double
+inline val Number.deca: Double
   get() = this.toDouble() * Magnitude.DECA
 
-val Number.deci: Double
+inline val Number.deci: Double
   get() = this.toDouble() * Magnitude.DECI
 
-val Number.centi: Double
+inline val Number.centi: Double
   get() = this.toDouble() * Magnitude.CENTI
 
-val Number.milli: Double
+inline val Number.milli: Double
   get() = this.toDouble() * Magnitude.MILLI
 
-val Number.micro: Double
+inline val Number.micro: Double
   get() = this.toDouble() * Magnitude.MICRO
 
-val Number.nano: Double
+inline val Number.nano: Double
   get() = this.toDouble() * Magnitude.NANO
 
-val Number.pico: Double
+inline val Number.pico: Double
   get() = this.toDouble() * Magnitude.PICO
 
-val Number.femto: Double
+inline val Number.femto: Double
   get() = this.toDouble() * Magnitude.FEMTO
 
-val Number.atto: Double
+inline val Number.atto: Double
   get() = this.toDouble() * Magnitude.ATTO
 
-val Number.zepto: Double
+inline val Number.zepto: Double
   get() = this.toDouble() * Magnitude.ZEPTO
 
-val Number.yocto: Double
+inline val Number.yocto: Double
   get() = this.toDouble() * Magnitude.YOCTO
 
-val Double.yottainverse: Double
+inline val Double.yottainverse: Double
   get() = this * Magnitude.YOTTA_INVERSE
 
-val Double.zetainverse: Double
+inline val Double.zetainverse: Double
   get() = this * Magnitude.ZETA_INVERSE
 
-val Double.exainverse: Double
+inline val Double.exainverse: Double
   get() = this * Magnitude.EXA_INVERSE
 
-val Double.petainverse: Double
+inline val Double.petainverse: Double
   get() = this * Magnitude.PETA_INVERSE
 
-val Double.terainverse: Double
+inline val Double.terainverse: Double
   get() = this * Magnitude.TERA_INVERSE
 
-val Double.gigainverse: Double
+inline val Double.gigainverse: Double
   get() = this * Magnitude.GIGA_INVERSE
 
-val Double.megainverse: Double
+inline val Double.megainverse: Double
   get() = this * Magnitude.MEGA_INVERSE
 
-val Double.kiloinverse: Double
+inline val Double.kiloinverse: Double
   get() = this * Magnitude.KILO_INVERSE
 
-val Double.hectoinverse: Double
+inline val Double.hectoinverse: Double
   get() = this * Magnitude.HECTO_INVERSE
 
-val Double.decainverse: Double
+inline val Double.decainverse: Double
   get() = this * Magnitude.DECA_INVERSE
 
-val Double.deciinverse: Double
+inline val Double.deciinverse: Double
   get() = this * Magnitude.DECI_INVERSE
 
-val Double.centiinverse: Double
+inline val Double.centiinverse: Double
   get() = this * Magnitude.CENTI_INVERSE
 
-val Double.milliinverse: Double
+inline val Double.milliinverse: Double
   get() = this * Magnitude.MILLI_INVERSE
 
-val Double.microinverse: Double
+inline val Double.microinverse: Double
   get() = this * Magnitude.MICRO_INVERSE
 
-val Double.nanoinverse: Double
+inline val Double.nanoinverse: Double
   get() = this * Magnitude.NANO_INVERSE
 
-val Double.picoinverse: Double
+inline val Double.picoinverse: Double
   get() = this * Magnitude.PICO_INVERSE
 
-val Double.femtoinverse: Double
+inline val Double.femtoinverse: Double
   get() = this * Magnitude.FEMTO_INVERSE
 
-val Double.attoinverse: Double
+inline val Double.attoinverse: Double
   get() = this * Magnitude.ATTO_INVERSE
 
-val Double.zeptoinverse: Double
+inline val Double.zeptoinverse: Double
   get() = this * Magnitude.ZEPTO_INVERSE
 
-val Double.yoctoinverse: Double
+inline val Double.yoctoinverse: Double
   get() = this * Magnitude.YOCTO_INVERSE
 
-val Number.yottainverse: Double
+inline val Number.yottainverse: Double
   get() = this.toDouble() * Magnitude.YOTTA_INVERSE
 
-val Number.zetainverse: Double
+inline val Number.zetainverse: Double
   get() = this.toDouble() * Magnitude.ZETA_INVERSE
 
-val Number.exainverse: Double
+inline val Number.exainverse: Double
   get() = this.toDouble() * Magnitude.EXA_INVERSE
 
-val Number.petainverse: Double
+inline val Number.petainverse: Double
   get() = this.toDouble() * Magnitude.PETA_INVERSE
 
-val Number.terainverse: Double
+inline val Number.terainverse: Double
   get() = this.toDouble() * Magnitude.TERA_INVERSE
 
-val Number.gigainverse: Double
+inline val Number.gigainverse: Double
   get() = this.toDouble() * Magnitude.GIGA_INVERSE
 
-val Number.megainverse: Double
+inline val Number.megainverse: Double
   get() = this.toDouble() * Magnitude.MEGA_INVERSE
 
-val Number.kiloinverse: Double
+inline val Number.kiloinverse: Double
   get() = this.toDouble() * Magnitude.KILO_INVERSE
 
-val Number.hectoinverse: Double
+inline val Number.hectoinverse: Double
   get() = this.toDouble() * Magnitude.HECTO_INVERSE
 
-val Number.decainverse: Double
+inline val Number.decainverse: Double
   get() = this.toDouble() * Magnitude.DECA_INVERSE
 
-val Number.deciinverse: Double
+inline val Number.deciinverse: Double
   get() = this.toDouble() * Magnitude.DECI_INVERSE
 
-val Number.centiinverse: Double
+inline val Number.centiinverse: Double
   get() = this.toDouble() * Magnitude.CENTI_INVERSE
 
-val Number.milliinverse: Double
+inline val Number.milliinverse: Double
   get() = this.toDouble() * Magnitude.MILLI_INVERSE
 
-val Number.microinverse: Double
+inline val Number.microinverse: Double
   get() = this.toDouble() * Magnitude.MICRO_INVERSE
 
-val Number.nanoinverse: Double
+inline val Number.nanoinverse: Double
   get() = this.toDouble() * Magnitude.NANO_INVERSE
 
-val Number.picoinverse: Double
+inline val Number.picoinverse: Double
   get() = this.toDouble() * Magnitude.PICO_INVERSE
 
-val Number.femtoinverse: Double
+inline val Number.femtoinverse: Double
   get() = this.toDouble() * Magnitude.FEMTO_INVERSE
 
-val Number.attoinverse: Double
+inline val Number.attoinverse: Double
   get() = this.toDouble() * Magnitude.ATTO_INVERSE
 
-val Number.zeptoinverse: Double
+inline val Number.zeptoinverse: Double
   get() = this.toDouble() * Magnitude.ZEPTO_INVERSE
 
-val Number.yoctoinverse: Double
+inline val Number.yoctoinverse: Double
   get() = this.toDouble() * Magnitude.YOCTO_INVERSE

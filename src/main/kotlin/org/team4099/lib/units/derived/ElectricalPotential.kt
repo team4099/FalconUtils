@@ -9,14 +9,14 @@ typealias Volt = Fraction<Joule, Coulomb>
 
 typealias ElectricalPotential = Value<Volt>
 
-val Double.volts
+inline val Double.volts
   get() = ElectricalPotential(this)
 
-val Number.volts
+inline val Number.volts
   get() = toDouble().volts
 
-val ElectricalPotential.inVolts
+inline val ElectricalPotential.inVolts
   get() = value
 
-val ElectricalPotential.inPercentOutput
+inline val ElectricalPotential.inPercentOutput
   get() = this / BATTERY_VOLTAGE

@@ -13,7 +13,7 @@ import kotlin.math.min
  * @param tolerance The range within values will be considered near.
  * @return If [around] is within [tolerance] of this Double.
  */
-fun Double.around(around: Double, tolerance: Double): Boolean {
+inline fun Double.around(around: Double, tolerance: Double): Boolean {
   return abs(this - around) < tolerance
 }
 
@@ -24,7 +24,7 @@ fun Double.around(around: Double, tolerance: Double): Boolean {
  * @return This value adjusted to smoothly increase from zero if outside the deadband, zero if
  * inside the deadband.
  */
-fun Double.smoothDeadband(deadband: Double): Double {
+inline fun Double.smoothDeadband(deadband: Double): Double {
   return if (abs(this) < deadband) {
     0.0
   } else {
@@ -39,7 +39,7 @@ fun Double.smoothDeadband(deadband: Double): Double {
  * @param upperBound The upper bound of this Double's range.
  * @return Return this Double if it is in the range otherwise return [lowerBound] or [upperBound].
  */
-fun Double.limit(lowerBound: Double, upperBound: Double): Double {
+inline fun Double.limit(lowerBound: Double, upperBound: Double): Double {
   return min(upperBound, max(lowerBound, this))
 }
 
@@ -50,7 +50,7 @@ fun Double.limit(lowerBound: Double, upperBound: Double): Double {
  * @param upperBound The upper bound of this Int's range.
  * @return Return this Int if it is in the range otherwise return [lowerBound] or [upperBound].
  */
-fun Int.limit(lowerBound: Int, upperBound: Int): Int {
+inline fun Int.limit(lowerBound: Int, upperBound: Int): Int {
   return min(upperBound, max(lowerBound, this))
 }
 
@@ -63,7 +63,7 @@ fun Int.limit(lowerBound: Int, upperBound: Int): Int {
  * to between 0 and 1 inclusive.
  * @return A value between [a] and [b] determined by [x].
  */
-fun interpolate(a: Double, b: Double, x: Double): Double {
+inline fun interpolate(a: Double, b: Double, x: Double): Double {
   return a + (b - a) * x
 }
 
@@ -76,6 +76,6 @@ fun interpolate(a: Double, b: Double, x: Double): Double {
  * to between 0 and 1 inclusive.
  * @return A value between [a] and [b] determined by [x].
  */
-fun <T : UnitKey> interpolate(a: Value<T>, b: Value<T>, x: Double): Value<T> {
+inline fun <T : UnitKey> interpolate(a: Value<T>, b: Value<T>, x: Double): Value<T> {
   return Value(a.value + (b.value - a.value) * x)
 }

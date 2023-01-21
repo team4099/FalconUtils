@@ -13,56 +13,56 @@ import kotlin.math.PI
 
 object Radian : UnitKey
 
-internal const val RADIANS_PER_DEGREES = (2 * Math.PI) / 360
+const val RADIANS_PER_DEGREES = (2 * Math.PI) / 360
 
-internal const val RADIANS_PER_ROTATION = (2 * Math.PI)
+const val RADIANS_PER_ROTATION = (2 * Math.PI)
 
 typealias Angle = Value<Radian>
 
-fun Angle(x: Double, y: Double): Angle {
+inline fun Angle(x: Double, y: Double): Angle {
   return Rotation2dWPILIB(x, y).angle
 }
 
-val Double.radians: Angle
+inline val Double.radians: Angle
   get() = Angle(this)
 
-val Double.degrees: Angle
+inline val Double.degrees: Angle
   get() = Angle(Math.toRadians(this))
 
-val Double.rotations: Angle
+inline val Double.rotations: Angle
   get() = Angle(this * 2 * Math.PI)
 
-val Rotation2d.angle: Angle
+inline val Rotation2d.angle: Angle
   get() = Angle(this.radians)
 
-val Number.radians: Angle
+inline val Number.radians: Angle
   get() = toDouble().radians
 
-val Number.degrees: Angle
+inline val Number.degrees: Angle
   get() = toDouble().degrees
 
-val Number.rotations: Angle
+inline val Number.rotations: Angle
   get() = toDouble().rotations
 
-val Angle.inDegrees: Double
+inline val Angle.inDegrees: Double
   get() = Math.toDegrees(value)
 
-val Angle.inRadians: Double
+inline val Angle.inRadians: Double
   get() = value
 
-val Angle.inRotations: Double
+inline val Angle.inRotations: Double
   get() = value / (2 * PI)
 
-val Angle.inRotation2ds: Rotation2d
+inline val Angle.inRotation2ds: Rotation2d
   get() = Rotation2d(value)
 
-val Angle.sin: Double
+inline val Angle.sin: Double
   get() = kotlin.math.sin(value)
 
-val Angle.cos: Double
+inline val Angle.cos: Double
   get() = kotlin.math.cos(value)
 
-val Angle.tan: Double
+inline val Angle.tan: Double
   get() = kotlin.math.tan(value)
 
 operator fun AngularVelocity.times(o: Length): LinearVelocity = (o * inRadiansPerSecond).perSecond

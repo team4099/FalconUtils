@@ -32,71 +32,71 @@ typealias Joule = Fraction<Product<Kilogram, Squared<Meter>>, Squared<Second>>
 
 typealias Energy = Value<Joule>
 
-val Double.joules
+inline val Double.joules
   get() = Energy(this)
 
-val Number.joules
+inline val Number.joules
   get() = Energy(this.toDouble())
 
-val Energy.inJoules: Double
+inline val Energy.inJoules: Double
   get() = value
 
-val Energy.inYottajoules: Double
+inline val Energy.inYottajoules: Double
   get() = value * 1.yottainverse
 
-val Energy.inZetajoules: Double
+inline val Energy.inZetajoules: Double
   get() = value * 1.zetainverse
 
-val Energy.inExajoules: Double
+inline val Energy.inExajoules: Double
   get() = value * 1.exainverse
 
-val Energy.inPetajoules: Double
+inline val Energy.inPetajoules: Double
   get() = value * 1.petainverse
 
-val Energy.inTerajoules: Double
+inline val Energy.inTerajoules: Double
   get() = value * 1.terainverse
 
-val Energy.inGigajoules: Double
+inline val Energy.inGigajoules: Double
   get() = value * 1.gigainverse
 
-val Energy.inMegajoules: Double
+inline val Energy.inMegajoules: Double
   get() = value * 1.megainverse
 
-val Energy.inKilojoules: Double
+inline val Energy.inKilojoules: Double
   get() = value * 1.kiloinverse
 
-val Energy.inHectojoules: Double
+inline val Energy.inHectojoules: Double
   get() = value * 1.hectoinverse
 
-val Energy.inDecajoules: Double
+inline val Energy.inDecajoules: Double
   get() = value * 1.decainverse
 
-val Energy.inDecijoules: Double
+inline val Energy.inDecijoules: Double
   get() = value * 1.deciinverse
 
-val Energy.inCentijoules: Double
+inline val Energy.inCentijoules: Double
   get() = value * 1.centiinverse
 
-val Energy.inMillijoules: Double
+inline val Energy.inMillijoules: Double
   get() = value * 1.milliinverse
 
-val Energy.inMicrojoules: Double
+inline val Energy.inMicrojoules: Double
   get() = value * 1.microinverse
 
-val Energy.inNanojoules: Double
+inline val Energy.inNanojoules: Double
   get() = value * 1.nanoinverse
 
-val Energy.inPicojoules: Double
+inline val Energy.inPicojoules: Double
   get() = value * 1.picoinverse
 
-val Energy.inFemtojoules: Double
+inline val Energy.inFemtojoules: Double
   get() = value * 1.femtoinverse
 
-val Energy.inAttojoules: Double
+inline val Energy.inAttojoules: Double
   get() = value * 1.attoinverse
 
-val Energy.inZeptojoules: Double
+inline val Energy.inZeptojoules: Double
   get() = value * 1.zeptoinverse
 
-val Energy.inYoctojoules: Double
+inline val Energy.inYoctojoules: Double
   get() = value * 1.yoctoinverse
