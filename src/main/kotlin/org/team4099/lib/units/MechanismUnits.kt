@@ -72,44 +72,45 @@ interface MechanismSensor<U : UnitKey> {
 }
 
 class LinearMechanismSensor(
-  private val diameter: Length,
-  private val ratio: Double,
-  private val timescale: Timescale,
-  private val fullPowerThrottle: Double,
-  private val compensationVoltage: ElectricalPotential,
+  val diameter: Length,
+  val ratio: Double,
+  val timescale: Timescale,
+  val fullPowerThrottle: Double,
+  val compensationVoltage: ElectricalPotential,
   val getRawVelocity: () -> Double,
   val getRawPosition: () -> Double
 ) : MechanismSensor<Meter> {
-  override val position: Length
+  override inline val position: Length
     get() = (diameter * PI) * getRawPosition() * ratio
 
-  override val velocity: Value<Velocity<Meter>>
+  override inline val velocity: Value<Velocity<Meter>>
     get() {
       val linearUnscaledVelocity = diameter.inMeters * getRawVelocity() * ratio * PI
       return (linearUnscaledVelocity / timescale.velocity.inSeconds).meters.perSecond
     }
 
-  override fun positionToRawUnits(position: Value<Meter>): Double = position / diameter / ratio / PI
+  override inline fun positionToRawUnits(position: Value<Meter>): Double =
+    position / diameter / ratio / PI
 
-  override fun velocityToRawUnits(velocity: Value<Velocity<Meter>>): Double {
+  override inline fun velocityToRawUnits(velocity: Value<Velocity<Meter>>): Double {
     val linearUnscaledVelocity = velocity.inMetersPerSecond * timescale.velocity.inSeconds
     return linearUnscaledVelocity / diameter.inMeters / ratio / PI
   }
 
-  override fun accelerationToRawUnits(acceleration: Value<Acceleration<Meter>>): Double {
+  override inline fun accelerationToRawUnits(acceleration: Value<Acceleration<Meter>>): Double {
     val linearUnscaledVelocity =
       velocity.inMetersPerSecond * timescale.velocity.inSeconds * timescale.acceleration.inSeconds
     return linearUnscaledVelocity / diameter.inMeters / ratio / PI
   }
 
-  override fun proportionalPositionGainToRawUnits(
+  override inline fun proportionalPositionGainToRawUnits(
     proportionalGain: ProportionalGain<Meter, Volt>
   ): Double {
     return (proportionalGain.inVoltsPerMeter / (positionToRawUnits(1.meters))) /
       compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun integralPositionGainToRawUnits(
+  override inline fun integralPositionGainToRawUnits(
     integralGain: IntegralGain<Meter, Volt>,
   ): Double {
     return (
@@ -119,7 +120,7 @@ class LinearMechanismSensor(
       compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun derivativePositionGainToRawUnits(
+  override inline fun derivativePositionGainToRawUnits(
     derivativeGain: DerivativeGain<Meter, Volt>,
   ): Double {
     return (
@@ -128,14 +129,14 @@ class LinearMechanismSensor(
       ) / compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun proportionalVelocityGainToRawUnits(
+  override inline fun proportionalVelocityGainToRawUnits(
     proportionalGain: ProportionalGain<Velocity<Meter>, Volt>
   ): Double {
     return (proportionalGain.inVoltsPerMetersPerSecond / (velocityToRawUnits(1.meters.perSecond))) /
       compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun integralVelocityGainToRawUnits(
+  override inline fun integralVelocityGainToRawUnits(
     integralGain: IntegralGain<Velocity<Meter>, Volt>,
   ): Double {
     return (
@@ -145,7 +146,7 @@ class LinearMechanismSensor(
       compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun derivativeVelocityGainToRawUnits(
+  override inline fun derivativeVelocityGainToRawUnits(
     derivativeGain: DerivativeGain<Velocity<Meter>, Volt>,
   ): Double {
     return (
@@ -154,7 +155,7 @@ class LinearMechanismSensor(
       ) / compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun velocityFeedforwardToRawUnits(
+  override inline fun velocityFeedforwardToRawUnits(
     velocityFeedforward: VelocityFeedforward<Meter, Volt>
   ): Double {
     return velocityFeedforward.value * velocityToRawUnits(1.0.meters.perSecond) /
@@ -163,39 +164,42 @@ class LinearMechanismSensor(
 }
 
 class AngularMechanismSensor(
-  private val ratio: Double,
-  private val timescale: Timescale,
-  private val fullPowerThrottle: Double,
-  private val compensationVoltage: ElectricalPotential,
+  val ratio: Double,
+  val timescale: Timescale,
+  val fullPowerThrottle: Double,
+  val compensationVoltage: ElectricalPotential,
   val getRawVelocity: () -> Double,
   val getRawPosition: () -> Double
 ) : MechanismSensor<Radian> {
-  override val position: Value<Radian>
+  override inline val position: Value<Radian>
     get() = (getRawPosition() * ratio).rotations
 
-  override val velocity: Value<Velocity<Radian>>
+  override inline val velocity: Value<Velocity<Radian>>
     get() = (getRawVelocity() * ratio / timescale.velocity.inSeconds).rotations.perSecond
 
-  override fun positionToRawUnits(position: Value<Radian>): Double = position.inRotations / ratio
+  override inline fun positionToRawUnits(position: Value<Radian>): Double =
+    position.inRotations / ratio
 
-  override fun velocityToRawUnits(velocity: Value<Velocity<Radian>>): Double =
+  override inline fun velocityToRawUnits(velocity: Value<Velocity<Radian>>): Double =
     (velocity.inRotationsPerSecond * timescale.velocity.inSeconds) / ratio
 
-  override fun accelerationToRawUnits(acceleration: Value<Acceleration<Radian>>): Double =
+  override inline fun accelerationToRawUnits(acceleration: Value<Acceleration<Radian>>): Double =
     (
       acceleration.inRotationsPerSecondPerSecond *
         timescale.velocity.inSeconds *
         timescale.acceleration.inSeconds
       ) / ratio
 
-  override fun proportionalPositionGainToRawUnits(
+  override inline fun proportionalPositionGainToRawUnits(
     proportionalGain: ProportionalGain<Radian, Volt>
   ): Double {
     return (proportionalGain.inVoltsPerRadian / (positionToRawUnits(1.radians))) /
       compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun integralPositionGainToRawUnits(integralGain: IntegralGain<Radian, Volt>): Double {
+  override inline fun integralPositionGainToRawUnits(
+    integralGain: IntegralGain<Radian, Volt>
+  ): Double {
     return (
       integralGain.inVoltsPerRadianSeconds /
         (positionToRawUnits(1.radians) * timescale.velocity.inSeconds)
@@ -203,7 +207,7 @@ class AngularMechanismSensor(
       compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun derivativePositionGainToRawUnits(
+  override inline fun derivativePositionGainToRawUnits(
     derivativeGain: DerivativeGain<Radian, Volt>
   ): Double {
     return (
@@ -212,7 +216,7 @@ class AngularMechanismSensor(
       ) / compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun proportionalVelocityGainToRawUnits(
+  override inline fun proportionalVelocityGainToRawUnits(
     proportionalGain: ProportionalGain<Velocity<Radian>, Volt>
   ): Double {
     return (
@@ -221,7 +225,7 @@ class AngularMechanismSensor(
       ) / compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun integralVelocityGainToRawUnits(
+  override inline fun integralVelocityGainToRawUnits(
     integralGain: IntegralGain<Velocity<Radian>, Volt>
   ): Double {
     return (
@@ -231,7 +235,7 @@ class AngularMechanismSensor(
       compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun derivativeVelocityGainToRawUnits(
+  override inline fun derivativeVelocityGainToRawUnits(
     derivativeGain: DerivativeGain<Velocity<Radian>, Volt>
   ): Double {
     return (
@@ -240,7 +244,7 @@ class AngularMechanismSensor(
       ) / compensationVoltage.inVolts * fullPowerThrottle
   }
 
-  override fun velocityFeedforwardToRawUnits(
+  override inline fun velocityFeedforwardToRawUnits(
     velocityFeedforward: VelocityFeedforward<Radian, Volt>
   ): Double {
     return velocityFeedforward.value * velocityToRawUnits(1.0.radians.perSecond) /

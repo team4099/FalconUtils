@@ -5,31 +5,33 @@ import kotlin.math.sign
 
 @JvmInline
 value class Value<T : UnitKey>(val value: Double) : Comparable<Value<T>> {
-  val absoluteValue: Value<T>
+  inline val absoluteValue: Value<T>
     get() = Value(value.absoluteValue)
 
-  val sign: Double
+  inline val sign: Double
     get() = sign(value)
 
-  operator fun plus(o: Value<T>): Value<T> = Value(value + o.value)
-  operator fun minus(o: Value<T>): Value<T> = Value(value - o.value)
+  inline operator fun plus(o: Value<T>): Value<T> = Value(value + o.value)
+  inline operator fun minus(o: Value<T>): Value<T> = Value(value - o.value)
 
-  operator fun times(k: Double): Value<T> = Value(value * k)
-  operator fun times(k: Number): Value<T> = this * k.toDouble()
-  operator fun <K : UnitKey> times(o: Value<Fraction<K, T>>): Value<K> = Value(value * o.value)
+  inline operator fun times(k: Double): Value<T> = Value(value * k)
+  inline operator fun times(k: Number): Value<T> = this * k.toDouble()
+  inline operator fun <K : UnitKey> times(o: Value<Fraction<K, T>>): Value<K> =
+    Value(value * o.value)
 
   @Suppress("INAPPLICABLE_JVM_NAME")
   @JvmName("times1")
-  operator fun <K : UnitKey> times(o: Value<K>): Value<Product<T, K>> = Value(value * o.value)
+  inline operator fun <K : UnitKey> times(o: Value<K>): Value<Product<T, K>> =
+    Value(value * o.value)
 
-  operator fun unaryMinus(): Value<T> = Value(-value)
+  inline operator fun unaryMinus(): Value<T> = Value(-value)
 
-  operator fun div(k: Double): Value<T> = Value(value / k)
-  operator fun div(k: Number): Value<T> = this / k.toDouble()
-  operator fun div(o: Value<T>): Double = value / o.value
-  operator fun <K : UnitKey> div(o: Value<K>): Value<Fraction<T, K>> = Value(value / o.value)
+  inline operator fun div(k: Double): Value<T> = Value(value / k)
+  inline operator fun div(k: Number): Value<T> = this / k.toDouble()
+  inline operator fun div(o: Value<T>): Double = value / o.value
+  inline operator fun <K : UnitKey> div(o: Value<K>): Value<Fraction<T, K>> = Value(value / o.value)
 
-  override operator fun compareTo(other: Value<T>): Int = value.compareTo(other.value)
+  override inline operator fun compareTo(other: Value<T>): Int = value.compareTo(other.value)
 }
 
 infix fun <T : UnitKey> ClosedRange<Value<T>>.step(step: Value<T>): Iterable<Value<T>> {
