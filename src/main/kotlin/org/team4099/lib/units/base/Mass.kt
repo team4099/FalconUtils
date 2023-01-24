@@ -30,11 +30,16 @@ typealias Mass = Value<Kilogram>
 
 const val GRAMS_PER_POUND = 453.5924
 
+const val GRAMS_PER_OUNCE = 28.3495
+
 inline val Double.grams: Mass
   get() = Mass(this / 1000)
 
 inline val Double.pounds: Mass
   get() = Mass(this * GRAMS_PER_POUND / 1000)
+
+inline val Double.ounces: Mass
+  get() = Mass(this * GRAMS_PER_OUNCE / 1000)
 
 inline val Number.grams: Mass
   get() = toDouble().grams
@@ -42,11 +47,17 @@ inline val Number.grams: Mass
 inline val Number.pounds: Mass
   get() = toDouble().pounds
 
+inline val Number.ounces: Mass
+  get() = toDouble().ounces
+
 inline val Mass.inGrams: Double
   get() = value * Magnitude.KILO
 
 inline val Mass.inPounds: Double
   get() = (value * Magnitude.KILO) / GRAMS_PER_POUND
+
+inline val Mass.inOunces: Double
+  get() = (value * Magnitude.KILO) / GRAMS_PER_OUNCE
 
 inline val Mass.inYottagrams: Double
   get() = (value * Magnitude.KILO) * 1.yottainverse
