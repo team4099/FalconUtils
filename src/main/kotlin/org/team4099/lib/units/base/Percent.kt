@@ -17,7 +17,7 @@ inline val Number.percent: Decimal
   get() = this.toDouble().percent
 
 inline val Decimal.toPercentOutput: Double
-    get() = value
+  get() = value
 
 inline val Rate.inPercentOutputPerSecond: Double
   get() = value
