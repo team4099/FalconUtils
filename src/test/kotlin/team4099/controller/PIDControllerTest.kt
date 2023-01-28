@@ -16,9 +16,14 @@ import org.team4099.lib.units.base.seconds
 import org.team4099.lib.units.derived.ProportionalGain
 import org.team4099.lib.units.derived.degrees
 import org.team4099.lib.units.derived.inDegreesPerSecondPerDegreesPerSecond
+import org.team4099.lib.units.derived.inVoltsPerRotation
+import org.team4099.lib.units.derived.inVoltsPerRotationPerMinute
+import org.team4099.lib.units.derived.inVoltsPerRotationsPerMinutePerSecond
 import org.team4099.lib.units.derived.metersPerSecondPerMetersPerSecond
 import org.team4099.lib.units.derived.radiansPerSecondPerRadiansPerSecond
+import org.team4099.lib.units.derived.rotations
 import org.team4099.lib.units.derived.volts
+import org.team4099.lib.units.perMinute
 import org.team4099.lib.units.perSecond
 
 class PIDControllerTest {
@@ -73,5 +78,16 @@ class PIDControllerTest {
     val kp = (0.1.degrees.perSecond / (1.degrees / 1.seconds)).radiansPerSecondPerRadiansPerSecond
 
     println(kp.inDegreesPerSecondPerDegreesPerSecond)
+  }
+
+  @Test
+  fun testRPM() {
+    val kp = 2.0.volts / 1.0.rotations.perMinute
+    val kI = 2.0.volts / 1.0.rotations
+    val kD = 2.0.volts / 1.0.rotations.perMinute.perSecond
+
+    println(kp.inVoltsPerRotationPerMinute)
+    println(kI.inVoltsPerRotation)
+    println(kD.inVoltsPerRotationsPerMinutePerSecond)
   }
 }
