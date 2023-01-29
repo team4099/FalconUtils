@@ -3,6 +3,7 @@ package org.team4099.lib.units.derived
 import org.team4099.lib.units.Acceleration
 import org.team4099.lib.units.Fraction
 import org.team4099.lib.units.UnitKey
+import org.team4099.lib.units.Unitless
 import org.team4099.lib.units.Value
 import org.team4099.lib.units.Velocity
 import org.team4099.lib.units.base.Ampere
@@ -14,7 +15,7 @@ typealias VelocityFeedforward<E, O> = Value<Fraction<O, Velocity<E>>>
 
 typealias AccelerationFeedforward<E, O> = Value<Fraction<O, Acceleration<E>>>
 
-typealias AngularGravityFeedforward = Value<Fraction<Volt, Radian>>
+typealias AngularGravityFeedforward = Value<Volt>
 
 typealias LinearGravityFeedforward = Value<Volt>
 

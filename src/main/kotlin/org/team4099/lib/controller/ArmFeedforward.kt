@@ -32,7 +32,7 @@ class ArmFeedforward(
   private val feedforward =
     WPIArmFeedforward(
       kS.inVolts,
-      kG.inVoltsPerRadian,
+      kG.inVolts,
       kV.inVoltsPerRadianPerSecond,
       kA.inVoltsPerRadianPerSecondPerSecond
     )
