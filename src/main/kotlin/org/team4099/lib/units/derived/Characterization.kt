@@ -3,7 +3,6 @@ package org.team4099.lib.units.derived
 import org.team4099.lib.units.Acceleration
 import org.team4099.lib.units.Fraction
 import org.team4099.lib.units.UnitKey
-import org.team4099.lib.units.Unitless
 import org.team4099.lib.units.Value
 import org.team4099.lib.units.Velocity
 import org.team4099.lib.units.base.Ampere

@@ -11,6 +11,15 @@ value class Value<T : UnitKey>(val value: Double) : Comparable<Value<T>> {
   inline val sign: Double
     get() = sign(value)
 
+  inline val inverse: Value<Inverse<T>>
+    get() = Value(1 / value)
+
+  inline val squared: Value<Squared<T>>
+    get() = Value(value * value)
+
+  inline val cubed: Value<Cubed<T>>
+    get() = Value(value * value * value)
+
   inline operator fun plus(o: Value<T>): Value<T> = Value(value + o.value)
   inline operator fun minus(o: Value<T>): Value<T> = Value(value - o.value)
 
