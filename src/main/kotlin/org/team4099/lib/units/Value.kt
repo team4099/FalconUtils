@@ -1,5 +1,6 @@
 package org.team4099.lib.units
 
+import java.util.function.Supplier
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 
@@ -19,6 +20,9 @@ value class Value<T : UnitKey>(val value: Double) : Comparable<Value<T>> {
 
   inline val cubed: Value<Cubed<T>>
     get() = Value(value * value * value)
+
+  inline val asSupplier: Supplier<Value<T>>
+    get() = Supplier { Value(value) }
 
   inline operator fun plus(o: Value<T>): Value<T> = Value(value + o.value)
   inline operator fun minus(o: Value<T>): Value<T> = Value(value - o.value)
