@@ -24,14 +24,23 @@ inline val <K : UnitKey> Value<K>.perMeterPerSecondPerSecond
 inline val <K : UnitKey> Value<K>.perRadianPerSecondPerSecond
   get() = Value<Fraction<K, Acceleration<Radian>>>(value)
 
+inline val <K : UnitKey> Value<K>.perDegreePerSecondPerSecond
+  get() = Value<Fraction<K, Acceleration<Radian>>>(value / RADIANS_PER_DEGREES)
+
 inline val AccelerationFeedforward<Radian, Volt>.inVoltsPerRadianPerSecondPerSecond
   get() = value
+
+inline val AccelerationFeedforward<Radian, Volt>.inVoltsPerDegreePerSecondPerSecond
+  get() = inVoltsPerRadianPerSecondPerSecond / RADIANS_PER_DEGREES
 
 inline val AccelerationFeedforward<Meter, Volt>.inVoltsPerMeterPerSecondPerSecond
   get() = value
 
 inline val AccelerationFeedforward<Radian, Ampere>.inAmpsPerRadianPerSecondPerSecond
   get() = value
+
+inline val AccelerationFeedforward<Radian, Ampere>.inAmpsPerDegreePerSecondPerSecond
+  get() = inAmpsPerRadianPerSecondPerSecond / RADIANS_PER_DEGREES
 
 inline val AccelerationFeedforward<Meter, Ampere>.inAmpsPerMeterPerSecondPerSecond
   get() = value
