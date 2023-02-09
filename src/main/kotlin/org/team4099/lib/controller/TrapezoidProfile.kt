@@ -10,9 +10,9 @@ import org.team4099.lib.units.base.seconds
 import edu.wpi.first.math.trajectory.TrapezoidProfile as WPITrapezoidProfile
 
 class TrapezoidProfile<U : UnitKey>(
-  constraints: Constraints<U>,
-  goal: State<U>,
-  initial: State<U>
+  val constraints: Constraints<U>,
+  val goal: State<U>,
+  val initial: State<U>
 ) {
   val trapezoidProfile =
     WPITrapezoidProfile(constraints.wpiConstraints, goal.wpiState, initial.wpiState)

@@ -1,11 +1,12 @@
 package team4099.units
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.team4099.lib.units.derived.asDrivenOverDriving
+import org.team4099.lib.units.derived.asDrivingOverDriven
 import org.team4099.lib.units.derived.driven
 import org.team4099.lib.units.derived.driving
-import org.team4099.lib.units.derived.overdrive
-import org.team4099.lib.units.derived.reduction
+import org.team4099.lib.units.derived.gearRatio
 
 class GearRatioTest {
 
@@ -13,9 +14,9 @@ class GearRatioTest {
 
   @Test
   fun testGearRatio() {
-    val reductionRatio = (18.0.driving / 72.0.driven).reduction
-    val overdriveRatio = (18.0.driving / 72.0.driven).overdrive
-    println(reductionRatio.asDrivenOverDriving) // 4.0
-    println(overdriveRatio.asDrivenOverDriving) // 0.25
+    val reductionRatio = (72.0.driven / 18.0.driving).gearRatio
+
+    assertEquals(reductionRatio.asDrivenOverDriving, 0.25)
+    assertEquals(reductionRatio.asDrivingOverDriven, 4.0)
   }
 }
