@@ -7,7 +7,6 @@ import org.team4099.lib.units.base.Meter
 import org.team4099.lib.units.base.Time
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.base.inMilliseconds
-import org.team4099.lib.units.base.inMinutes
 import org.team4099.lib.units.base.inSeconds
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.base.minutes
@@ -37,7 +36,7 @@ import org.team4099.lib.units.derived.radians
 import org.team4099.lib.units.derived.rotations
 import kotlin.math.PI
 
-enum class Timescale(val velocity: Time, val acceleration: Time, val pidTimeScaleConversion: (Time) -> Double) {
+enum class Timescale(val velocity: Time, val acceleration: Time, val pidTimeConversion: (Time) -> Double) {
   REV_NEO(1.minutes, 1.seconds, {it.inMilliseconds}),
   CTRE(100.milli.seconds, 1.seconds, {it.inSeconds}),
 }
@@ -117,7 +116,7 @@ class LinearMechanismSensor(
   ): Double {
     return (
       integralGain.inVoltsPerMeterSeconds /
-        (positionToRawUnits(1.meters) * timescale.pidTimeScaleConversion(timescale.velocity))
+        (positionToRawUnits(1.meters) * timescale.pidTimeConversion(timescale.velocity))
       ) /
       compensationVoltage.inVolts * fullPowerThrottle
   }
@@ -126,7 +125,7 @@ class LinearMechanismSensor(
     derivativeGain: DerivativeGain<Meter, Volt>,
   ): Double {
     return (
-      derivativeGain.inVoltsPerMeterPerSecond * timescale.pidTimeScaleConversion(timescale.velocity) /
+      derivativeGain.inVoltsPerMeterPerSecond * timescale.pidTimeConversion(timescale.velocity) /
         positionToRawUnits(1.meters)
       ) / compensationVoltage.inVolts * fullPowerThrottle
   }
@@ -143,7 +142,7 @@ class LinearMechanismSensor(
   ): Double {
     return (
       integralGain.inVoltsPerMeters /
-        (velocityToRawUnits(1.meters.perSecond) * timescale.pidTimeScaleConversion(timescale.velocity))
+        (velocityToRawUnits(1.meters.perSecond) * timescale.pidTimeConversion(timescale.velocity))
       ) /
       compensationVoltage.inVolts * fullPowerThrottle
   }
@@ -152,7 +151,7 @@ class LinearMechanismSensor(
     derivativeGain: DerivativeGain<Velocity<Meter>, Volt>,
   ): Double {
     return (
-      derivativeGain.inVoltsPerMetersPerSecondPerSecond * timescale.pidTimeScaleConversion(timescale.velocity) /
+      derivativeGain.inVoltsPerMetersPerSecondPerSecond * timescale.pidTimeConversion(timescale.velocity) /
         velocityToRawUnits(1.meters.perSecond)
       ) / compensationVoltage.inVolts * fullPowerThrottle
   }
@@ -204,7 +203,7 @@ class AngularMechanismSensor(
   ): Double {
     return (
       integralGain.inVoltsPerRadianSeconds /
-        (positionToRawUnits(1.radians) * timescale.pidTimeScaleConversion(timescale.velocity))
+        (positionToRawUnits(1.radians) * timescale.pidTimeConversion(timescale.velocity))
       ) /
       compensationVoltage.inVolts * fullPowerThrottle
   }
@@ -213,7 +212,7 @@ class AngularMechanismSensor(
     derivativeGain: DerivativeGain<Radian, Volt>
   ): Double {
     return (
-      derivativeGain.inVoltsPerRadianPerSecond * timescale.pidTimeScaleConversion(timescale.velocity) /
+      derivativeGain.inVoltsPerRadianPerSecond * timescale.pidTimeConversion(timescale.velocity) /
         positionToRawUnits(1.radians)
       ) / compensationVoltage.inVolts * fullPowerThrottle
   }
@@ -232,7 +231,7 @@ class AngularMechanismSensor(
   ): Double {
     return (
       integralGain.inVoltsPerRadians /
-        (velocityToRawUnits(1.radians.perSecond) * timescale.pidTimeScaleConversion(timescale.velocity))
+        (velocityToRawUnits(1.radians.perSecond) * timescale.pidTimeConversion(timescale.velocity))
       ) /
       compensationVoltage.inVolts * fullPowerThrottle
   }
@@ -241,7 +240,7 @@ class AngularMechanismSensor(
     derivativeGain: DerivativeGain<Velocity<Radian>, Volt>
   ): Double {
     return (
-      derivativeGain.inVoltsPerRadiansPerSecondPerSecond * timescale.pidTimeScaleConversion(timescale.velocity) /
+      derivativeGain.inVoltsPerRadiansPerSecondPerSecond * timescale.pidTimeConversion(timescale.velocity) /
         velocityToRawUnits(1.radians.perSecond)
       ) / compensationVoltage.inVolts * fullPowerThrottle
   }
