@@ -2,7 +2,7 @@ plugins {
 	id "idea"
 	id 'maven-publish'
 	id "org.jetbrains.kotlin.jvm" version "1.6.10"
-	id "edu.wpi.first.GradleRIO" version "2023.2.1"
+	id "edu.wpi.first.GradleRIO" version "2023.4.2"
 	id "com.diffplug.spotless" version "6.3.0"
 	id "com.peterabeles.gversion" version "1.10"
 	id "org.jetbrains.kotlinx.kover" version "0.4.2"
@@ -21,8 +21,8 @@ dependencies {
 
 	implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
-	implementation "edu.wpi.first.wpimath:wpimath-java:2023.2.1"
-	implementation "edu.wpi.first.wpiutil:wpiutil-java:2023.2.1"
+	implementation "edu.wpi.first.wpimath:wpimath-java:2023.4.2"
+	implementation "edu.wpi.first.wpiutil:wpiutil-java:2023.4.2"
 
 	implementation wpi.java.deps.wpilib()
 	implementation wpi.java.vendor.java()
@@ -39,7 +39,7 @@ publishing {
 		release(MavenPublication) {
 			groupId = 'org.team4099'
 			artifactId = 'falconutils'
-			version = '1.1.13'
+			version = '1.1.14'
 
 			from(components["kotlin"])
 		}
