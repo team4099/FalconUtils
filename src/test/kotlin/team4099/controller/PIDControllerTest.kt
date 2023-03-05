@@ -15,12 +15,12 @@ import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.base.seconds
 import org.team4099.lib.units.derived.ProportionalGain
 import org.team4099.lib.units.derived.degrees
-import org.team4099.lib.units.derived.inDegreesPerSecondPerDegreesPerSecond
+import org.team4099.lib.units.derived.inVoltsPerDegree
 import org.team4099.lib.units.derived.inVoltsPerRotation
 import org.team4099.lib.units.derived.inVoltsPerRotationPerMinute
 import org.team4099.lib.units.derived.inVoltsPerRotationsPerMinutePerSecond
 import org.team4099.lib.units.derived.metersPerSecondPerMetersPerSecond
-import org.team4099.lib.units.derived.radiansPerSecondPerRadiansPerSecond
+import org.team4099.lib.units.derived.perDegree
 import org.team4099.lib.units.derived.rotations
 import org.team4099.lib.units.derived.volts
 import org.team4099.lib.units.perMinute
@@ -75,9 +75,9 @@ class PIDControllerTest {
 
   @Test
   fun testConversion() {
-    val kp = (0.1.degrees.perSecond / (1.degrees / 1.seconds)).radiansPerSecondPerRadiansPerSecond
+    val kp = 0.4.volts.perDegree
 
-    println(kp.inDegreesPerSecondPerDegreesPerSecond)
+    println(kp.inVoltsPerDegree)
   }
 
   @Test
