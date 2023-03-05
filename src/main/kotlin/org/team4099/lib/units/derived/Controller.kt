@@ -74,10 +74,10 @@ inline val <K : UnitKey> Value<K>.perRadian
   get() = Value<Fraction<K, Radian>>(value)
 
 inline val <K : UnitKey> Value<K>.perDegree
-  get() = perRadian * RADIANS_PER_DEGREES
+  get() = perRadian / RADIANS_PER_DEGREES
 
 inline val <K : UnitKey> Value<K>.perRotation
-  get() = perRadian * RADIANS_PER_ROTATION
+  get() = perRadian / RADIANS_PER_ROTATION
 
 inline val <K : UnitKey> Value<K>.perMeterSeconds
   get() = Value<Fraction<K, Product<Meter, Second>>>(value)
