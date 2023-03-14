@@ -7,10 +7,13 @@ import org.team4099.lib.controller.SimpleMotorFeedforward
 import org.team4099.lib.controller.TrapezoidProfile
 import org.team4099.lib.units.Acceleration
 import org.team4099.lib.units.Fraction
+import org.team4099.lib.units.LinearMechanismSensor
+import org.team4099.lib.units.Timescale
 import org.team4099.lib.units.Value
 import org.team4099.lib.units.base.Meter
 import org.team4099.lib.units.base.Second
 import org.team4099.lib.units.base.amps
+import org.team4099.lib.units.base.inches
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.base.seconds
 import org.team4099.lib.units.derived.ProportionalGain
@@ -89,5 +92,23 @@ class PIDControllerTest {
     println(kp.inVoltsPerRotationPerMinute)
     println(kI.inVoltsPerRotation)
     println(kD.inVoltsPerRotationsPerMinutePerSecond)
+  }
+
+  @Test
+  fun testFFConversion() {
+    val kFF = 11.3.volts / 4.56.meters.perSecond
+
+    val testSensor =
+      LinearMechanismSensor(
+        3.827.inches,
+        (14.0 / 50.0) * (27.0 / 17.0) * (15.0 / 45.0) / 2048,
+        Timescale.CTRE,
+        1023.0,
+        12.0.volts,
+        { 0.0 },
+        { 0.0 }
+      )
+
+    println(testSensor.velocityFeedforwardToRawUnits(kFF))
   }
 }

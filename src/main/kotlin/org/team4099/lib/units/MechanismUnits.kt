@@ -168,7 +168,8 @@ class LinearMechanismSensor(
   override inline fun velocityFeedforwardToRawUnits(
     velocityFeedforward: VelocityFeedforward<Meter, Volt>
   ): Double {
-    return velocityFeedforward.value * velocityToRawUnits(1.0.meters.perSecond) /
+    return velocityFeedforward.value /
+      velocityToRawUnits(1.0.meters.perSecond) /
       compensationVoltage.inVolts * fullPowerThrottle
   }
 }
@@ -262,7 +263,8 @@ class AngularMechanismSensor(
   override inline fun velocityFeedforwardToRawUnits(
     velocityFeedforward: VelocityFeedforward<Radian, Volt>
   ): Double {
-    return velocityFeedforward.value * velocityToRawUnits(1.0.radians.perSecond) /
+    return velocityFeedforward.value /
+      velocityToRawUnits(1.0.radians.perSecond) /
       compensationVoltage.inVolts * fullPowerThrottle
   }
 }
