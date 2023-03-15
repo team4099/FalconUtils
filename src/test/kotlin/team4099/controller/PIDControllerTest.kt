@@ -18,12 +18,12 @@ import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.base.seconds
 import org.team4099.lib.units.derived.ProportionalGain
 import org.team4099.lib.units.derived.degrees
-import org.team4099.lib.units.derived.inVoltsPerDegree
+import org.team4099.lib.units.derived.inVoltsPerInch
 import org.team4099.lib.units.derived.inVoltsPerRotation
 import org.team4099.lib.units.derived.inVoltsPerRotationPerMinute
 import org.team4099.lib.units.derived.inVoltsPerRotationsPerMinutePerSecond
 import org.team4099.lib.units.derived.metersPerSecondPerMetersPerSecond
-import org.team4099.lib.units.derived.perDegree
+import org.team4099.lib.units.derived.perInch
 import org.team4099.lib.units.derived.rotations
 import org.team4099.lib.units.derived.volts
 import org.team4099.lib.units.perMinute
@@ -78,9 +78,9 @@ class PIDControllerTest {
 
   @Test
   fun testConversion() {
-    val kp = 0.4.volts.perDegree
+    val kp = 0.4.volts.perInch
 
-    println(kp.inVoltsPerDegree)
+    println(kp.inVoltsPerInch)
   }
 
   @Test
@@ -96,7 +96,7 @@ class PIDControllerTest {
 
   @Test
   fun testFFConversion() {
-    val kFF = 11.3.volts / 4.56.meters.perSecond
+    val kFF = 12.0.volts / 4.1675.meters.perSecond
 
     val testSensor =
       LinearMechanismSensor(

@@ -65,10 +65,10 @@ inline val <K : UnitKey> Value<K>.perMeter
   get() = Value<Fraction<K, Meter>>(value)
 
 inline val <K : UnitKey> Value<K>.perInch
-  get() = perMeter * METERS_PER_INCH
+  get() = perMeter / METERS_PER_INCH
 
 inline val <K : UnitKey> Value<K>.perFoot
-  get() = perMeter * METERS_PER_FOOT
+  get() = perMeter / METERS_PER_FOOT
 
 inline val <K : UnitKey> Value<K>.perRadian
   get() = Value<Fraction<K, Radian>>(value)
