@@ -1,6 +1,7 @@
 package org.team4099.lib.units
 
 import com.ctre.phoenix.motorcontrol.can.BaseTalon
+import com.ctre.phoenixpro.hardware.core.CoreTalonFX
 import com.revrobotics.CANSparkMax
 import org.team4099.lib.units.base.Length
 import org.team4099.lib.units.base.Meter
@@ -43,6 +44,7 @@ enum class Timescale(
 ) {
   REV_NEO(1.minutes, 1.seconds, { it.inMilliseconds }),
   CTRE(100.milli.seconds, 1.seconds, { it.inSeconds }),
+  PHOENIX_PRO(1.seconds, 1.seconds, { it.inSeconds })
 }
 
 interface MechanismSensor<U : UnitKey> {
@@ -300,6 +302,38 @@ fun ctreLinearMechanismSensor(
     compensationVoltage,
     { controller.selectedSensorVelocity.toDouble() },
     { controller.selectedSensorPosition.toDouble() }
+  )
+}
+
+fun ctreLinearMechanismSensor(
+  controller: CoreTalonFX,
+  ratio: Double,
+  diameter: Length,
+  compensationVoltage: ElectricalPotential
+): LinearMechanismSensor {
+  return LinearMechanismSensor(
+    diameter,
+    ratio,
+    Timescale.PHOENIX_PRO,
+    1.0,
+    compensationVoltage,
+    { controller.velocity.value },
+    { controller.position.value },
+  )
+}
+
+fun ctreAngularMechanismSensor(
+  controller: CoreTalonFX,
+  ratio: Double,
+  compensationVoltage: ElectricalPotential
+): AngularMechanismSensor {
+  return AngularMechanismSensor(
+    ratio,
+    Timescale.PHOENIX_PRO,
+    1.0,
+    compensationVoltage,
+    { controller.velocity.value },
+    { controller.position.value },
   )
 }
 
