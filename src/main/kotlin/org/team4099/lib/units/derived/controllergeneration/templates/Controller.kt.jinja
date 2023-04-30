@@ -1,0 +1,163 @@
+package org.team4099.lib.units.derived
+
+import org.team4099.lib.units.Fraction
+import org.team4099.lib.units.Product
+import org.team4099.lib.units.UnitKey
+import org.team4099.lib.units.Unitless
+import org.team4099.lib.units.Value
+import org.team4099.lib.units.Velocity
+import org.team4099.lib.units.base.Ampere
+import org.team4099.lib.units.base.METERS_PER_FOOT
+import org.team4099.lib.units.base.METERS_PER_INCH
+import org.team4099.lib.units.base.Meter
+import org.team4099.lib.units.base.SECONDS_PER_MINUTE
+import org.team4099.lib.units.base.Second
+
+// E: Error, O: Output
+
+typealias ProportionalGain<E, O> = Value<Fraction<O, E>>
+
+typealias IntegralGain<E, O> = Value<Fraction<O, Product<E, Second>>>
+
+typealias DerivativeGain<E, O> = Value<Fraction<O, Fraction<E, Second>>>
+
+inline val <K : UnitKey> Value<K>.perMeter
+  get() = Value<Fraction<K, Meter>>(value)
+
+inline val <K : UnitKey> Value<K>.perInch
+  get() = perMeter / METERS_PER_INCH
+
+inline val <K : UnitKey> Value<K>.perFoot
+  get() = perMeter / METERS_PER_FOOT
+
+inline val <K : UnitKey> Value<K>.perRadian
+  get() = Value<Fraction<K, Radian>>(value)
+
+inline val <K : UnitKey> Value<K>.perDegree
+  get() = perRadian / RADIANS_PER_DEGREES
+
+inline val <K : UnitKey> Value<K>.perRotation
+  get() = perRadian / RADIANS_PER_ROTATION
+
+inline val <K : UnitKey> Value<K>.perMeterSeconds
+  get() = Value<Fraction<K, Product<Meter, Second>>>(value)
+
+inline val <K : UnitKey> Value<K>.perInchSeconds
+  get() = perMeterSeconds / METERS_PER_INCH
+
+inline val <K : UnitKey> Value<K>.perFootSeconds
+  get() = perMeterSeconds / METERS_PER_FOOT
+
+inline val <K : UnitKey> Value<K>.perRadianSeconds
+  get() = Value<Fraction<K, Product<Radian, Second>>>(value)
+
+inline val <K : UnitKey> Value<K>.perDegreeSeconds
+  get() = perRadianSeconds / RADIANS_PER_DEGREES
+
+inline val <K : UnitKey> Value<K>.perMeterPerSecond
+  get() = Value<Fraction<K, Fraction<Meter, Second>>>(value)
+
+inline val <K : UnitKey> Value<K>.perInchPerSecond
+  get() = perMeterPerSecond / METERS_PER_INCH
+
+inline val <K : UnitKey> Value<K>.perFootPerSecond
+  get() = perMeterPerSecond / METERS_PER_FOOT
+
+inline val <K : UnitKey> Value<K>.perRadianPerSecond
+  get() = Value<Fraction<K, Fraction<Radian, Second>>>(value)
+
+inline val <K : UnitKey> Value<K>.perDegreePerSecond
+  get() = perRadianPerSecond / RADIANS_PER_DEGREES
+
+{% for output_index in range(control_outputs | length) %}
+
+inline val Double.{{ output_aliases[output_index] }}Per{{ output_aliases[output_index] }}
+  get() = Value<Fraction<{{ control_outputs[output_index] }}, {{ control_outputs[output_index] }}>>(this)
+
+inline val ProportionalGain<Meter, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerMeter: Double
+  get() = value
+
+inline val ProportionalGain<Meter, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerInch: Double
+  get() = in{{ output_aliases[output_index] }}PerMeter * METERS_PER_INCH
+
+inline val ProportionalGain<Meter, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerFoot: Double
+  get() = in{{ output_aliases[output_index] }}PerMeter * METERS_PER_FOOT
+
+inline val ProportionalGain<Radian, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRadian: Double
+  get() = value
+
+inline val ProportionalGain<Radian, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerDegree: Double
+  get() = in{{ output_aliases[output_index] }}PerRadian * RADIANS_PER_DEGREES
+
+inline val ProportionalGain<Radian, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRotation: Double
+  get() = in{{ output_aliases[output_index] }}PerRadian * RADIANS_PER_ROTATION
+
+inline val ProportionalGain<Velocity<Meter>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerMetersPerSecond: Double
+  get() = value
+
+inline val ProportionalGain<Velocity<Radian>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRadiansPerSecond: Double
+  get() = value
+
+inline val ProportionalGain<Velocity<Radian>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRotationPerMinute: Double
+  get() = in{{ output_aliases[output_index] }}PerRadiansPerSecond * RADIANS_PER_ROTATION / SECONDS_PER_MINUTE
+
+inline val IntegralGain<Meter, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerMeterSeconds: Double
+  get() = value
+
+inline val IntegralGain<Meter, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerInchSeconds: Double
+  get() = in{{ output_aliases[output_index] }}PerMeterSeconds * METERS_PER_INCH
+
+inline val IntegralGain<Meter, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerFootSeconds: Double
+  get() = in{{ output_aliases[output_index] }}PerMeterSeconds * METERS_PER_FOOT
+
+inline val IntegralGain<Velocity<Meter>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerMeters: Double
+  get() = value
+
+inline val IntegralGain<Radian, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRadianSeconds: Double
+  get() = value
+
+inline val IntegralGain<Radian, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerDegreeSeconds: Double
+  get() = in{{ output_aliases[output_index] }}PerRadianSeconds * RADIANS_PER_DEGREES
+
+inline val IntegralGain<Radian, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRotationSeconds: Double
+  get() = in{{ output_aliases[output_index] }}PerRadianSeconds / SECONDS_PER_MINUTE * RADIANS_PER_ROTATION
+
+inline val IntegralGain<Velocity<Radian>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRadians: Double
+  get() = value
+
+inline val IntegralGain<Velocity<Radian>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerDegrees: Double
+  get() = in{{ output_aliases[output_index] }}PerRadians * RADIANS_PER_DEGREES
+
+inline val IntegralGain<Velocity<Radian>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRotations: Double
+  get() = in{{ output_aliases[output_index] }}PerRadians / SECONDS_PER_MINUTE * RADIANS_PER_ROTATION
+
+inline val DerivativeGain<Meter, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerMeterPerSecond: Double
+  get() = value
+
+inline val DerivativeGain<Meter, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerInchPerSecond: Double
+  get() = in{{ output_aliases[output_index] }}PerMeterPerSecond * METERS_PER_INCH
+
+inline val DerivativeGain<Meter, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerFootPerSecond: Double
+  get() = in{{ output_aliases[output_index] }}PerMeterPerSecond * METERS_PER_FOOT
+
+inline val DerivativeGain<Velocity<Meter>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerMetersPerSecondPerSecond: Double
+  get() = value
+
+inline val DerivativeGain<Radian, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRadianPerSecond: Double
+  get() = value
+
+inline val DerivativeGain<Radian, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerDegreePerSecond: Double
+  get() = in{{ output_aliases[output_index] }}PerRadianPerSecond * RADIANS_PER_DEGREES
+
+inline val DerivativeGain<Radian, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRotationsPerMinute: Double
+  get() = in{{ output_aliases[output_index] }}PerRadianPerSecond / SECONDS_PER_MINUTE * RADIANS_PER_ROTATION
+
+inline val DerivativeGain<Velocity<Radian>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRadiansPerSecondPerSecond: Double
+  get() = value
+
+inline val DerivativeGain<Velocity<Radian>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerDegreesPerSecondPerSecond: Double
+  get() = in{{ output_aliases[output_index] }}PerRadiansPerSecondPerSecond * RADIANS_PER_DEGREES
+
+inline val DerivativeGain<Velocity<Radian>, {{ control_outputs[output_index] }}>.in{{ output_aliases[output_index] }}PerRotationsPerMinutePerSecond: Double
+  get() = in{{ output_aliases[output_index] }}PerRadiansPerSecondPerSecond / SECONDS_PER_MINUTE * RADIANS_PER_ROTATION
+{% endfor %}
