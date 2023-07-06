@@ -1,7 +1,7 @@
 package org.team4099.lib.units
 
 import com.ctre.phoenix.motorcontrol.can.BaseTalon
-import com.ctre.phoenixpro.hardware.core.CoreTalonFX
+import com.ctre.phoenix6.hardware.core.CoreTalonFX
 import com.revrobotics.CANSparkMax
 import org.team4099.lib.units.base.Length
 import org.team4099.lib.units.base.Meter
