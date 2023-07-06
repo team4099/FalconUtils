@@ -12,7 +12,7 @@ def render_template(template_filename, context):
 
 def create_controller_file():
     fname = "src/main/kotlin/org/team4099/lib/units/derived/Controller.kt"
-    outputs = ['Volt', 'Ampere', 'Velocity<Radian>', 'Velocity<Meter>', "Meter", "Degrees"]
+    outputs = ['Volt', 'Ampere', 'Velocity<Radian>', 'Velocity<Meter>', "Meter", "Radian"]
     output_aliases = ['Volts', 'Amps', 'RadiansPerSecond', "MetersPerSecond", "Meters", "Degrees"]
     context = {
         'control_outputs': outputs,
