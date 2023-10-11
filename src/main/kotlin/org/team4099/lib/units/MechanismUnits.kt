@@ -1,6 +1,6 @@
 package org.team4099.lib.units
 
-import com.ctre.phoenix.motorcontrol.can.BaseTalon
+import com.ctre.phoenix6.hardware.TalonFX
 import com.ctre.phoenix6.hardware.core.CoreTalonFX
 import com.revrobotics.CANSparkMax
 import org.team4099.lib.units.base.Length
@@ -272,7 +272,7 @@ class AngularMechanismSensor(
 }
 
 fun ctreAngularMechanismSensor(
-  controller: BaseTalon,
+  controller: CoreTalonFX,
   sensorCpr: Int,
   ratio: Double,
   compensationVoltage: ElectricalPotential
@@ -282,13 +282,13 @@ fun ctreAngularMechanismSensor(
     Timescale.CTRE,
     1023.0,
     compensationVoltage,
-    { controller.selectedSensorVelocity.toDouble() },
-    { controller.selectedSensorPosition.toDouble() }
+    { controller.rotorVelocity.value.toDouble() },
+    { controller.rotorPosition.value.toDouble() }
   )
 }
 
 fun ctreLinearMechanismSensor(
-  controller: BaseTalon,
+  controller: CoreTalonFX,
   sensorCpr: Int,
   ratio: Double,
   diameter: Length,
@@ -300,8 +300,8 @@ fun ctreLinearMechanismSensor(
     Timescale.CTRE,
     1023.0,
     compensationVoltage,
-    { controller.selectedSensorVelocity.toDouble() },
-    { controller.selectedSensorPosition.toDouble() }
+    { controller.rotorVelocity.value.toDouble() },
+    { controller.rotorPosition.value.toDouble() }
   )
 }
 
