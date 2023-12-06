@@ -310,14 +310,17 @@ fun ctreLinearMechanismSensor(
   diameter: Length,
   compensationVoltage: ElectricalPotential
 ): LinearMechanismSensor {
+  val velocitySignal = controller.velocity
+  val positionSignal = controller.velocity
+
   return LinearMechanismSensor(
     diameter,
     ratio,
     Timescale.PHOENIX_PRO,
     1.0,
     compensationVoltage,
-    { controller.velocity.value },
-    { controller.position.value },
+    { velocitySignal.value },
+    { positionSignal.value },
   )
 }
 
@@ -326,13 +329,16 @@ fun ctreAngularMechanismSensor(
   ratio: Double,
   compensationVoltage: ElectricalPotential
 ): AngularMechanismSensor {
+  val velocitySignal = controller.velocity
+  val positionSignal = controller.velocity
+
   return AngularMechanismSensor(
     ratio,
     Timescale.PHOENIX_PRO,
     1.0,
     compensationVoltage,
-    { controller.velocity.value },
-    { controller.position.value },
+    { velocitySignal.value },
+    { positionSignal.value },
   )
 }
 
