@@ -3,7 +3,6 @@ package org.team4099.lib.units.derived
 import org.team4099.lib.units.Fraction
 import org.team4099.lib.units.Product
 import org.team4099.lib.units.UnitKey
-import org.team4099.lib.units.Unitless
 import org.team4099.lib.units.Value
 import org.team4099.lib.units.Velocity
 import org.team4099.lib.units.base.Ampere
@@ -256,7 +255,7 @@ inline val DerivativeGain<Velocity<Radian>, Ampere>.inAmpsPerRotationsPerMinuteP
   get() = inAmpsPerRadiansPerSecondPerSecond / SECONDS_PER_MINUTE * RADIANS_PER_ROTATION
 
 
-inline val Double.RadiansPerSecondPerRadiansPerSecond
+inline val Double.radiansPerSecondPerRadiansPerSecond
   get() = Value<Fraction<Velocity<Radian>, Velocity<Radian>>>(this)
 
 inline val ProportionalGain<Meter, Velocity<Radian>>.inRadiansPerSecondPerMeter: Double
@@ -347,7 +346,7 @@ inline val DerivativeGain<Velocity<Radian>, Velocity<Radian>>.inRadiansPerSecond
   get() = inRadiansPerSecondPerRadiansPerSecondPerSecond / SECONDS_PER_MINUTE * RADIANS_PER_ROTATION
 
 
-inline val Double.MetersPerSecondPerMetersPerSecond
+inline val Double.metersPerSecondPerMetersPerSecond
   get() = Value<Fraction<Velocity<Meter>, Velocity<Meter>>>(this)
 
 inline val ProportionalGain<Meter, Velocity<Meter>>.inMetersPerSecondPerMeter: Double
