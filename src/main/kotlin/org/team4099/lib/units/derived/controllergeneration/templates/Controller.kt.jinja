@@ -69,6 +69,9 @@ inline val <K : UnitKey> Value<K>.perRadianPerSecond
 inline val <K : UnitKey> Value<K>.perDegreePerSecond
   get() = perRadianPerSecond / RADIANS_PER_DEGREES
 
+inline val <K : UnitKey> Value<K>.perRotationPerMinute
+  get() = (perRadianPerSecond * SECONDS_PER_MINUTE) / RADIANS_PER_ROTATION
+
 {% for output_index in range(control_outputs | length) %}
 
 inline val Double.{{ output_aliases[output_index] }}Per{{ output_aliases[output_index] }}
