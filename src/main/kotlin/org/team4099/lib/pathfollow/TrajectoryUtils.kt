@@ -1,6 +1,6 @@
 package org.team4099.lib.pathfollow
 
-import com.pathplanner.lib.PathPlannerTrajectory
+import com.pathplanner.lib.path.PathPlannerTrajectory
 import edu.wpi.first.math.trajectory.TrajectoryParameterizer
 import org.team4099.lib.geometry.Pose2d
 import org.team4099.lib.geometry.Translation2d
@@ -75,14 +75,14 @@ fun trajectoryFromPath(
 fun trajectoryFromPathPlanner(pathPlannerTrajectory: PathPlannerTrajectory): Trajectory {
   return Trajectory(
     pathPlannerTrajectory.states.map { state ->
-      state as PathPlannerTrajectory.PathPlannerState
+      state as PathPlannerTrajectory.State
       TrajectoryState(
         state.timeSeconds.seconds,
-        Pose2d(Translation2d(state.poseMeters.translation), state.holonomicRotation.angle),
-        state.poseMeters.rotation.angle,
-        state.velocityMetersPerSecond.meters.perSecond,
-        state.accelerationMetersPerSecondSq.meters.perSecond.perSecond,
-        angularVelocity = state.angularVelocityRadPerSec.radians.perSecond
+        Pose2d(Translation2d(state.positionMeters), state.heading.angle),
+        state.heading.angle,
+        state.velocityMps.meters.perSecond,
+        state.accelerationMpsSq.meters.perSecond.perSecond,
+        angularVelocity = state.headingAngularVelocityRps.radians.perSecond
       )
     }
   )
