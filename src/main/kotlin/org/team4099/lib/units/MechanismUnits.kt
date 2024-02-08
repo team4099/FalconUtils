@@ -319,8 +319,8 @@ fun ctreLinearMechanismSensor(
     Timescale.PHOENIX_PRO,
     1.0,
     compensationVoltage,
-    { velocitySignal.value },
-    { positionSignal.value },
+    { velocitySignal.refresh(); velocitySignal.value },
+    { positionSignal.refresh(); positionSignal.value },
   )
 }
 
@@ -330,15 +330,15 @@ fun ctreAngularMechanismSensor(
   compensationVoltage: ElectricalPotential
 ): AngularMechanismSensor {
   val velocitySignal = controller.velocity
-  val positionSignal = controller.velocity
+  val positionSignal = controller.position
 
   return AngularMechanismSensor(
     ratio,
     Timescale.PHOENIX_PRO,
     1.0,
     compensationVoltage,
-    { velocitySignal.value },
-    { positionSignal.value },
+    { velocitySignal.refresh(); velocitySignal.value },
+    { positionSignal.refresh(); positionSignal.value },
   )
 }
 
