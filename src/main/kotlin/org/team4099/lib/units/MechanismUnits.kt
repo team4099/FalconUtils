@@ -311,7 +311,7 @@ fun ctreLinearMechanismSensor(
   compensationVoltage: ElectricalPotential
 ): LinearMechanismSensor {
   val velocitySignal = controller.velocity
-  val positionSignal = controller.velocity
+  val positionSignal = controller.position
 
   return LinearMechanismSensor(
     diameter,
