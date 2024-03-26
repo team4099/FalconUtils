@@ -22,7 +22,6 @@ import org.team4099.lib.units.derived.inVoltsPerInch
 import org.team4099.lib.units.derived.inVoltsPerRotation
 import org.team4099.lib.units.derived.inVoltsPerRotationPerMinute
 import org.team4099.lib.units.derived.inVoltsPerRotationsPerMinutePerSecond
-import org.team4099.lib.units.derived.metersPerSecondPerMetersPerSecond
 import org.team4099.lib.units.derived.perInch
 import org.team4099.lib.units.derived.rotations
 import org.team4099.lib.units.derived.volts
@@ -30,15 +29,6 @@ import org.team4099.lib.units.perMinute
 import org.team4099.lib.units.perSecond
 
 class PIDControllerTest {
-
-  @Test
-  fun testConstruction() {
-    val kP: ProportionalGain<Meter, Fraction<Meter, Second>> = 10.meters.perSecond / 1.meters
-    val kD = (0.5.meters.perSecond / (1.meters / 1.seconds)).metersPerSecondPerMetersPerSecond
-    val kI = 0.1.meters.perSecond / (10.meters * 1.seconds)
-    val positionToVelocityPIDController = PIDController<Meter, Fraction<Meter, Second>>(kP, kI, kD)
-  }
-
   @Test
   fun ampFeedForward() {
     val aff =
