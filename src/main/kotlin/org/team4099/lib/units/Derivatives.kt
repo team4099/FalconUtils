@@ -1,6 +1,10 @@
 package org.team4099.lib.units
 
-import org.team4099.lib.units.base.*
+import org.team4099.lib.units.base.METERS_PER_FOOT
+import org.team4099.lib.units.base.METERS_PER_INCH
+import org.team4099.lib.units.base.Meter
+import org.team4099.lib.units.base.SECONDS_PER_MINUTE
+import org.team4099.lib.units.base.Second
 import org.team4099.lib.units.derived.Radian
 import kotlin.math.PI
 

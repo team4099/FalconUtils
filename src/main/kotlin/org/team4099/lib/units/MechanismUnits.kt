@@ -281,8 +281,8 @@ fun ctreAngularMechanismSensor(
     Timescale.CTRE,
     1023.0,
     compensationVoltage,
-    { controller.rotorVelocity.value.toDouble() },
-    { controller.rotorPosition.value.toDouble() }
+    { controller.rotorVelocity.valueAsDouble },
+    { controller.rotorPosition.valueAsDouble }
   )
 }
 
@@ -299,8 +299,8 @@ fun ctreLinearMechanismSensor(
     Timescale.CTRE,
     1023.0,
     compensationVoltage,
-    { controller.rotorVelocity.value.toDouble() },
-    { controller.rotorPosition.value.toDouble() }
+    { controller.rotorVelocity.valueAsDouble },
+    { controller.rotorPosition.valueAsDouble }
   )
 }
 
@@ -319,8 +319,8 @@ fun ctreLinearMechanismSensor(
     Timescale.PHOENIX_PRO,
     1.0,
     compensationVoltage,
-    { velocitySignal.value },
-    { positionSignal.value },
+    { velocitySignal.valueAsDouble },
+    { positionSignal.valueAsDouble },
   )
 }
 
@@ -337,8 +337,8 @@ fun ctreAngularMechanismSensor(
     Timescale.PHOENIX_PRO,
     1.0,
     compensationVoltage,
-    { velocitySignal.value },
-    { positionSignal.value },
+    { velocitySignal.valueAsDouble },
+    { positionSignal.valueAsDouble },
   )
 }
 
