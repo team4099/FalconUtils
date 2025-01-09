@@ -330,7 +330,7 @@ fun ctreAngularMechanismSensor(
   compensationVoltage: ElectricalPotential
 ): AngularMechanismSensor {
   val velocitySignal = controller.velocity
-  val positionSignal = controller.velocity
+  val positionSignal = controller.position
 
   return AngularMechanismSensor(
     ratio,
