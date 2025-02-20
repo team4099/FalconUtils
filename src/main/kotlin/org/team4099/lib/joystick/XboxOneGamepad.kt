@@ -38,10 +38,10 @@ class XboxOneGamepad(port: Int) : Joystick(port), Gamepad {
     get() = this.getRawButton(4)
 
   override val leftJoystickButton: Boolean
-    get() = this.getRawButton(6)
+    get() = this.getRawButton(9)
 
   override val rightJoystickButton: Boolean
-    get() = this.getRawButton(7)
+    get() = this.getRawButton(10)
 
   override val leftShoulderButton: Boolean
     get() = this.getRawButton(5)
