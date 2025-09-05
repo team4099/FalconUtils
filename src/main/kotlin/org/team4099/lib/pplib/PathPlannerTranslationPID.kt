@@ -1,6 +1,6 @@
 package org.team4099.lib.pplib
 
-import com.pathplanner.lib.util.PIDConstants
+import com.pathplanner.lib.config.PIDConstants
 import org.team4099.lib.units.Velocity
 import org.team4099.lib.units.base.Length
 import org.team4099.lib.units.base.Meter

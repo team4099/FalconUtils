@@ -49,10 +49,11 @@ class Trajectory(private val states: List<TrajectoryState>) {
       interpolate(lowState.pose, highState.pose, lerpScalar),
       interpolate(lowState.curvature, highState.curvature, lerpScalar),
       interpolate(lowState.linearVelocity, highState.linearVelocity, lerpScalar),
-      interpolate(lowState.linearAcceleration, highState.linearAcceleration, lerpScalar)
+      //      interpolate(lowState.linearAcceleration, highState.linearAcceleration, lerpScalar)
+      interpolate(lowState.angularVelocity, highState.angularVelocity, lerpScalar),
+      //        interpolate(lowState.angularAcceleration, highState.angularAcceleration,
+      // lerpScalar)
     )
-    //        interpolate(lowState.angularVelocity, highState.angularVelocity, lerpScalar),
-    //        interpolate(lowState.angularAcceleration, highState.angularAcceleration, lerpScalar)
   }
 
   //  private val path: Path,

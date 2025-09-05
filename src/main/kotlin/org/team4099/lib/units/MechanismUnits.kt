@@ -77,7 +77,9 @@ interface MechanismSensor<U : UnitKey> {
 
   fun velocityFeedforwardToRawUnits(velocityFeedforward: VelocityFeedforward<U, Volt>): Double
 
-  fun accelerationFeedforwardToRawUnits(accelerationFeedforward: AccelerationFeedforward<U, Volt>): Double
+  fun accelerationFeedforwardToRawUnits(
+    accelerationFeedforward: AccelerationFeedforward<U, Volt>
+  ): Double
 }
 
 class LinearMechanismSensor(
@@ -178,10 +180,11 @@ class LinearMechanismSensor(
   }
 
   override inline fun accelerationFeedforwardToRawUnits(
-    accelerationFeedforward: AccelerationFeedforward<Meter, Volt>): Double {
+    accelerationFeedforward: AccelerationFeedforward<Meter, Volt>
+  ): Double {
     return accelerationFeedforward.value /
-            accelerationToRawUnits(1.0.meters.perSecond.perSecond) /
-            compensationVoltage.inVolts * fullPowerThrottle
+      accelerationToRawUnits(1.0.meters.perSecond.perSecond) /
+      compensationVoltage.inVolts * fullPowerThrottle
   }
 }
 
@@ -280,10 +283,11 @@ class AngularMechanismSensor(
   }
 
   override inline fun accelerationFeedforwardToRawUnits(
-    accelerationFeedforward: AccelerationFeedforward<Radian, Volt>): Double {
+    accelerationFeedforward: AccelerationFeedforward<Radian, Volt>
+  ): Double {
     return accelerationFeedforward.value /
-            accelerationToRawUnits(1.0.radians.perSecond.perSecond) /
-            compensationVoltage.inVolts * fullPowerThrottle
+      accelerationToRawUnits(1.0.radians.perSecond.perSecond) /
+      compensationVoltage.inVolts * fullPowerThrottle
   }
 }
 
