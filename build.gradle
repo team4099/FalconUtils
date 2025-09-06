@@ -1,11 +1,17 @@
 plugins {
 	id "idea"
 	id 'maven-publish'
-	id "org.jetbrains.kotlin.jvm" version "1.6.10"
+	id "org.jetbrains.kotlin.jvm" version "1.9.23"
 	id "edu.wpi.first.GradleRIO" version "2023.4.2"
 	id "com.diffplug.spotless" version "6.3.0"
 	id "com.peterabeles.gversion" version "1.10"
 	id "org.jetbrains.kotlinx.kover" version "0.4.2"
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
 }
 
 // do not change main class (does not run without it being Main
@@ -39,7 +45,7 @@ publishing {
 		release(MavenPublication) {
 			groupId = 'org.team4099'
 			artifactId = 'falconutils'
-			version = '1.1.33'
+			version = '1.1.36.1'
 
 			from(components["kotlin"])
 		}
