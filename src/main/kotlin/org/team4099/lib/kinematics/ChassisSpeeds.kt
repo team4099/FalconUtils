@@ -1,10 +1,12 @@
 package org.team4099.lib.kinematics
 
+import org.team4099.lib.geometry.Pose2d
 import org.team4099.lib.units.AngularVelocity
 import org.team4099.lib.units.LinearVelocity
 import org.team4099.lib.units.Value
 import org.team4099.lib.units.Velocity
 import org.team4099.lib.units.base.Meter
+import org.team4099.lib.units.base.Time
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.Angle
 import org.team4099.lib.units.derived.Radian
@@ -51,6 +53,27 @@ class ChassisSpeeds(val vx: LinearVelocity, val vy: LinearVelocity, val omega: A
       return fromFieldRelativeSpeeds(
         fieldRelativeSpeeds.vx, fieldRelativeSpeeds.vy, fieldRelativeSpeeds.omega, robotAngle
       )
+    }
+
+    fun discretize(continuousSpeeds: ChassisSpeeds, dt: Time): ChassisSpeeds {
+      return discretize(continuousSpeeds.vx, continuousSpeeds.vy, continuousSpeeds.omega, dt)
+    }
+
+    fun discretize(
+      vx: LinearVelocity,
+      vy: LinearVelocity,
+      omega: AngularVelocity,
+      dt: Time
+    ): ChassisSpeeds {
+      val desiredDeltaPose =
+        Pose2d(
+          (vx.value * dt.value).meters,
+          (vy.value * dt.value).meters,
+          (omega.value * dt.value).radians
+        )
+
+      val twist = Pose2d().log(desiredDeltaPose)
+      return ChassisSpeeds(twist.dx / dt, twist.dy / dt, twist.dtheta / dt)
     }
   }
 }
