@@ -1,7 +1,7 @@
 package org.team4099.lib.units
 
 import com.ctre.phoenix6.hardware.core.CoreTalonFX
-import com.revrobotics.CANSparkMax
+import com.revrobotics.spark.SparkMax
 import org.team4099.lib.units.base.Length
 import org.team4099.lib.units.base.Meter
 import org.team4099.lib.units.base.Time
@@ -364,7 +364,7 @@ fun ctreAngularMechanismSensor(
 }
 
 fun sparkMaxAngularMechanismSensor(
-  controller: CANSparkMax,
+  controller: SparkMax,
   ratio: Double,
   compensationVoltage: ElectricalPotential
 ): AngularMechanismSensor {
@@ -381,7 +381,7 @@ fun sparkMaxAngularMechanismSensor(
 }
 
 fun sparkMaxLinearMechanismSensor(
-  controller: CANSparkMax,
+  controller: SparkMax,
   ratio: Double,
   diameter: Length,
   compensationVoltage: ElectricalPotential

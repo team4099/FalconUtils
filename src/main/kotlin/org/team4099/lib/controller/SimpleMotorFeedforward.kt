@@ -4,8 +4,6 @@ import org.team4099.lib.units.Acceleration
 import org.team4099.lib.units.UnitKey
 import org.team4099.lib.units.Value
 import org.team4099.lib.units.Velocity
-import org.team4099.lib.units.base.Time
-import org.team4099.lib.units.base.inSeconds
 import org.team4099.lib.units.derived.AccelerationFeedforward
 import org.team4099.lib.units.derived.StaticFeedforward
 import org.team4099.lib.units.derived.VelocityFeedforward
@@ -23,18 +21,24 @@ class SimpleMotorFeedforward<E : UnitKey, O : UnitKey>(
     kV: VelocityFeedforward<E, O>
   ) : this(kS, kV, AccelerationFeedforward(0.0))
 
+  @Deprecated(
+    "calculate(Value<Velocity<E>>, Value<Velocity<E>>) is deprecated since version 2025 and marked for removal",
+    replaceWith =
+    ReplaceWith(
+      "calculateWithVelocities(currentVelocitySetpoint: Value<Velocity<E>>, nextVelocitySetpoint: Value<Velocity<E>>)"
+    )
+  )
   fun calculate(velocity: Value<Velocity<E>>, acceleration: Value<Acceleration<E>>): Value<O> {
     return Value(feedforward.calculate(velocity.value, acceleration.value))
   }
 
-  fun calculate(
+  fun calculateWithVelocities(
     currentVelocitySetpoint: Value<Velocity<E>>,
-    nextVelocitySetpoint: Value<Velocity<E>>,
-    dT: Time
+    nextVelocitySetpoint: Value<Velocity<E>>
   ): Value<O> {
     return Value(
-      feedforward.calculate(
-        currentVelocitySetpoint.value, nextVelocitySetpoint.value, dT.inSeconds
+      feedforward.calculateWithVelocities(
+        currentVelocitySetpoint.value, nextVelocitySetpoint.value
       )
     )
   }

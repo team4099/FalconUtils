@@ -50,7 +50,7 @@ internal class Rotation3dTest {
     assertEquals(expected2, rot2)
 
     // Matrix that isn't orthogonal
-    val R3 = MatBuilder(Nat.N3(), Nat.N3()).fill(1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0)
+    val R3 = MatBuilder.fill(Nat.N3(), Nat.N3(), 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0)
     assertThrows(IllegalArgumentException::class.java) { Rotation3d(R3) }
 
     // Matrix that's orthogonal but not special orthogonal

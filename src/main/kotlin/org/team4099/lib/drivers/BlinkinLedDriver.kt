@@ -126,7 +126,7 @@ class BlinkinLedDriver(channel: Int) {
 
   init {
     pwm = PWM(channel)
-    pwm.setBounds(2.003, 1.50, 1.50, 1.50, 0.999)
+    pwm.setBoundsMicroseconds(2003, 1500, 1500, 1500, 999)
     pwm.setPeriodMultiplier(PWM.PeriodMultiplier.k1X)
   }
 }

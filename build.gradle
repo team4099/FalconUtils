@@ -25,16 +25,22 @@ repositories {
 }
 // Defining my dependencies. In this case, WPILib (+ friends)
 dependencies {
+	annotationProcessor wpi.java.deps.wpilibAnnotations()
+	implementation wpi.java.deps.wpilib()
+	implementation wpi.java.vendor.java()
+
+	nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
+	nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
+	simulationDebug wpi.sim.enableDebug()
+
+	nativeRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.desktop)
+	nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
+	simulationRelease wpi.sim.enableRelease()
+
 	testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.2"
 	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
 
 	implementation "org.jetbrains.kotlin:kotlin-stdlib"
-
-	implementation "edu.wpi.first.wpimath:wpimath-java:2023.4.2"
-	implementation "edu.wpi.first.wpiutil:wpiutil-java:2023.4.2"
-
-	implementation wpi.java.deps.wpilib()
-	implementation wpi.java.vendor.java()
 
 	// We need to add the Kotlin stdlib in order to use most Kotlin language features.
 	// compile "org.jetbrains.kotlin:kotlin-stdlib"
@@ -75,7 +81,7 @@ spotless {
 		// by default the target is every '.kt' and '.kts` file in the java sourcesets
 		target fileTree(".") {
 			include "**/*.kt"
-			exclude "**/BuildConstants.kt"
+			exclude "**/BuildConstants.kt", "**/build/**"
 		}
 		ktfmt()
 		ktlint().userData(['max_line_length': '120', 'insert_final_newline': 'true', 'indent_size': '2', 'continuation_indent_size': '2'])

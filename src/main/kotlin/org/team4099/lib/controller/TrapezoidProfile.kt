@@ -11,16 +11,8 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile as WPITrapezoidProfile
 
 class TrapezoidProfile<U : UnitKey>(
   val constraints: Constraints<U>,
-  val goal: State<U>,
-  val initial: State<U>
 ) {
-  val trapezoidProfile =
-    WPITrapezoidProfile(constraints.wpiConstraints, goal.wpiState, initial.wpiState)
-
-  constructor(
-    constraints: Constraints<U>,
-    goal: State<U>
-  ) : this(constraints, goal, State(Value(0.0), Value(0.0)))
+  val trapezoidProfile = WPITrapezoidProfile(constraints.wpiConstraints)
 
   data class Constraints<U : UnitKey>(
     val maxVelocity: Value<Velocity<U>>,
@@ -71,8 +63,8 @@ class TrapezoidProfile<U : UnitKey>(
     }
   }
 
-  fun calculate(t: Time): State<U> {
-    return State(trapezoidProfile.calculate(t.inSeconds))
+  fun calculate(t: Time, current: State<U>, goal: State<U>): State<U> {
+    return State(trapezoidProfile.calculate(t.inSeconds, current.wpiState, goal.wpiState))
   }
 
   fun timeLeftUntil(target: Value<U>): Time {
