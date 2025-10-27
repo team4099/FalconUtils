@@ -1,12 +1,15 @@
 plugins {
 	id "idea"
 	id 'maven-publish'
-	id "org.jetbrains.kotlin.jvm" version "1.6.10"
-	id "edu.wpi.first.GradleRIO" version "2023.4.2"
+	id "org.jetbrains.kotlin.jvm" version "1.6.0"
+	id "edu.wpi.first.GradleRIO" version "2025.3.2"
 	id "com.diffplug.spotless" version "6.3.0"
 	id "com.peterabeles.gversion" version "1.10"
 	id "org.jetbrains.kotlinx.kover" version "0.4.2"
 }
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 java {
 	toolchain {
@@ -36,6 +39,7 @@ dependencies {
 	// We need to add the Kotlin stdlib in order to use most Kotlin language features.
 	// compile "org.jetbrains.kotlin:kotlin-stdlib"
 }
+
 test {
 	useJUnitPlatform()
 }
@@ -82,9 +86,17 @@ wrapper {
 	gradleVersion = '7.3.3'
 }
 
+wpi.java.configureExecutableTasks(jar)
+wpi.java.configureTestTasks(test)
+
+tasks.withType(JavaCompile) {
+	options.compilerArgs.add "-XDstringConcat=inline"
+}
+
 compileKotlin {
 	kotlinOptions {
 		freeCompilerArgs = ["-XXLanguage:+InlineClasses"]
+		jvmTarget="17"
 	}
 }
 
@@ -102,3 +114,9 @@ gversion {
 	indent       = "\t"                       // optional. Change how code is indented. 1 tab is default.
 	annotate     = false                      // optional. Java only. Adds @Generated annotation
 }
+
+project.compileKotlin.dependsOn(createVersionFile)
+project.compileJava.dependsOn(createVersionFile)
+// Configure jar and deploy tasks
+wpi.java.configureExecutableTasks(jar)
+wpi.java.configureTestTasks(test)
