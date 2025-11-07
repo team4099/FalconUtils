@@ -37,6 +37,10 @@ class ElevatorFeedforward(
     kV: VelocityFeedforward<Meter, Volt>
   ) : this(kS, kG, kV, 0.0.volts.perMeterPerSecondPerSecond)
 
+  @Deprecated(
+    message = "Marked for removal since 2025. Use calculute(velocity: LinearVelocity) instead.",
+    level = DeprecationLevel.ERROR
+  )
   fun calculate(velocity: LinearVelocity, acceleration: LinearAcceleration): ElectricalPotential {
     return feedforward.calculate(
       velocity.inMetersPerSecond, acceleration.inMetersPerSecondPerSecond
@@ -46,6 +50,16 @@ class ElevatorFeedforward(
 
   fun calculate(velocity: LinearVelocity): ElectricalPotential {
     return feedforward.calculate(velocity.inMetersPerSecond).volts
+  }
+
+  fun calculateWithVelocities(
+    currentVelocity: LinearVelocity,
+    nextVelocity: LinearVelocity
+  ): ElectricalPotential {
+    return feedforward.calculateWithVelocities(
+      currentVelocity.inMetersPerSecond, nextVelocity.inMetersPerSecond
+    )
+      .volts
   }
 
   fun maxAchievableVelocity(

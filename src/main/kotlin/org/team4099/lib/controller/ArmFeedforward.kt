@@ -42,6 +42,11 @@ class ArmFeedforward(
     kV: VelocityFeedforward<Radian, Volt>
   ) : this(kS, kG, kV, 0.volts.perRadianPerSecondPerSecond)
 
+  @Deprecated(
+    message =
+    "Marked for removal since 2025. Use calculute(position: Angle, velocity: AngularVelocity) instead.",
+    level = DeprecationLevel.ERROR
+  )
   fun calculate(
     position: Angle,
     velocity: AngularVelocity,
