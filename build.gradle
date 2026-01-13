@@ -2,7 +2,7 @@ plugins {
 	id "idea"
 	id 'maven-publish'
 	id "org.jetbrains.kotlin.jvm" version "1.6.0"
-	id "edu.wpi.first.GradleRIO" version "2025.3.2"
+	id "edu.wpi.first.GradleRIO" version "2026.1.1"
 	id "com.diffplug.spotless" version "6.3.0"
 	id "com.peterabeles.gversion" version "1.10"
 	id "org.jetbrains.kotlinx.kover" version "0.4.2"
@@ -48,6 +48,7 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	systemProperty 'junit.jupiter.extensions.autodetection.enabled', 'true'
 }
 
 publishing {
@@ -90,6 +91,12 @@ spotless {
 
 wrapper {
 	gradleVersion = '7.3.3'
+}
+
+jar {
+	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+	from sourceSets.main.allSource
+	duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 wpi.java.configureExecutableTasks(jar)
