@@ -93,6 +93,12 @@ wrapper {
 	gradleVersion = '7.3.3'
 }
 
+jar {
+	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+	from sourceSets.main.allSource
+	duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
 wpi.java.configureExecutableTasks(jar)
 wpi.java.configureTestTasks(test)
 
