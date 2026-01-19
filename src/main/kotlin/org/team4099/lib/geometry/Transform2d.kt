@@ -1,5 +1,6 @@
 package org.team4099.lib.geometry
 
+import kotlin.math.abs
 import org.team4099.lib.units.derived.Angle
 import org.team4099.lib.units.derived.angle
 import org.team4099.lib.units.derived.cos
@@ -7,22 +8,21 @@ import org.team4099.lib.units.derived.inRadians
 import org.team4099.lib.units.derived.inRotation2ds
 import org.team4099.lib.units.derived.radians
 import org.team4099.lib.units.derived.sin
-import kotlin.math.abs
 
 data class Transform2d(val translation: Translation2d, val rotation: Angle) {
   val transform2d: Transform2dWPILIB =
-    Transform2dWPILIB(translation.translation2d, rotation.inRotation2ds)
+      Transform2dWPILIB(translation.translation2d, rotation.inRotation2ds)
 
   constructor(
-    initial: Pose2d,
-    last: Pose2d
+      initial: Pose2d,
+      last: Pose2d,
   ) : this(
-    last.translation.minus(initial.translation).rotateBy(-(initial.rotation)),
-    last.rotation.minus(initial.rotation)
+      last.translation.minus(initial.translation).rotateBy(-(initial.rotation)),
+      last.rotation.minus(initial.rotation),
   )
 
   constructor(
-    transform2dWPILIB: Transform2dWPILIB
+      transform2dWPILIB: Transform2dWPILIB,
   ) : this(Translation2d(transform2dWPILIB.translation), transform2dWPILIB.rotation.angle)
 
   operator fun times(scalar: Double): Transform2d {
@@ -51,13 +51,13 @@ data class Transform2d(val translation: Translation2d, val rotation: Angle) {
     val halfdTheta = 0.5 * dTheta
     val cosMinusOne: Double = this.rotation.cos - 1.0
     val halfThetaByTanOfHalfdTheta: Double =
-      if (abs(cosMinusOne) < 1E-9) {
-        1.0 - 1.0 / 12.0 * dTheta * dTheta
-      } else {
-        -(halfdTheta * this.rotation.sin) / cosMinusOne
-      }
+        if (abs(cosMinusOne) < 1E-9) {
+          1.0 - 1.0 / 12.0 * dTheta * dTheta
+        } else {
+          -(halfdTheta * this.rotation.sin) / cosMinusOne
+        }
     val translationPart: Translation2d =
-      this.translation.rotateBy(Angle(halfThetaByTanOfHalfdTheta, -halfdTheta))
+        this.translation.rotateBy(Angle(halfThetaByTanOfHalfdTheta, -halfdTheta))
     return Twist2d(translationPart.x, translationPart.y, dTheta.radians)
   }
 
@@ -98,8 +98,8 @@ data class Transform2d(val translation: Translation2d, val rotation: Angle) {
       }
 
       return Transform2d(
-        Translation2d(delta.dx * s - delta.dy * c, delta.dx * c + delta.dy * s),
-        Angle(cosTheta, sinTheta)
+          Translation2d(delta.dx * s - delta.dy * c, delta.dx * c + delta.dy * s),
+          Angle(cosTheta, sinTheta),
       )
     }
   }

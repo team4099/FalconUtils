@@ -28,19 +28,23 @@ class PIDControllerTest {
   @Test
   fun ampFeedForward() {
     val aff =
-      SimpleMotorFeedforward(
-        1.0.amps, 1.0.amps / 1.0.meters.perSecond, 1.0.amps / 1.0.meters.perSecond.perSecond
-      )
+        SimpleMotorFeedforward(
+            1.0.amps,
+            1.0.amps / 1.0.meters.perSecond,
+            1.0.amps / 1.0.meters.perSecond.perSecond,
+        )
 
     val vff =
-      SimpleMotorFeedforward(
-        1.0.volts, 1.0.volts / 1.0.meters.perSecond, 1.0.volts / 1.0.meters.perSecond.perSecond
-      )
+        SimpleMotorFeedforward(
+            1.0.volts,
+            1.0.volts / 1.0.meters.perSecond,
+            1.0.volts / 1.0.meters.perSecond.perSecond,
+        )
 
     val output: Value<Acceleration<Meter>> =
-      vff.maxAchievableAcceleration(12.0.volts, 1.0.meters.perSecond)
+        vff.maxAchievableAcceleration(12.0.volts, 1.0.meters.perSecond)
     val aoutput: Value<Acceleration<Meter>> =
-      aff.maxAchievableAcceleration(12.0.amps, 1.0.meters.perSecond)
+        aff.maxAchievableAcceleration(12.0.amps, 1.0.meters.perSecond)
   }
 
   @Test
@@ -52,14 +56,15 @@ class PIDControllerTest {
     val AUTO_LEVEL_MAX_ACCEL_SETPOINT = 3.degrees.perSecond / 1.0.seconds
 
     val levelPID =
-      ProfiledPIDController(
-        AUTO_LEVEL_KP,
-        AUTO_LEVEL_KI,
-        AUTO_LEVEL_KD,
-        TrapezoidProfile.Constraints(
-          AUTO_LEVEL_MAX_VEL_SETPOINT, AUTO_LEVEL_MAX_ACCEL_SETPOINT
+        ProfiledPIDController(
+            AUTO_LEVEL_KP,
+            AUTO_LEVEL_KI,
+            AUTO_LEVEL_KD,
+            TrapezoidProfile.Constraints(
+                AUTO_LEVEL_MAX_VEL_SETPOINT,
+                AUTO_LEVEL_MAX_ACCEL_SETPOINT,
+            ),
         )
-      )
   }
 
   @Test
@@ -85,15 +90,15 @@ class PIDControllerTest {
     val kFF = 12.0.volts / 4.1675.meters.perSecond
 
     val testSensor =
-      LinearMechanismSensor(
-        3.827.inches,
-        (14.0 / 50.0) * (27.0 / 17.0) * (15.0 / 45.0) / 2048,
-        Timescale.CTRE,
-        1023.0,
-        12.0.volts,
-        { 0.0 },
-        { 0.0 }
-      )
+        LinearMechanismSensor(
+            3.827.inches,
+            (14.0 / 50.0) * (27.0 / 17.0) * (15.0 / 45.0) / 2048,
+            Timescale.CTRE,
+            1023.0,
+            12.0.volts,
+            { 0.0 },
+            { 0.0 },
+        )
 
     println(testSensor.velocityFeedforwardToRawUnits(kFF))
   }

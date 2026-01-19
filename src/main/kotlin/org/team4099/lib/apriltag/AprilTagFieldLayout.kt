@@ -10,9 +10,9 @@ import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.radians
 
 class AprilTagFieldLayout(
-  val aprilTags: List<AprilTag>,
-  val fieldLength: Length,
-  val fieldWidth: Length
+    val aprilTags: List<AprilTag>,
+    val fieldLength: Length,
+    val fieldWidth: Length,
 ) {
 
   init {
@@ -20,9 +20,11 @@ class AprilTagFieldLayout(
   }
 
   val apriltagFieldLayoutWPILIB =
-    AprilTagFieldLayout(
-      aprilTags.map { it.apriltagWpilib }, fieldLength.inMeters, fieldWidth.inMeters
-    )
+      AprilTagFieldLayout(
+          aprilTags.map { it.apriltagWpilib },
+          fieldLength.inMeters,
+          fieldWidth.inMeters,
+      )
 
   var origin = Pose3d()
 
@@ -35,20 +37,20 @@ class AprilTagFieldLayout(
 
   fun setOrigin(newOrigin: OriginPosition) {
     origin =
-      when (newOrigin) {
-        OriginPosition.kBlueAllianceWallRightSide -> Pose3d()
-        OriginPosition.kRedAllianceWallRightSide ->
-          Pose3d(
-            Translation3d(fieldLength, fieldWidth, 0.meters),
-            Rotation3d(0.radians, 0.radians, Math.PI.radians)
-          )
-      }
+        when (newOrigin) {
+          OriginPosition.kBlueAllianceWallRightSide -> Pose3d()
+          OriginPosition.kRedAllianceWallRightSide ->
+              Pose3d(
+                  Translation3d(fieldLength, fieldWidth, 0.meters),
+                  Rotation3d(0.radians, 0.radians, Math.PI.radians),
+              )
+        }
   }
 
   data class FieldDimensions(val fieldWidth: Length, val fieldLength: Length)
 
   enum class OriginPosition {
     kBlueAllianceWallRightSide,
-    kRedAllianceWallRightSide
+    kRedAllianceWallRightSide,
   }
 }

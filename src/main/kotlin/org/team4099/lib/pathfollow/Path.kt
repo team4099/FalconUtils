@@ -3,13 +3,13 @@ package org.team4099.lib.pathfollow
 import edu.wpi.first.math.spline.PoseWithCurvature
 import edu.wpi.first.math.spline.SplineHelper
 import edu.wpi.first.math.spline.SplineParameterizer
+import kotlin.math.PI
+import kotlin.math.atan2
 import org.team4099.lib.geometry.Pose2d
 import org.team4099.lib.geometry.Translation2d
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.derived.Angle
 import org.team4099.lib.units.derived.radians
-import kotlin.math.PI
-import kotlin.math.atan2
 
 /**
  * A path on the XY plane constructed with cubic splines.
@@ -30,9 +30,10 @@ class Path constructor(val startingPose: Pose2d, val endingPose: Pose2d) {
    * the robot will have that heading at this location, otherwise heading will be interpolated
    * between the previous waypoint with heading specified and the next waypoint with heading
    * specified, including the start and end poses.
+   *
    * @param nextTranslation The location of the waypoint.
    * @param heading The target heading at this waypoint, null if the heading at this waypoint does
-   * not matter.
+   *   not matter.
    */
   fun addWaypoint(nextTranslation: Translation2d, heading: Angle? = null) {
     if (built) {
@@ -56,38 +57,35 @@ class Path constructor(val startingPose: Pose2d, val endingPose: Pose2d) {
 
     // Make the starting curvature directly towards the first point
     val startHeading =
-      atan2(
-        ((waypoints.firstOrNull() ?: endingPose.translation).y - startingPose.y).inMeters,
-        ((waypoints.firstOrNull() ?: endingPose.translation).x - startingPose.x).inMeters
-      )
-        .radians
+        atan2(
+                ((waypoints.firstOrNull() ?: endingPose.translation).y - startingPose.y).inMeters,
+                ((waypoints.firstOrNull() ?: endingPose.translation).x - startingPose.x).inMeters,
+            )
+            .radians
 
     val endHeading =
-      (
-        (
-          atan2(
-            ((waypoints.lastOrNull() ?: startingPose.translation).y - endingPose.y).inMeters,
-            ((waypoints.lastOrNull() ?: startingPose.translation).x - endingPose.x).inMeters
-          ) +
-            PI
-          ) % (2 * PI)
-        )
-        .radians
+        ((atan2(
+                ((waypoints.lastOrNull() ?: startingPose.translation).y - endingPose.y).inMeters,
+                ((waypoints.lastOrNull() ?: startingPose.translation).x - endingPose.x).inMeters,
+            ) + PI) % (2 * PI))
+            .radians
 
     val controlVectors =
-      SplineHelper.getCubicControlVectorsFromWaypoints(
-        startingPose.copy(rotation = startHeading).pose2d,
-        waypointTranslation2ds,
-        endingPose.copy(rotation = endHeading).pose2d
-      )
+        SplineHelper.getCubicControlVectorsFromWaypoints(
+            startingPose.copy(rotation = startHeading).pose2d,
+            waypointTranslation2ds,
+            endingPose.copy(rotation = endHeading).pose2d,
+        )
 
     // Create a list of splines
     val splines =
-      listOf(
-        *SplineHelper.getCubicSplinesFromControlVectors(
-          controlVectors.first(), waypointTranslation2ds, controlVectors.last()
+        listOf(
+            *SplineHelper.getCubicSplinesFromControlVectors(
+                controlVectors.first(),
+                waypointTranslation2ds,
+                controlVectors.last(),
+            ),
         )
-      )
 
     // Create the vector of spline points.
     splinePoints = mutableListOf()

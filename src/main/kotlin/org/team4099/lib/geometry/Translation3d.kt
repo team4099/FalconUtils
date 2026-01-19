@@ -1,11 +1,11 @@
 package org.team4099.lib.geometry
 
+import kotlin.math.pow
+import kotlin.math.sqrt
 import org.team4099.lib.units.base.Length
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.radians
-import kotlin.math.pow
-import kotlin.math.sqrt
 
 data class Translation3d(val x: Length, val y: Length, val z: Length) {
 
@@ -14,31 +14,31 @@ data class Translation3d(val x: Length, val y: Length, val z: Length) {
   constructor() : this(0.0.meters, 0.0.meters, 0.0.meters)
 
   constructor(
-    distance: Length,
-    angle: Rotation3d
+      distance: Length,
+      angle: Rotation3d,
   ) : this(
-    Translation3d(distance, 0.0.meters, 0.0.meters).rotateBy(angle).x,
-    Translation3d(distance, 0.0.meters, 0.0.meters).rotateBy(angle).y,
-    Translation3d(distance, 0.0.meters, 0.0.meters).rotateBy(angle).z
+      Translation3d(distance, 0.0.meters, 0.0.meters).rotateBy(angle).x,
+      Translation3d(distance, 0.0.meters, 0.0.meters).rotateBy(angle).y,
+      Translation3d(distance, 0.0.meters, 0.0.meters).rotateBy(angle).z,
   )
 
   constructor(
-    translation3dWPILIB: Translation3dWPILIB
+      translation3dWPILIB: Translation3dWPILIB,
   ) : this(translation3dWPILIB.x.meters, translation3dWPILIB.y.meters, translation3dWPILIB.z.meters)
 
   fun getDistance(other: Translation3d): Length {
     return sqrt(
-      (other.x - x).inMeters.pow(2.0) +
-        (other.y - y).inMeters.pow(2.0) +
-        (other.z - z).inMeters.pow(2.0)
-    )
-      .meters
+            (other.x - x).inMeters.pow(2.0) +
+                (other.y - y).inMeters.pow(2.0) +
+                (other.z - z).inMeters.pow(2.0),
+        )
+        .meters
   }
 
   val norm: Length
     get() {
       return sqrt((x.inMeters * x.inMeters + y.inMeters * y.inMeters + z.inMeters * z.inMeters))
-        .meters
+          .meters
     }
 
   fun rotateBy(other: Rotation3d): Translation3d {
