@@ -21,9 +21,9 @@ class Pose2dTest {
     val transformation = Transform2d(Translation2d(5.0.meters, 0.0.meters), 5.0.degrees)
     val transformed = initial.transformBy(transformation)
     assertAll(
-      { assertEquals(1.0 + 5.0 / Math.sqrt(2.0), transformed.x.value, kEpsilon) },
-      { assertEquals(2.0 + 5.0 / Math.sqrt(2.0), transformed.y.value, kEpsilon) },
-      { assertEquals(50.0.degrees.value, transformed.rotation.value, kEpsilon) }
+        { assertEquals(1.0 + 5.0 / Math.sqrt(2.0), transformed.x.value, kEpsilon) },
+        { assertEquals(2.0 + 5.0 / Math.sqrt(2.0), transformed.y.value, kEpsilon) },
+        { assertEquals(50.0.degrees.value, transformed.rotation.value, kEpsilon) },
     )
   }
 
@@ -33,9 +33,9 @@ class Pose2dTest {
     val last = Pose2d(5.0.meters, 5.0.meters, 45.0.degrees)
     val finalRelativeToInitial = last.relativeTo(initial)
     assertAll(
-      { assertEquals(5.0 * Math.sqrt(2.0), finalRelativeToInitial.x.value, kEpsilon) },
-      { assertEquals(0.0, finalRelativeToInitial.y.value, kEpsilon) },
-      { assertEquals(0.0, finalRelativeToInitial.rotation.value, kEpsilon) }
+        { assertEquals(5.0 * Math.sqrt(2.0), finalRelativeToInitial.x.value, kEpsilon) },
+        { assertEquals(0.0, finalRelativeToInitial.y.value, kEpsilon) },
+        { assertEquals(0.0, finalRelativeToInitial.rotation.value, kEpsilon) },
     )
   }
 
@@ -58,8 +58,8 @@ class Pose2dTest {
     val one = Pose2d(3.0.meters, 5.0.meters, 45.0.degrees)
     val two = Pose2d(4.0.meters, 6.0.meters, 75.0.degrees)
     assertEquals(
-      one.interpolate(two, 0.5.seconds),
-      Pose2d(3.565826248793698.meters, 5.434173751206302.meters, 60.degrees)
+        one.interpolate(two, 0.5.seconds),
+        Pose2d(3.565826248793698.meters, 5.434173751206302.meters, 60.degrees),
     )
   }
 
@@ -76,9 +76,9 @@ class Pose2dTest {
     val last = Pose2d(5.0.meters, 5.0.meters, 45.0.degrees)
     val transform = last.minus(initial)
     assertAll(
-      { assertEquals(5.0 * Math.sqrt(2.0), transform.translation.x.value, kEpsilon) },
-      { assertEquals(0.0, transform.translation.y.value, kEpsilon) },
-      { assertEquals(0.0, transform.rotation.value, kEpsilon) }
+        { assertEquals(5.0 * Math.sqrt(2.0), transform.translation.x.value, kEpsilon) },
+        { assertEquals(0.0, transform.translation.y.value, kEpsilon) },
+        { assertEquals(0.0, transform.rotation.value, kEpsilon) },
     )
   }
 

@@ -1,5 +1,6 @@
 package com.team4099.geometry
 
+import kotlin.math.sqrt
 import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
@@ -8,7 +9,6 @@ import org.team4099.lib.geometry.Translation2d
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.degrees
-import kotlin.math.sqrt
 
 internal class Translation2dTest {
   private val kEpsilon = 1E-9
@@ -19,8 +19,8 @@ internal class Translation2dTest {
     val two = Translation2d(2.0.meters, 5.0.meters)
     val sum = one.plus(two)
     assertAll(
-      { assertEquals(3.0, sum.x.inMeters, kEpsilon) },
-      { assertEquals(8.0, sum.y.inMeters, kEpsilon) }
+        { assertEquals(3.0, sum.x.inMeters, kEpsilon) },
+        { assertEquals(8.0, sum.y.inMeters, kEpsilon) },
     )
   }
 
@@ -30,8 +30,8 @@ internal class Translation2dTest {
     val two = Translation2d(2.0.meters, 5.0.meters)
     val difference = one.minus(two)
     assertAll(
-      { assertEquals(-1.0, difference.x.inMeters, kEpsilon) },
-      { assertEquals(-2.0, difference.y.inMeters, kEpsilon) }
+        { assertEquals(-1.0, difference.x.inMeters, kEpsilon) },
+        { assertEquals(-2.0, difference.y.inMeters, kEpsilon) },
     )
   }
 
@@ -40,8 +40,8 @@ internal class Translation2dTest {
     val another = Translation2d(3.0.meters, 0.0.meters)
     val rotated = another.rotateBy(90.0.degrees)
     assertAll(
-      { assertEquals(0.0, rotated.x.inMeters, kEpsilon) },
-      { assertEquals(3.0, rotated.y.inMeters, kEpsilon) }
+        { assertEquals(0.0, rotated.x.inMeters, kEpsilon) },
+        { assertEquals(3.0, rotated.y.inMeters, kEpsilon) },
     )
   }
 
@@ -50,8 +50,8 @@ internal class Translation2dTest {
     val original = Translation2d(3.0.meters, 5.0.meters)
     val mult = original * 3.0
     assertAll(
-      { assertEquals(9.0, mult.x.inMeters, kEpsilon) },
-      { assertEquals(15.0, mult.y.inMeters, kEpsilon) }
+        { assertEquals(9.0, mult.x.inMeters, kEpsilon) },
+        { assertEquals(15.0, mult.y.inMeters, kEpsilon) },
     )
   }
 
@@ -60,8 +60,8 @@ internal class Translation2dTest {
     val original = Translation2d(3.0.meters, 5.0.meters)
     val div = original.div(2.0)
     assertAll(
-      { assertEquals(1.5, div.x.inMeters, kEpsilon) },
-      { assertEquals(2.5, div.y.inMeters, kEpsilon) }
+        { assertEquals(1.5, div.x.inMeters, kEpsilon) },
+        { assertEquals(2.5, div.y.inMeters, kEpsilon) },
     )
   }
 
@@ -69,7 +69,8 @@ internal class Translation2dTest {
   fun testNorm() {
     val one = Translation2d(3.0.meters, 5.0.meters)
     assertEquals(
-      one.normalize(), Translation2d(3.0.meters / one.magnitude, 5.0.meters / one.magnitude)
+        one.normalize(),
+        Translation2d(3.0.meters / one.magnitude, 5.0.meters / one.magnitude),
     )
   }
 
@@ -86,8 +87,8 @@ internal class Translation2dTest {
     val original = Translation2d((-4.5).meters, 7.meters)
     val inverted = original.unaryMinus()
     assertAll(
-      { assertEquals(4.5, inverted.x.inMeters, kEpsilon) },
-      { assertEquals(-7.0, inverted.y.inMeters, kEpsilon) }
+        { assertEquals(4.5, inverted.x.inMeters, kEpsilon) },
+        { assertEquals(-7.0, inverted.y.inMeters, kEpsilon) },
     )
   }
 

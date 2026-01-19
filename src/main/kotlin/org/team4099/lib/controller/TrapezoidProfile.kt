@@ -1,5 +1,6 @@
 package org.team4099.lib.controller
 
+import edu.wpi.first.math.trajectory.TrapezoidProfile as WPITrapezoidProfile
 import org.team4099.lib.units.Acceleration
 import org.team4099.lib.units.UnitKey
 import org.team4099.lib.units.Value
@@ -7,19 +8,18 @@ import org.team4099.lib.units.Velocity
 import org.team4099.lib.units.base.Time
 import org.team4099.lib.units.base.inSeconds
 import org.team4099.lib.units.base.seconds
-import edu.wpi.first.math.trajectory.TrapezoidProfile as WPITrapezoidProfile
 
 class TrapezoidProfile<U : UnitKey>(
-  val constraints: Constraints<U>,
+    val constraints: Constraints<U>,
 ) {
   val trapezoidProfile = WPITrapezoidProfile(constraints.wpiConstraints)
 
   data class Constraints<U : UnitKey>(
-    val maxVelocity: Value<Velocity<U>>,
-    val maxAcceleration: Value<Acceleration<U>>
+      val maxVelocity: Value<Velocity<U>>,
+      val maxAcceleration: Value<Acceleration<U>>,
   ) {
     internal val wpiConstraints =
-      WPITrapezoidProfile.Constraints(maxVelocity.value, maxAcceleration.value)
+        WPITrapezoidProfile.Constraints(maxVelocity.value, maxAcceleration.value)
   }
 
   class State<U : UnitKey>(position: Value<U>, velocity: Value<Velocity<U>>) {
@@ -40,8 +40,9 @@ class TrapezoidProfile<U : UnitKey>(
       }
 
     constructor() : this(Value(0.0), Value(0.0))
+
     constructor(
-      state: WPITrapezoidProfile.State
+        state: WPITrapezoidProfile.State,
     ) : this(Value(state.position), Value(state.velocity))
 
     override fun equals(other: Any?): Boolean {

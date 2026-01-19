@@ -1,9 +1,14 @@
 package org.team4099.lib.pplib
 
+import com.pathplanner.lib.config.ModuleConfig as pplibModuleConfig
+import com.pathplanner.lib.config.RobotConfig as pplibRobotConfig
 import com.pathplanner.lib.controllers.PPHolonomicDriveController
+import com.pathplanner.lib.path.GoalEndState as pplibGoalEndState
 import com.pathplanner.lib.path.PathConstraints
 import com.pathplanner.lib.trajectory.PathPlannerTrajectoryState
 import edu.wpi.first.math.system.plant.DCMotor
+import java.util.Optional
+import java.util.function.DoubleSupplier
 import org.team4099.lib.geometry.Pose2d
 import org.team4099.lib.geometry.Translation2d
 import org.team4099.lib.kinematics.ChassisSpeeds
@@ -28,32 +33,27 @@ import org.team4099.lib.units.inMetersPerSecond
 import org.team4099.lib.units.inMetersPerSecondPerSecond
 import org.team4099.lib.units.inRadiansPerSecond
 import org.team4099.lib.units.inRadiansPerSecondPerSecond
-import java.util.Optional
-import java.util.function.DoubleSupplier
-import com.pathplanner.lib.config.ModuleConfig as pplibModuleConfig
-import com.pathplanner.lib.config.RobotConfig as pplibRobotConfig
-import com.pathplanner.lib.path.GoalEndState as pplibGoalEndState
 
 class PathPlannerHolonomicDriveController(
-  translationConstants: PathPlannerTranslationPID,
-  rotationConstants: PathPlannerRotationPID,
-  period: Time = 0.02.seconds
+    translationConstants: PathPlannerTranslationPID,
+    rotationConstants: PathPlannerRotationPID,
+    period: Time = 0.02.seconds,
 ) {
   val pplibController: PPHolonomicDriveController =
-    PPHolonomicDriveController(
-      translationConstants.pplibTranslationConstants,
-      rotationConstants.pplibRotationConstants,
-      period.inSeconds,
-    )
+      PPHolonomicDriveController(
+          translationConstants.pplibTranslationConstants,
+          rotationConstants.pplibRotationConstants,
+          period.inSeconds,
+      )
 
   val isHolonomic = pplibController.isHolonomic
 
   fun calculateRobotRelativeSpeeds(
-    currentPose: Pose2d,
-    targetState: PathPlannerTrajectoryState
+      currentPose: Pose2d,
+      targetState: PathPlannerTrajectoryState
   ): ChassisSpeeds {
     return ChassisSpeeds(
-      pplibController.calculateRobotRelativeSpeeds(currentPose.pose2d, targetState)
+        pplibController.calculateRobotRelativeSpeeds(currentPose.pose2d, targetState),
     )
   }
 
@@ -66,8 +66,8 @@ class PathPlannerHolonomicDriveController(
   }
 
   @Deprecated(
-    message = "Use overrideRotationFeedback instead, with the output of your own PID controller",
-    replaceWith = ReplaceWith("")
+      message = "Use overrideRotationFeedback instead, with the output of your own PID controller",
+      replaceWith = ReplaceWith(""),
   )
   fun setRotationTargetOverride(rotationTargetOverride: () -> Angle) {
     PPHolonomicDriveController.setRotationTargetOverride {
@@ -77,26 +77,26 @@ class PathPlannerHolonomicDriveController(
 
   companion object {
     data class GoalEndState(
-      val velocity: LinearVelocity,
-      val rotation: Angle,
+        val velocity: LinearVelocity,
+        val rotation: Angle,
     ) {
       val pplibGoalEndState: pplibGoalEndState =
-        pplibGoalEndState(velocity.inMetersPerSecond, rotation.inRotation2ds)
+          pplibGoalEndState(velocity.inMetersPerSecond, rotation.inRotation2ds)
     }
 
     data class PathConstraints(
-      val maxVelocity: LinearVelocity,
-      val maxAcceleration: LinearAcceleration,
-      val maxAngularVelocity: AngularVelocity,
-      val maxAngularAcceleration: AngularAcceleration
+        val maxVelocity: LinearVelocity,
+        val maxAcceleration: LinearAcceleration,
+        val maxAngularVelocity: AngularVelocity,
+        val maxAngularAcceleration: AngularAcceleration,
     ) {
       val pplibConstraints =
-        PathConstraints(
-          maxVelocity.inMetersPerSecond,
-          maxAcceleration.inMetersPerSecondPerSecond,
-          maxAngularVelocity.inRadiansPerSecond,
-          maxAngularAcceleration.inRadiansPerSecondPerSecond
-        )
+          PathConstraints(
+              maxVelocity.inMetersPerSecond,
+              maxAcceleration.inMetersPerSecondPerSecond,
+              maxAngularVelocity.inRadiansPerSecond,
+              maxAngularAcceleration.inRadiansPerSecondPerSecond,
+          )
     }
 
     fun overrideRotationFeedback(rotationFeedbackOverride: DoubleSupplier) {
@@ -104,43 +104,43 @@ class PathPlannerHolonomicDriveController(
     }
 
     data class RobotConfig(
-      val mass: Mass,
-      val moi: MomentOfInertia,
-      val moduleConfig: ModuleConfig,
-      val moduleOffsetFL: Translation2d,
-      val moduleOffsetFR: Translation2d,
-      val moduleOffsetBL: Translation2d,
-      val moduleOffsetBR: Translation2d
+        val mass: Mass,
+        val moi: MomentOfInertia,
+        val moduleConfig: ModuleConfig,
+        val moduleOffsetFL: Translation2d,
+        val moduleOffsetFR: Translation2d,
+        val moduleOffsetBL: Translation2d,
+        val moduleOffsetBR: Translation2d,
     ) {
       val ppllibRobotConfig =
-        pplibRobotConfig(
-          mass.inKilograms,
-          moi.inKilogramsMeterSquared,
-          moduleConfig.pplibModuleConfig,
-          moduleOffsetFL.translation2d,
-          moduleOffsetFR.translation2d,
-          moduleOffsetBL.translation2d,
-          moduleOffsetBR.translation2d
-        )
+          pplibRobotConfig(
+              mass.inKilograms,
+              moi.inKilogramsMeterSquared,
+              moduleConfig.pplibModuleConfig,
+              moduleOffsetFL.translation2d,
+              moduleOffsetFR.translation2d,
+              moduleOffsetBL.translation2d,
+              moduleOffsetBR.translation2d,
+          )
     }
 
     data class ModuleConfig(
-      val wheelRadius: Length,
-      val maxDriveVelocity: LinearVelocity,
-      val wheelCOF: Double,
-      val driveMotor: DCMotor,
-      val driveCurrentLimit: Current,
-      val numMotors: Int
+        val wheelRadius: Length,
+        val maxDriveVelocity: LinearVelocity,
+        val wheelCOF: Double,
+        val driveMotor: DCMotor,
+        val driveCurrentLimit: Current,
+        val numMotors: Int,
     ) {
       val pplibModuleConfig =
-        pplibModuleConfig(
-          wheelRadius.inMeters,
-          maxDriveVelocity.inMetersPerSecond,
-          wheelCOF,
-          driveMotor,
-          driveCurrentLimit.inAmperes,
-          numMotors
-        )
+          pplibModuleConfig(
+              wheelRadius.inMeters,
+              maxDriveVelocity.inMetersPerSecond,
+              wheelCOF,
+              driveMotor,
+              driveCurrentLimit.inAmperes,
+              numMotors,
+          )
     }
   }
 }

@@ -18,7 +18,7 @@ data class Pose2d(val translation: Translation2d, val rotation: Angle) {
   constructor(x: Length, y: Length, rotation: Angle) : this(Translation2d(x, y), rotation)
 
   constructor(
-    pose2dWPILIB: Pose2dWPILIB
+      pose2dWPILIB: Pose2dWPILIB,
   ) : this(Translation2d(pose2dWPILIB.translation), pose2dWPILIB.rotation.angle)
 
   operator fun plus(other: Transform2d): Pose2d {
@@ -86,7 +86,7 @@ data class Pose2d(val translation: Translation2d, val rotation: Angle) {
  * @param a The first value to interpolate between.
  * @param b The second value to interpolate between.
  * @param x The scalar that determines where the returned value falls between [a] and [b]. Limited
- * to between 0 and 1 inclusive.
+ *   to between 0 and 1 inclusive.
  * @return A value between [a] and [b] determined by [x].
  */
 fun interpolate(a: Pose2d, b: Pose2d, x: Double): Pose2d {

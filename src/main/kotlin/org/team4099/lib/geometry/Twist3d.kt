@@ -8,35 +8,35 @@ import org.team4099.lib.units.derived.inRadians
 import org.team4099.lib.units.derived.radians
 
 data class Twist3d(
-  val dx: Length,
-  val dy: Length,
-  val dz: Length,
-  val rx: Angle,
-  val ry: Angle,
-  val rz: Angle
+    val dx: Length,
+    val dy: Length,
+    val dz: Length,
+    val rx: Angle,
+    val ry: Angle,
+    val rz: Angle,
 ) {
   val twist3d: Twist3dWPILIB =
-    Twist3dWPILIB(dx.inMeters, dy.inMeters, dz.inMeters, rx.inRadians, ry.inRadians, rz.inRadians)
+      Twist3dWPILIB(dx.inMeters, dy.inMeters, dz.inMeters, rx.inRadians, ry.inRadians, rz.inRadians)
 
   constructor() :
-    this(
-      0.0.meters,
-      0.0.meters,
-      0.0.meters,
-      0.0.radians,
-      0.0.radians,
-      0.0.radians,
-    )
+      this(
+          0.0.meters,
+          0.0.meters,
+          0.0.meters,
+          0.0.radians,
+          0.0.radians,
+          0.0.radians,
+      )
 
   constructor(
-    twist3dWPILIB: Twist3dWPILIB
+      twist3dWPILIB: Twist3dWPILIB,
   ) : this(
-    twist3dWPILIB.dx.meters,
-    twist3dWPILIB.dy.meters,
-    twist3dWPILIB.dz.meters,
-    twist3dWPILIB.rx.radians,
-    twist3dWPILIB.ry.radians,
-    twist3dWPILIB.rz.radians
+      twist3dWPILIB.dx.meters,
+      twist3dWPILIB.dy.meters,
+      twist3dWPILIB.dz.meters,
+      twist3dWPILIB.rx.radians,
+      twist3dWPILIB.ry.radians,
+      twist3dWPILIB.rz.radians,
   )
 
   override fun equals(other: Any?): Boolean {

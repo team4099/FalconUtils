@@ -121,7 +121,7 @@ class BlinkinLedDriver(channel: Int) {
     SOLID_WHITE(0.93),
     SOLID_GRAY(0.95),
     SOLID_DARK_GRAY(0.97),
-    SOLID_BLACK(0.99)
+    SOLID_BLACK(0.99),
   }
 
   init {

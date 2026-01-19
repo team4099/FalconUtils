@@ -39,11 +39,11 @@ internal class QuaternionTest {
     assertEquals(0.5 / norm, q3.z.value)
     // may need to switch from radians to degrees
     assertEquals(
-      1.0,
-      (q3.w.inRadians * q3.w.inRadians) +
-        (q3.x.value * q3.x.value) +
-        q3.y.value * q3.y.value +
-        q3.z.value * q3.z.value
+        1.0,
+        (q3.w.inRadians * q3.w.inRadians) +
+            (q3.x.value * q3.x.value) +
+            q3.y.value * q3.y.value +
+            q3.z.value * q3.z.value,
     )
   }
 
@@ -67,12 +67,12 @@ internal class QuaternionTest {
 
     // Identity
     val q =
-      Quaternion(
-        0.72760687510899891.radians,
-        0.29104275004359953,
-        0.38805700005813276,
-        0.48507125007266594
-      )
+        Quaternion(
+            0.72760687510899891.radians,
+            0.29104275004359953,
+            0.38805700005813276,
+            0.48507125007266594,
+        )
     actual = q.times(q.inverse())
     assertEquals(1.0, actual.w.inRadians)
     assertEquals(0.0, actual.x.value)
