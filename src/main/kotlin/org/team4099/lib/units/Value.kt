@@ -2,7 +2,6 @@ package org.team4099.lib.units
 
 import kotlin.math.absoluteValue
 import kotlin.math.sign
-import org.team4099.lib.units.base.meters
 
 @JvmInline
 value class Value<T : UnitKey>(val value: Double) : Comparable<Value<T>> {
