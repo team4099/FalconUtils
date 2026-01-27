@@ -2,6 +2,7 @@ package org.team4099.lib.units
 
 import kotlin.math.absoluteValue
 import kotlin.math.sign
+import org.team4099.lib.units.base.meters
 
 @JvmInline
 value class Value<T : UnitKey>(val value: Double) : Comparable<Value<T>> {
@@ -62,4 +63,12 @@ infix fun <T : UnitKey> ClosedRange<Value<T>>.step(step: Value<T>): Iterable<Val
         if (next > endInclusive) null else next
       }
   return sequence.asIterable()
+}
+
+inline fun <T : UnitKey> min(a: Value<T>, b: Value<T>): Value<T> {
+  return if (a < b) a else b
+}
+
+inline fun <T : UnitKey> max(a: Value<T>, b: Value<T>): Value<T> {
+  return if (a > b) a else b
 }
