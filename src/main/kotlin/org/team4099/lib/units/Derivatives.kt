@@ -12,6 +12,8 @@ typealias Velocity<K> = Fraction<K, Second>
 
 typealias Acceleration<K> = Fraction<Velocity<K>, Second>
 
+typealias Jerk<K> = Fraction<Acceleration<K>, Second>
+
 typealias LinearVelocity = Value<Velocity<Meter>>
 
 typealias AngularVelocity = Value<Velocity<Radian>>
@@ -19,6 +21,10 @@ typealias AngularVelocity = Value<Velocity<Radian>>
 typealias LinearAcceleration = Value<Acceleration<Meter>>
 
 typealias AngularAcceleration = Value<Acceleration<Radian>>
+
+typealias LinearJerk = Value<Jerk<Meter>>
+
+typealias AngularJerk = Value<Jerk<Radian>>
 
 inline val <K : UnitKey> Value<K>.perSecond
   get() = Value<Velocity<K>>(value)
@@ -73,3 +79,27 @@ inline val AngularAcceleration.inRotationsPerSecondPerSecond: Double
 
 inline val AngularAcceleration.inRotationsPerMinutePerMinute: Double
   get() = value * SECONDS_PER_MINUTE * SECONDS_PER_MINUTE / (2 * PI)
+
+inline val LinearJerk.inMetersPerSecondPerSecondPerSecond: Double
+  get() = value
+
+inline val LinearJerk.inFeetPerSecondPerSecondPerSecond: Double
+  get() = value / METERS_PER_FOOT
+
+inline val LinearJerk.inFeetPerMinutePerSecondPerSecond: Double
+  get() = inFeetPerSecondPerSecondPerSecond * SECONDS_PER_MINUTE
+
+inline val LinearJerk.inInchesPerSecondPerSecondPerSecond: Double
+  get() = value / METERS_PER_INCH
+
+inline val AngularJerk.inRadiansPerSecondPerSecondPerSecond: Double
+  get() = value
+
+inline val AngularJerk.inDegreesPerSecondPerSecondPerSecond: Double
+  get() = Math.toDegrees(value)
+
+inline val AngularJerk.inRotationsPerSecondPerSecondPerSecond: Double
+  get() = value / (2 * PI)
+
+inline val AngularJerk.inRotationsPerMinutePerMinutePerMinute: Double
+  get() = value * SECONDS_PER_MINUTE * SECONDS_PER_MINUTE * SECONDS_PER_MINUTE / (2 * PI)
