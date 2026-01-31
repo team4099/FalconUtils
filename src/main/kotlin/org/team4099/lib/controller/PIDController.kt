@@ -1,5 +1,6 @@
 package org.team4099.lib.controller
 
+import edu.wpi.first.math.controller.PIDController as WPIPidController
 import org.team4099.lib.units.Fraction
 import org.team4099.lib.units.Product
 import org.team4099.lib.units.UnitKey
@@ -11,7 +12,6 @@ import org.team4099.lib.units.base.seconds
 import org.team4099.lib.units.derived.DerivativeGain
 import org.team4099.lib.units.derived.IntegralGain
 import org.team4099.lib.units.derived.ProportionalGain
-import edu.wpi.first.math.controller.PIDController as WPIPidController
 
 class PIDController<E : UnitKey, O : UnitKey> {
   val wpiPidController: WPIPidController
@@ -62,24 +62,27 @@ class PIDController<E : UnitKey, O : UnitKey> {
     get() = Value(wpiPidController.velocityError)
 
   constructor(
-    proportionalGain: ProportionalGain<E, O>,
-    integralGain: IntegralGain<E, O>,
-    derivativeGain: DerivativeGain<E, O>,
+      proportionalGain: ProportionalGain<E, O>,
+      integralGain: IntegralGain<E, O>,
+      derivativeGain: DerivativeGain<E, O>,
   ) {
     wpiPidController =
-      WPIPidController(proportionalGain.value, integralGain.value, derivativeGain.value)
+        WPIPidController(proportionalGain.value, integralGain.value, derivativeGain.value)
   }
 
   constructor(
-    proportionalGain: ProportionalGain<E, O>,
-    integralGain: IntegralGain<E, O>,
-    derivativeGain: DerivativeGain<E, O>,
-    period: Time
+      proportionalGain: ProportionalGain<E, O>,
+      integralGain: IntegralGain<E, O>,
+      derivativeGain: DerivativeGain<E, O>,
+      period: Time,
   ) {
     wpiPidController =
-      WPIPidController(
-        proportionalGain.value, integralGain.value, derivativeGain.value, period.inSeconds
-      )
+        WPIPidController(
+            proportionalGain.value,
+            integralGain.value,
+            derivativeGain.value,
+            period.inSeconds,
+        )
   }
 
   fun calculate(measurement: Value<E>, setpoint: Value<E>): Value<O> {
@@ -99,8 +102,8 @@ class PIDController<E : UnitKey, O : UnitKey> {
   }
 
   fun setIntegratorRange(
-    minimumIntegral: Value<Product<E, Second>>,
-    maximumIntegral: Value<Product<E, Second>>
+      minimumIntegral: Value<Product<E, Second>>,
+      maximumIntegral: Value<Product<E, Second>>
   ) {
     wpiPidController.setIntegratorRange(minimumIntegral.value, maximumIntegral.value)
   }

@@ -13,51 +13,49 @@ class Rotation3d(quaternion: Quaternion) {
   constructor(rotation3dWPILIB: Rotation3dWPILIB) : this(Quaternion(rotation3dWPILIB.quaternion))
 
   constructor(
-    roll: Angle,
-    pitch: Angle,
-    yaw: Angle
+      roll: Angle,
+      pitch: Angle,
+      yaw: Angle,
   ) : this(
-    Quaternion(
-      (
-        Math.cos(roll.inRadians * 0.5) *
-          Math.cos(pitch.inRadians * 0.5) *
-          Math.cos(yaw.inRadians * 0.5) +
+      Quaternion(
+          (Math.cos(roll.inRadians * 0.5) *
+                  Math.cos(pitch.inRadians * 0.5) *
+                  Math.cos(yaw.inRadians * 0.5) +
+                  Math.sin(roll.inRadians * 0.5) *
+                      Math.sin(pitch.inRadians * 0.5) *
+                      Math.sin(yaw.inRadians * 0.5))
+              .radians,
           Math.sin(roll.inRadians * 0.5) *
-          Math.sin(pitch.inRadians * 0.5) *
-          Math.sin(yaw.inRadians * 0.5)
-        )
-        .radians,
-      Math.sin(roll.inRadians * 0.5) *
-        Math.cos(pitch.inRadians * 0.5) *
-        Math.cos(yaw.inRadians * 0.5) -
-        Math.cos(roll.inRadians * 0.5) *
-        Math.sin(pitch.inRadians * 0.5) *
-        Math.sin(yaw.inRadians * 0.5),
-      Math.cos(roll.inRadians * 0.5) *
-        Math.sin(pitch.inRadians * 0.5) *
-        Math.cos(yaw.inRadians * 0.5) +
-        Math.sin(roll.inRadians * 0.5) *
-        Math.cos(pitch.inRadians * 0.5) *
-        Math.sin(yaw.inRadians * 0.5),
-      Math.cos(roll.inRadians * 0.5) *
-        Math.cos(pitch.inRadians * 0.5) *
-        Math.sin(yaw.inRadians * 0.5) -
-        Math.sin(roll.inRadians * 0.5) *
-        Math.sin(pitch.inRadians * 0.5) *
-        Math.cos(yaw.inRadians * 0.5)
-    )
+              Math.cos(pitch.inRadians * 0.5) *
+              Math.cos(yaw.inRadians * 0.5) -
+              Math.cos(roll.inRadians * 0.5) *
+                  Math.sin(pitch.inRadians * 0.5) *
+                  Math.sin(yaw.inRadians * 0.5),
+          Math.cos(roll.inRadians * 0.5) *
+              Math.sin(pitch.inRadians * 0.5) *
+              Math.cos(yaw.inRadians * 0.5) +
+              Math.sin(roll.inRadians * 0.5) *
+                  Math.cos(pitch.inRadians * 0.5) *
+                  Math.sin(yaw.inRadians * 0.5),
+          Math.cos(roll.inRadians * 0.5) *
+              Math.cos(pitch.inRadians * 0.5) *
+              Math.sin(yaw.inRadians * 0.5) -
+              Math.sin(roll.inRadians * 0.5) *
+                  Math.sin(pitch.inRadians * 0.5) *
+                  Math.cos(yaw.inRadians * 0.5),
+      ),
   )
 
   constructor(
-    axis: Vector<N3>,
-    angle: Angle
+      axis: Vector<N3>,
+      angle: Angle,
   ) : this(
-    Quaternion(
-      Math.cos(angle.inRadians / 2.0).radians,
-      axis.times(1.0 / axis.norm()).times(Math.sin(angle.inRadians / 2.0)).get(0, 0),
-      axis.times(1.0 / axis.norm()).times(Math.sin(angle.inRadians / 2.0)).get(1, 0),
-      axis.times(1.0 / axis.norm()).times(Math.sin(angle.inRadians / 2.0)).get(2, 0)
-    )
+      Quaternion(
+          Math.cos(angle.inRadians / 2.0).radians,
+          axis.times(1.0 / axis.norm()).times(Math.sin(angle.inRadians / 2.0)).get(0, 0),
+          axis.times(1.0 / axis.norm()).times(Math.sin(angle.inRadians / 2.0)).get(1, 0),
+          axis.times(1.0 / axis.norm()).times(Math.sin(angle.inRadians / 2.0)).get(2, 0),
+      ),
   )
 
   constructor(rotationMatrix: Matrix<N3, N3>) : this(Rotation3dWPILIB(rotationMatrix))
@@ -69,6 +67,7 @@ class Rotation3d(quaternion: Quaternion) {
   fun rotateBy(other: Rotation3d): Rotation3d {
     return Rotation3d(other.quaternion.times(quaternion))
   }
+
   val rotation3d: Rotation3dWPILIB = Rotation3dWPILIB(this.quaternion.quaternion)
 
   val x: Angle = rotation3d.x.radians

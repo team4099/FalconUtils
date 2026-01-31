@@ -14,16 +14,16 @@ import org.team4099.lib.units.derived.inRadiansPerSecondPerRadianSeconds
 import org.team4099.lib.units.derived.radians
 
 data class PathPlannerRotationPID(
-  val kP: ProportionalGain<Radian, Velocity<Radian>>,
-  val kI: IntegralGain<Radian, Velocity<Radian>>,
-  val kD: DerivativeGain<Radian, Velocity<Radian>>,
-  val iZone: Angle = 1.0.radians
+    val kP: ProportionalGain<Radian, Velocity<Radian>>,
+    val kI: IntegralGain<Radian, Velocity<Radian>>,
+    val kD: DerivativeGain<Radian, Velocity<Radian>>,
+    val iZone: Angle = 1.0.radians,
 ) {
   val pplibRotationConstants =
-    PIDConstants(
-      kP.inRadiansPerSecondPerRadian,
-      kI.inRadiansPerSecondPerRadianSeconds,
-      kD.inRadiansPerSecondPerRadianPerSecond,
-      iZone.inRadians
-    )
+      PIDConstants(
+          kP.inRadiansPerSecondPerRadian,
+          kI.inRadiansPerSecondPerRadianSeconds,
+          kD.inRadiansPerSecondPerRadianPerSecond,
+          iZone.inRadians,
+      )
 }

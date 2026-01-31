@@ -7,9 +7,9 @@ import org.team4099.lib.units.LinearAcceleration
 import org.team4099.lib.units.LinearVelocity
 
 data class TrajectoryConfig(
-  val maxLinearVelocity: LinearVelocity,
-  val maxLinearAcceleration: LinearAcceleration,
-  val maxAngularVelocity: AngularVelocity,
-  val maxAngularAcceleration: AngularAcceleration,
-  val constraints: List<TrajectoryConstraint> = listOf()
+    val maxLinearVelocity: LinearVelocity,
+    val maxLinearAcceleration: LinearAcceleration,
+    val maxAngularVelocity: AngularVelocity,
+    val maxAngularAcceleration: AngularAcceleration,
+    val constraints: List<TrajectoryConstraint> = listOf(),
 )

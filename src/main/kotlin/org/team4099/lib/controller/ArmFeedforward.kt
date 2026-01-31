@@ -1,5 +1,6 @@
 package org.team4099.lib.controller
 
+import edu.wpi.first.math.controller.ArmFeedforward as WPIArmFeedforward
 import org.team4099.lib.units.AngularAcceleration
 import org.team4099.lib.units.AngularVelocity
 import org.team4099.lib.units.derived.AccelerationFeedforward
@@ -20,44 +21,44 @@ import org.team4099.lib.units.derived.volts
 import org.team4099.lib.units.inRadiansPerSecond
 import org.team4099.lib.units.inRadiansPerSecondPerSecond
 import org.team4099.lib.units.perSecond
-import edu.wpi.first.math.controller.ArmFeedforward as WPIArmFeedforward
 
 class ArmFeedforward(
-  kS: StaticFeedforward<Volt>,
-  kG: AngularGravityFeedforward,
-  kV: VelocityFeedforward<Radian, Volt>,
-  kA: AccelerationFeedforward<Radian, Volt>
-) {
-  private val feedforward =
-    WPIArmFeedforward(
-      kS.inVolts,
-      kG.inVolts,
-      kV.inVoltsPerRadianPerSecond,
-      kA.inVoltsPerRadianPerSecondPerSecond
-    )
-
-  constructor(
     kS: StaticFeedforward<Volt>,
     kG: AngularGravityFeedforward,
-    kV: VelocityFeedforward<Radian, Volt>
+    kV: VelocityFeedforward<Radian, Volt>,
+    kA: AccelerationFeedforward<Radian, Volt>,
+) {
+  private val feedforward =
+      WPIArmFeedforward(
+          kS.inVolts,
+          kG.inVolts,
+          kV.inVoltsPerRadianPerSecond,
+          kA.inVoltsPerRadianPerSecondPerSecond,
+      )
+
+  constructor(
+      kS: StaticFeedforward<Volt>,
+      kG: AngularGravityFeedforward,
+      kV: VelocityFeedforward<Radian, Volt>,
   ) : this(kS, kG, kV, 0.volts.perRadianPerSecondPerSecond)
 
   @Deprecated(
-    message =
-    "Marked for removal since 2025. Use calculute(position: Angle, velocity: AngularVelocity) instead.",
-    level = DeprecationLevel.ERROR
+      message =
+          "Marked for removal since 2025. Use calculute(position: Angle, velocity: AngularVelocity) instead.",
+      level = DeprecationLevel.ERROR,
   )
   fun calculate(
-    position: Angle,
-    velocity: AngularVelocity,
-    acceleration: AngularAcceleration
+      position: Angle,
+      velocity: AngularVelocity,
+      acceleration: AngularAcceleration
   ): ElectricalPotential {
-    return feedforward.calculate(
-      position.inRadians,
-      velocity.inRadiansPerSecond,
-      acceleration.inRadiansPerSecondPerSecond
-    )
-      .volts
+    return feedforward
+        .calculate(
+            position.inRadians,
+            velocity.inRadiansPerSecond,
+            acceleration.inRadiansPerSecondPerSecond,
+        )
+        .volts
   }
 
   fun calculate(position: Angle, velocity: AngularVelocity): ElectricalPotential {
@@ -65,52 +66,64 @@ class ArmFeedforward(
   }
 
   fun maxAchievableVelocity(
-    maxVoltage: ElectricalPotential,
-    angle: Angle,
-    acceleration: AngularAcceleration
+      maxVoltage: ElectricalPotential,
+      angle: Angle,
+      acceleration: AngularAcceleration,
   ): AngularVelocity {
-    return feedforward.maxAchievableVelocity(
-      maxVoltage.inVolts, angle.inRadians, acceleration.inRadiansPerSecondPerSecond
-    )
-      .radians
-      .perSecond
+    return feedforward
+        .maxAchievableVelocity(
+            maxVoltage.inVolts,
+            angle.inRadians,
+            acceleration.inRadiansPerSecondPerSecond,
+        )
+        .radians
+        .perSecond
   }
 
   fun minAchievableVelocity(
-    maxVoltage: ElectricalPotential,
-    angle: Angle,
-    acceleration: AngularAcceleration
+      maxVoltage: ElectricalPotential,
+      angle: Angle,
+      acceleration: AngularAcceleration,
   ): AngularVelocity {
-    return feedforward.minAchievableVelocity(
-      maxVoltage.inVolts, angle.inRadians, acceleration.inRadiansPerSecondPerSecond
-    )
-      .radians
-      .perSecond
+    return feedforward
+        .minAchievableVelocity(
+            maxVoltage.inVolts,
+            angle.inRadians,
+            acceleration.inRadiansPerSecondPerSecond,
+        )
+        .radians
+        .perSecond
   }
 
   fun maxAchievableAcceleration(
-    maxVoltage: ElectricalPotential,
-    angle: Angle,
-    velocity: AngularVelocity
+      maxVoltage: ElectricalPotential,
+      angle: Angle,
+      velocity: AngularVelocity,
   ): AngularAcceleration {
-    return feedforward.maxAchievableVelocity(
-      maxVoltage.inVolts, angle.inRadians, velocity.inRadiansPerSecond
-    )
-      .radians
-      .perSecond
-      .perSecond
+    return feedforward
+        .maxAchievableVelocity(
+            maxVoltage.inVolts,
+            angle.inRadians,
+            velocity.inRadiansPerSecond,
+        )
+        .radians
+        .perSecond
+        .perSecond
   }
 
   fun minAchievableAcceleration(
-    maxVoltage: ElectricalPotential,
-    angle: Angle,
-    velocity: AngularVelocity
+      maxVoltage: ElectricalPotential,
+      angle: Angle,
+      velocity: AngularVelocity,
   ): AngularAcceleration {
-    return feedforward.minAchievableAcceleration(
-      maxVoltage.inVolts, angle.inRadians, velocity.inRadiansPerSecond
-    )
-      .radians
-      .perSecond
-      .perSecond
+    return feedforward
+        .minAchievableAcceleration(
+            maxVoltage.inVolts,
+            angle.inRadians,
+            velocity.inRadiansPerSecond,
+        )
+        .radians
+        .perSecond
+        .perSecond
   }
 }

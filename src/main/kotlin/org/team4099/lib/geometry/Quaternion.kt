@@ -18,7 +18,7 @@ data class Quaternion(val w: Angle, val v: Vector<N3>) {
   val z: Length = v[2, 0].meters
 
   val quaternion: QuaternionWPILIB =
-    QuaternionWPILIB(w.inRadians, x.inMeters, y.inMeters, z.inMeters)
+      QuaternionWPILIB(w.inRadians, x.inMeters, y.inMeters, z.inMeters)
 
   val rotationVector: Vector<N3> = quaternion.toRotationVector()
 
@@ -27,7 +27,7 @@ data class Quaternion(val w: Angle, val v: Vector<N3>) {
   constructor(w: Angle, x: Double, y: Double, z: Double) : this(w, VecBuilder.fill(x, y, z))
 
   constructor(
-    quaternion: QuaternionWPILIB
+      quaternion: QuaternionWPILIB,
   ) : this(quaternion.w.radians, VecBuilder.fill(quaternion.x, quaternion.y, quaternion.z))
 
   operator fun times(other: Quaternion): Quaternion {
@@ -38,8 +38,9 @@ data class Quaternion(val w: Angle, val v: Vector<N3>) {
     if (this === other) return true
     if (other !is Quaternion) return false
 
-    if ((w * other.w.inRadians + v.dot(other.v).radians).absoluteValue.value < 1.0 - 1E-9)
+    if ((w * other.w.inRadians + v.dot(other.v).radians).absoluteValue.value < 1.0 - 1E-9) {
       return false
+    }
 
     return true
   }

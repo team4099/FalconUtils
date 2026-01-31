@@ -14,16 +14,16 @@ import org.team4099.lib.units.derived.inMetersPerSecondPerMeterPerSecond
 import org.team4099.lib.units.derived.inMetersPerSecondPerMeterSeconds
 
 data class PathPlannerTranslationPID(
-  val kP: ProportionalGain<Meter, Velocity<Meter>>,
-  val kI: IntegralGain<Meter, Velocity<Meter>>,
-  val kD: DerivativeGain<Meter, Velocity<Meter>>,
-  val iZone: Length = 1.0.meters
+    val kP: ProportionalGain<Meter, Velocity<Meter>>,
+    val kI: IntegralGain<Meter, Velocity<Meter>>,
+    val kD: DerivativeGain<Meter, Velocity<Meter>>,
+    val iZone: Length = 1.0.meters,
 ) {
   val pplibTranslationConstants =
-    PIDConstants(
-      kP.inMetersPerSecondPerMeter,
-      kI.inMetersPerSecondPerMeterSeconds,
-      kD.inMetersPerSecondPerMeterPerSecond,
-      iZone.inMeters
-    )
+      PIDConstants(
+          kP.inMetersPerSecondPerMeter,
+          kI.inMetersPerSecondPerMeterSeconds,
+          kD.inMetersPerSecondPerMeterPerSecond,
+          iZone.inMeters,
+      )
 }

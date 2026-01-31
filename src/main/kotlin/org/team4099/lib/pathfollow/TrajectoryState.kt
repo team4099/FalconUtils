@@ -9,11 +9,11 @@ import org.team4099.lib.units.derived.radians
 import org.team4099.lib.units.perSecond
 
 data class TrajectoryState(
-  val timestamp: Time,
-  val pose: Pose2d,
-  val curvature: Angle,
-  val linearVelocity: LinearVelocity,
-  //  val linearAcceleration: LinearAcceleration,
-  val angularVelocity: AngularVelocity = 0.radians.perSecond
-//  val angularAcceleration: AngularAcceleration
+    val timestamp: Time,
+    val pose: Pose2d,
+    val curvature: Angle,
+    val linearVelocity: LinearVelocity,
+    //  val linearAcceleration: LinearAcceleration,
+    val angularVelocity: AngularVelocity = 0.radians.perSecond,
+    //  val angularAcceleration: AngularAcceleration
 )

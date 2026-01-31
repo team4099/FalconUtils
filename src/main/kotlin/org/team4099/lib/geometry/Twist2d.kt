@@ -13,11 +13,11 @@ data class Twist2d(val dx: Length, val dy: Length, val dtheta: Angle) {
   constructor() : this(0.meters, 0.meters, 0.radians)
 
   constructor(
-    twist2dWPILIB: Twist2dWPILIB
+      twist2dWPILIB: Twist2dWPILIB,
   ) : this(
-    twist2dWPILIB.dx.meters,
-    twist2dWPILIB.dy.meters,
-    twist2dWPILIB.dtheta.radians,
+      twist2dWPILIB.dx.meters,
+      twist2dWPILIB.dy.meters,
+      twist2dWPILIB.dtheta.radians,
   )
 
   override fun equals(other: Any?): Boolean {

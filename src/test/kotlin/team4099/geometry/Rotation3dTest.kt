@@ -95,7 +95,8 @@ internal class Rotation3dTest {
     val q6 = rot6.quaternion
     assertEquals(0.0, q6.w.value)
     assertEquals(
-      0.0, q6.x.value * xAxis[0, 0] + q6.y.value * xAxis[1, 0] + q6.z.value * xAxis[2, 0]
+        0.0,
+        q6.x.value * xAxis[0, 0] + q6.y.value * xAxis[1, 0] + q6.z.value * xAxis[2, 0],
     )
 
     // 180 degree rotation of y-axes
@@ -103,7 +104,8 @@ internal class Rotation3dTest {
     val q7 = rot7.quaternion
     assertEquals(0.0, q7.w.inRadians)
     assertEquals(
-      0.0, q7.x.value * yAxis[0, 0] + q7.y.value * yAxis[1, 0] + q7.z.value * yAxis[2, 0]
+        0.0,
+        q7.x.value * yAxis[0, 0] + q7.y.value * yAxis[1, 0] + q7.z.value * yAxis[2, 0],
     )
 
     // 180 degree rotation of z-axes
@@ -111,7 +113,8 @@ internal class Rotation3dTest {
     val q8 = rot8.quaternion
     assertEquals(0.0, q8.w.value)
     assertEquals(
-      0.0, q8.x.value * zAxis[0, 0] + q8.y.value * zAxis[1, 0] + q8.z.value * zAxis[2, 0]
+        0.0,
+        q8.x.value * zAxis[0, 0] + q8.y.value * zAxis[1, 0] + q8.z.value * zAxis[2, 0],
     )
   }
 
@@ -120,15 +123,15 @@ internal class Rotation3dTest {
     val zAxis = VecBuilder.fill(0.0, 0.0, 1.0)
     val rot1 = Rotation3d(zAxis, (Math.PI / 3).radians)
     assertAll(
-      { assertEquals(0.0, rot1.x.inRadians, kEpsilon) },
-      { assertEquals(0.0, rot1.y.inRadians, kEpsilon) },
-      { assertEquals(60.degrees.inRadians, rot1.z.inRadians, kEpsilon) }
+        { assertEquals(0.0, rot1.x.inRadians, kEpsilon) },
+        { assertEquals(0.0, rot1.y.inRadians, kEpsilon) },
+        { assertEquals(60.degrees.inRadians, rot1.z.inRadians, kEpsilon) },
     )
     val rot2 = Rotation3d(zAxis, (Math.PI / 4).radians)
     assertAll(
-      { assertEquals(0.0, rot2.x.inRadians, kEpsilon) },
-      { assertEquals(0.0, rot2.y.inRadians, kEpsilon) },
-      { assertEquals(45.degrees.inRadians, rot2.z.inRadians, kEpsilon) }
+        { assertEquals(0.0, rot2.x.inRadians, kEpsilon) },
+        { assertEquals(0.0, rot2.y.inRadians, kEpsilon) },
+        { assertEquals(45.degrees.inRadians, rot2.z.inRadians, kEpsilon) },
     )
   }
 
@@ -137,15 +140,15 @@ internal class Rotation3dTest {
     val zAxis = VecBuilder.fill(0.0, 0.0, 1.0)
     val rot1 = Rotation3d(zAxis, 45.degrees)
     assertAll(
-      { assertEquals(0.0, rot1.x.inRadians, kEpsilon) },
-      { assertEquals(0.0, rot1.y.inRadians, kEpsilon) },
-      { assertEquals(Math.PI / 4.0, rot1.z.inRadians, kEpsilon) }
+        { assertEquals(0.0, rot1.x.inRadians, kEpsilon) },
+        { assertEquals(0.0, rot1.y.inRadians, kEpsilon) },
+        { assertEquals(Math.PI / 4.0, rot1.z.inRadians, kEpsilon) },
     )
     val rot2 = Rotation3d(zAxis, 30.0.degrees)
     assertAll(
-      { assertEquals(0.0, rot2.x.inRadians, kEpsilon) },
-      { assertEquals(0.0, rot2.y.inRadians, kEpsilon) },
-      { assertEquals(Math.PI / 6.0, rot2.z.inRadians, kEpsilon) }
+        { assertEquals(0.0, rot2.x.inRadians, kEpsilon) },
+        { assertEquals(0.0, rot2.y.inRadians, kEpsilon) },
+        { assertEquals(Math.PI / 6.0, rot2.z.inRadians, kEpsilon) },
     )
   }
 
@@ -157,10 +160,10 @@ internal class Rotation3dTest {
     assertEquals(expected, rot)
     rot = rot.plus(Rotation3d(0.0.radians, 90.0.degrees, 0.0.degrees))
     expected =
-      Rotation3d(
-        VecBuilder.fill(1.0 / Math.sqrt(3.0), 1.0 / Math.sqrt(3.0), -1.0 / Math.sqrt(3.0)),
-        120.0.degrees
-      )
+        Rotation3d(
+            VecBuilder.fill(1.0 / Math.sqrt(3.0), 1.0 / Math.sqrt(3.0), -1.0 / Math.sqrt(3.0)),
+            120.0.degrees,
+        )
     assertEquals(expected, rot)
     rot = rot.plus(Rotation3d(0.0.radians, 0.0.radians, 90.degrees))
     expected = Rotation3d(0.0.radians, 90.degrees, 0.0.radians)

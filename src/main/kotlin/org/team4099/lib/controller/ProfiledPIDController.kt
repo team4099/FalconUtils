@@ -1,5 +1,6 @@
 package org.team4099.lib.controller
 
+import edu.wpi.first.math.controller.ProfiledPIDController as WPIProfiledPIDController
 import org.team4099.lib.units.Fraction
 import org.team4099.lib.units.Product
 import org.team4099.lib.units.UnitKey
@@ -11,23 +12,22 @@ import org.team4099.lib.units.base.seconds
 import org.team4099.lib.units.derived.DerivativeGain
 import org.team4099.lib.units.derived.IntegralGain
 import org.team4099.lib.units.derived.ProportionalGain
-import edu.wpi.first.math.controller.ProfiledPIDController as WPIProfiledPIDController
 
 class ProfiledPIDController<E : UnitKey, O : UnitKey>(
-  proportionalGain: ProportionalGain<E, O>,
-  integralGain: IntegralGain<E, O>,
-  derivativeGain: DerivativeGain<E, O>,
-  constraints: TrapezoidProfile.Constraints<E>,
-  period: Time
+    proportionalGain: ProportionalGain<E, O>,
+    integralGain: IntegralGain<E, O>,
+    derivativeGain: DerivativeGain<E, O>,
+    constraints: TrapezoidProfile.Constraints<E>,
+    period: Time,
 ) {
   val wpiPidController =
-    WPIProfiledPIDController(
-      proportionalGain.value,
-      integralGain.value,
-      derivativeGain.value,
-      constraints.wpiConstraints,
-      period.inSeconds
-    )
+      WPIProfiledPIDController(
+          proportionalGain.value,
+          integralGain.value,
+          derivativeGain.value,
+          constraints.wpiConstraints,
+          period.inSeconds,
+      )
 
   var proportionalGain: ProportionalGain<E, O>
     get() = ProportionalGain(wpiPidController.p)
@@ -85,10 +85,10 @@ class ProfiledPIDController<E : UnitKey, O : UnitKey>(
 
   // TODO: Fix this to not rely on robot code
   constructor(
-    proportionalGain: ProportionalGain<E, O>,
-    integralGain: IntegralGain<E, O>,
-    derivativeGain: DerivativeGain<E, O>,
-    constraints: TrapezoidProfile.Constraints<E>
+      proportionalGain: ProportionalGain<E, O>,
+      integralGain: IntegralGain<E, O>,
+      derivativeGain: DerivativeGain<E, O>,
+      constraints: TrapezoidProfile.Constraints<E>,
   ) : this(proportionalGain, integralGain, derivativeGain, constraints, 0.02.seconds)
 
   fun setGoal(goal: Value<E>) {
@@ -108,12 +108,12 @@ class ProfiledPIDController<E : UnitKey, O : UnitKey>(
   }
 
   fun calculate(
-    measurement: Value<E>,
-    goal: TrapezoidProfile.State<E>,
-    constraints: TrapezoidProfile.Constraints<E>
+      measurement: Value<E>,
+      goal: TrapezoidProfile.State<E>,
+      constraints: TrapezoidProfile.Constraints<E>,
   ): Value<O> {
     return Value(
-      wpiPidController.calculate(measurement.value, goal.wpiState, constraints.wpiConstraints)
+        wpiPidController.calculate(measurement.value, goal.wpiState, constraints.wpiConstraints),
     )
   }
 
@@ -126,8 +126,8 @@ class ProfiledPIDController<E : UnitKey, O : UnitKey>(
   }
 
   fun setIntegratorRange(
-    minimumIntegral: Value<Product<E, Second>>,
-    maximumIntegral: Value<Product<E, Second>>
+      minimumIntegral: Value<Product<E, Second>>,
+      maximumIntegral: Value<Product<E, Second>>
   ) {
     wpiPidController.setIntegratorRange(minimumIntegral.value, maximumIntegral.value)
   }

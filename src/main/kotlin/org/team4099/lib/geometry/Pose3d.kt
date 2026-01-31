@@ -15,21 +15,21 @@ data class Pose3d(val translation: Translation3d, val rotation: Rotation3d) {
   constructor() : this(Translation3d(), Rotation3d())
 
   constructor(
-    x: Length,
-    y: Length,
-    z: Length,
-    rotation: Rotation3d
+      x: Length,
+      y: Length,
+      z: Length,
+      rotation: Rotation3d,
   ) : this(Translation3d(x, y, z), rotation)
 
   constructor(
-    pose: Pose2d
+      pose: Pose2d,
   ) : this(
-    Translation3d(pose.x, pose.y, 0.0.meters),
-    Rotation3d(0.0.radians, 0.0.radians, pose.rotation)
+      Translation3d(pose.x, pose.y, 0.0.meters),
+      Rotation3d(0.0.radians, 0.0.radians, pose.rotation),
   )
 
   constructor(
-    pose3dWPILIB: Pose3dWPILIB
+      pose3dWPILIB: Pose3dWPILIB,
   ) : this(Translation3d(pose3dWPILIB.translation), Rotation3d(pose3dWPILIB.rotation))
 
   operator fun plus(other: Transform3d): Pose3d {

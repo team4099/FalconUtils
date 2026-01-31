@@ -1,12 +1,12 @@
 package org.team4099.lib.geometry
 
+import kotlin.math.hypot
 import org.team4099.lib.units.base.Length
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.Angle
 import org.team4099.lib.units.derived.cos
 import org.team4099.lib.units.derived.sin
-import kotlin.math.hypot
 
 /**
  * Represents a translation in 3d space. This object can be used to represent a point or a vector.

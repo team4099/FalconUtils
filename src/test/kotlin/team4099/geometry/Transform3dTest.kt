@@ -17,8 +17,8 @@ class Transform3dTest {
     val one = Transform3d()
     val two = Transform3d(Translation3d(), Rotation3d())
     assertAll(
-      { assertEquals(one.translation, two.translation) },
-      { assertEquals(one.rotation, two.rotation) }
+        { assertEquals(one.translation, two.translation) },
+        { assertEquals(one.rotation, two.rotation) },
     )
   }
 
@@ -26,11 +26,12 @@ class Transform3dTest {
   fun testInverse() {
     val zAxis = VecBuilder.fill(0.0, 0.0, 1.0)
     val initial =
-      Pose3d(Translation3d(1.0.meters, 2.0.meters, 3.0.meters), Rotation3d(zAxis, 45.0.degrees))
+        Pose3d(Translation3d(1.0.meters, 2.0.meters, 3.0.meters), Rotation3d(zAxis, 45.0.degrees))
     val transform =
-      Transform3d(
-        Translation3d(5.0.meters, 4.0.meters, 3.0.meters), Rotation3d(zAxis, 5.0.degrees)
-      )
+        Transform3d(
+            Translation3d(5.0.meters, 4.0.meters, 3.0.meters),
+            Rotation3d(zAxis, 5.0.degrees),
+        )
     val transformed = initial.plus(transform)
     val untransformed = transformed.plus(transform.inverse())
     assertEquals(initial, untransformed)
@@ -40,15 +41,17 @@ class Transform3dTest {
   fun testComposition() {
     val zAxis = VecBuilder.fill(0.0, 0.0, 1.0)
     val initial =
-      Pose3d(Translation3d(1.0.meters, 2.0.meters, 3.0.meters), Rotation3d(zAxis, 45.0.degrees))
+        Pose3d(Translation3d(1.0.meters, 2.0.meters, 3.0.meters), Rotation3d(zAxis, 45.0.degrees))
     val transform1 =
-      Transform3d(
-        Translation3d(5.0.meters, 0.0.meters, 0.0.meters), Rotation3d(zAxis, 5.0.degrees)
-      )
+        Transform3d(
+            Translation3d(5.0.meters, 0.0.meters, 0.0.meters),
+            Rotation3d(zAxis, 5.0.degrees),
+        )
     val transform2 =
-      Transform3d(
-        Translation3d(0.0.meters, 2.0.meters, 0.0.meters), Rotation3d(zAxis, 5.0.degrees)
-      )
+        Transform3d(
+            Translation3d(0.0.meters, 2.0.meters, 0.0.meters),
+            Rotation3d(zAxis, 5.0.degrees),
+        )
     val transformedSeparate = initial.plus(transform1).plus(transform2)
     val transformedCombined = initial.plus(transform1.plus(transform2))
     assertEquals(transformedSeparate, transformedCombined)

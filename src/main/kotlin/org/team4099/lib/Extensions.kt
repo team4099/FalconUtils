@@ -1,10 +1,10 @@
 package org.team4099.lib
 
-import org.team4099.lib.units.UnitKey
-import org.team4099.lib.units.Value
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+import org.team4099.lib.units.UnitKey
+import org.team4099.lib.units.Value
 
 /**
  * Determines if another value is near this Double.
@@ -22,7 +22,7 @@ inline fun Double.around(around: Double, tolerance: Double): Boolean {
  *
  * @param deadband The range in which the value will be forced to zero.
  * @return This value adjusted to smoothly increase from zero if outside the deadband, zero if
- * inside the deadband.
+ *   inside the deadband.
  */
 inline fun Double.smoothDeadband(deadband: Double): Double {
   return if (abs(this) < deadband) {
@@ -60,7 +60,7 @@ inline fun Int.limit(lowerBound: Int, upperBound: Int): Int {
  * @param a The first value to interpolate between.
  * @param b The second value to interpolate between.
  * @param x The scalar that determines where the returned value falls between [a] and [b]. Limited
- * to between 0 and 1 inclusive.
+ *   to between 0 and 1 inclusive.
  * @return A value between [a] and [b] determined by [x].
  */
 inline fun interpolate(a: Double, b: Double, x: Double): Double {
@@ -73,7 +73,7 @@ inline fun interpolate(a: Double, b: Double, x: Double): Double {
  * @param a The first value to interpolate between.
  * @param b The second value to interpolate between.
  * @param x The scalar that determines where the returned value falls between [a] and [b]. Limited
- * to between 0 and 1 inclusive.
+ *   to between 0 and 1 inclusive.
  * @return A value between [a] and [b] determined by [x].
  */
 inline fun <T : UnitKey> interpolate(a: Value<T>, b: Value<T>, x: Double): Value<T> {
