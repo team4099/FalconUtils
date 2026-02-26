@@ -40,6 +40,10 @@ data class Pose2d(val translation: Translation2d, val rotation: Angle) {
     return times(1.0 / scalar)
   }
 
+  fun rotateBy(other: Angle): Pose2d {
+    return Pose2d(translation.rotateBy(other), rotation + other)
+  }
+
   fun transformBy(other: Transform2d): Pose2d {
     return Pose2d(pose2d.transformBy(other.transform2d))
   }

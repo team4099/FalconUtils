@@ -1,7 +1,10 @@
 package org.team4099.lib.geometry
 
-import kotlin.math.hypot
+import org.team4099.lib.math.hypot
+import org.team4099.lib.units.Squared
+import org.team4099.lib.units.Value
 import org.team4099.lib.units.base.Length
+import org.team4099.lib.units.base.Meter
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.Angle
@@ -24,7 +27,7 @@ data class Translation2d(var x: Length, var y: Length) {
     get() = Translation2dWPILIB(x.inMeters, y.inMeters)
 
   val magnitude
-    get() = hypot(x.inMeters, y.inMeters)
+    get() = kotlin.math.hypot(x.inMeters, y.inMeters)
 
   operator fun plus(other: Translation2d): Translation2d {
     return Translation2d(x + other.x, y + other.y)
@@ -44,6 +47,22 @@ data class Translation2d(var x: Length, var y: Length) {
 
   operator fun unaryMinus(): Translation2d {
     return Translation2d(x * -1, y * -1)
+  }
+
+  fun getDistance(other: Translation2d): Length {
+    return hypot(other.x - x, other.y - y)
+  }
+
+  fun getSquaredDistance(other: Translation2d): Value<Squared<Meter>> {
+    val dx = other.x - x
+    val dy = other.y - y
+    return dx * dx + dy * dy
+  }
+
+  fun rotateAround(other: Translation2d, rot: Angle): Translation2d {
+    return Translation2d(
+        (x - other.x) * rot.cos - (y - other.y) * rot.sin + other.x,
+        (x - other.x) * rot.sin + (y - other.y) * rot.cos + other.y)
   }
 
   fun rotateBy(other: Angle): Translation2d {
