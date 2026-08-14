@@ -1,6 +1,5 @@
 package org.team4099.lib.controller
 
-import edu.wpi.first.math.controller.PIDController as WPIPidController
 import org.team4099.lib.units.Fraction
 import org.team4099.lib.units.Product
 import org.team4099.lib.units.UnitKey
@@ -12,6 +11,7 @@ import org.team4099.lib.units.base.seconds
 import org.team4099.lib.units.derived.DerivativeGain
 import org.team4099.lib.units.derived.IntegralGain
 import org.team4099.lib.units.derived.ProportionalGain
+import org.wpilib.math.controller.PIDController as WPIPidController
 
 class PIDController<E : UnitKey, O : UnitKey> {
   val wpiPidController: WPIPidController
@@ -44,22 +44,22 @@ class PIDController<E : UnitKey, O : UnitKey> {
     get() = wpiPidController.period.seconds
 
   var errorTolerance: Value<E>
-    get() = Value(wpiPidController.positionTolerance)
+    get() = Value(wpiPidController.errorTolerance)
     set(value) {
       wpiPidController.setTolerance(value.value)
     }
 
   var errorDerivativeTolerance: Value<Fraction<E, Second>>
-    get() = Value(wpiPidController.velocityTolerance)
+    get() = Value(wpiPidController.errorDerivativeTolerance)
     set(value) {
-      wpiPidController.setTolerance(wpiPidController.positionTolerance, value.value)
+      wpiPidController.setTolerance(wpiPidController.errorTolerance, value.value)
     }
 
   val error: Value<E>
-    get() = Value(wpiPidController.positionError)
+    get() = Value(wpiPidController.errorTolerance)
 
   val errorDerivative: Value<Fraction<E, Second>>
-    get() = Value(wpiPidController.velocityError)
+    get() = Value(wpiPidController.errorDerivativeTolerance)
 
   constructor(
       proportionalGain: ProportionalGain<E, O>,

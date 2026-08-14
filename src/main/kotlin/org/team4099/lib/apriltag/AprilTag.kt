@@ -1,7 +1,7 @@
 package org.team4099.lib.apriltag
 
-import edu.wpi.first.apriltag.AprilTag as AprilTagWPI
 import org.team4099.lib.geometry.Pose3d
+import org.wpilib.vision.apriltag.AprilTag as AprilTagWPI
 
 class AprilTag(val id: Int, val pose: Pose3d) {
   constructor(apriltagWpilib: AprilTagWPI) : this(apriltagWpilib.ID, Pose3d(apriltagWpilib.pose)) {}

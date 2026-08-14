@@ -1,6 +1,5 @@
-package com.team4099.geometry
+package team4099.geometry
 
-import edu.wpi.first.math.VecBuilder
 import kotlin.math.sqrt
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
@@ -12,6 +11,7 @@ import org.team4099.lib.geometry.Translation3d
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.degrees
+import org.wpilib.math.linalg.VecBuilder
 
 internal class Translation3dTest {
   private val kEpsilon = 1E-9

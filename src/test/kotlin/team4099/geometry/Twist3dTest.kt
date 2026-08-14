@@ -1,6 +1,5 @@
-package com.team4099.geometry
+package team4099.geometry
 
-import edu.wpi.first.math.VecBuilder
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
@@ -10,6 +9,7 @@ import org.team4099.lib.geometry.Twist3d
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.degrees
 import org.team4099.lib.units.derived.radians
+import org.wpilib.math.linalg.VecBuilder
 
 class Twist3dTest {
   @Test

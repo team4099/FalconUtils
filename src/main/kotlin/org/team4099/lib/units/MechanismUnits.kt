@@ -347,8 +347,8 @@ fun sparkMaxAngularMechanismSensor(
       Timescale.REV_NEO,
       1.0,
       compensationVoltage,
-      { encoder.velocity },
-      { encoder.position },
+      { encoder.velocity.get() },
+      { encoder.position.get() },
   )
 }
 
@@ -366,7 +366,7 @@ fun sparkMaxLinearMechanismSensor(
       Timescale.REV_NEO,
       1.0,
       compensationVoltage,
-      { encoder.velocity },
-      { encoder.position },
+      { encoder.velocity.get() },
+      { encoder.position.get() },
   )
 }
