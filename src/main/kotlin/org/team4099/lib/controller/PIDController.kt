@@ -56,10 +56,10 @@ class PIDController<E : UnitKey, O : UnitKey> {
     }
 
   val error: Value<E>
-    get() = Value(wpiPidController.errorTolerance)
+    get() = Value(wpiPidController.error)
 
   val errorDerivative: Value<Fraction<E, Second>>
-    get() = Value(wpiPidController.errorDerivativeTolerance)
+    get() = Value(wpiPidController.errorDerivative)
 
   constructor(
       proportionalGain: ProportionalGain<E, O>,
