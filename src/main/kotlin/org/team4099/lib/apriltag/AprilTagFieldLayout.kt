@@ -1,6 +1,5 @@
 package org.team4099.lib.apriltag
 
-import edu.wpi.first.apriltag.AprilTagFieldLayout
 import org.team4099.lib.geometry.Pose3d
 import org.team4099.lib.geometry.Rotation3d
 import org.team4099.lib.geometry.Translation3d
@@ -8,6 +7,7 @@ import org.team4099.lib.units.base.Length
 import org.team4099.lib.units.base.inMeters
 import org.team4099.lib.units.base.meters
 import org.team4099.lib.units.derived.radians
+import org.wpilib.vision.apriltag.AprilTagFieldLayout
 
 class AprilTagFieldLayout(
     val aprilTags: List<AprilTag>,

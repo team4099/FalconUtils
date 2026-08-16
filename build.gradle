@@ -4,18 +4,19 @@ plugins {
 	id "idea"
 	id 'maven-publish'
 	id "org.jetbrains.kotlin.jvm" version "2.3.0"
-	id "edu.wpi.first.GradleRIO" version "2026.2.1"
+	id "org.wpilib.GradleRIO" version "2027.0.0-alpha-6"
+	id "com.gradleup.shadow" version "9.3.0"
 	id "com.diffplug.spotless" version "6.25.0"
 	id "com.peterabeles.gversion" version "1.10"
 	id "org.jetbrains.kotlinx.kover" version "0.8.3"
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
 java {
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of(25)
 	}
 }
 
@@ -38,8 +39,8 @@ dependencies {
 	nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
 	simulationRelease wpi.sim.enableRelease()
 
-	testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.2"
-	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 	implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
@@ -108,7 +109,7 @@ tasks.withType(JavaCompile) {
 
 compileKotlin {
 	compilerOptions {
-		jvmTarget.set(JvmTarget.JVM_17)
+		jvmTarget.set(JvmTarget.JVM_25)
 	}
 }
 

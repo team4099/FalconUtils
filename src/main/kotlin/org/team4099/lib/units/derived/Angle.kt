@@ -1,6 +1,5 @@
 package org.team4099.lib.units.derived
 
-import edu.wpi.first.math.geometry.Rotation2d
 import kotlin.math.PI
 import org.team4099.lib.geometry.Rotation2dWPILIB
 import org.team4099.lib.units.AngularVelocity
@@ -10,6 +9,7 @@ import org.team4099.lib.units.Value
 import org.team4099.lib.units.base.Length
 import org.team4099.lib.units.inRadiansPerSecond
 import org.team4099.lib.units.perSecond
+import org.wpilib.math.geometry.Rotation2d
 
 object Radian : UnitKey
 
