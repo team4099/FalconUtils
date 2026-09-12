@@ -3,8 +3,9 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
 	id "idea"
 	id 'maven-publish'
+	id "application"
 	id "org.jetbrains.kotlin.jvm" version "2.3.0"
-	id "org.wpilib.GradleRIO" version "2027.0.0-alpha-6"
+	id "org.wpilib.GradleRIO" version "2027.0.0-alpha-7"
 	id "com.gradleup.shadow" version "9.3.0"
 	id "com.diffplug.spotless" version "6.25.0"
 	id "com.peterabeles.gversion" version "1.10"
@@ -100,13 +101,6 @@ jar {
 	duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-wpi.java.configureExecutableTasks(jar)
-wpi.java.configureTestTasks(test)
-
-tasks.withType(JavaCompile) {
-	options.compilerArgs.add "-XDstringConcat=inline"
-}
-
 compileKotlin {
 	compilerOptions {
 		jvmTarget.set(JvmTarget.JVM_25)
@@ -128,8 +122,19 @@ gversion {
 	annotate     = false                      // optional. Java only. Adds @Generated annotation
 }
 
+jar {
+	from('src') { into 'backup/src' }
+	from('vendordeps') { into 'backup/vendordeps' }
+	from('build.gradle') { into 'backup' }
+}
+
 project.compileKotlin.dependsOn(createVersionFile)
 project.compileJava.dependsOn(createVersionFile)
+
 // Configure jar and deploy tasks
-wpi.java.configureExecutableTasks(jar)
+wpi.java.configureApplication(application)
 wpi.java.configureTestTasks(test)
+
+tasks.withType(JavaCompile) {
+	options.compilerArgs.add "-XDstringConcat=inline"
+}

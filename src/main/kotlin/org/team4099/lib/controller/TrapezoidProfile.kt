@@ -68,12 +68,12 @@ class TrapezoidProfile<U : UnitKey>(
     return State(trapezoidProfile.calculate(t.inSeconds, current.wpiState, goal.wpiState))
   }
 
-  fun timeLeftUntil(target: Value<U>): Time {
-    return trapezoidProfile.timeLeftUntil(target.value).seconds
+  fun <U : UnitKey> timeLeftUntil(current: State<U>, goal: State<U>): Time {
+    return trapezoidProfile.timeLeftUntil(current.wpiState, goal.wpiState).seconds
   }
 
-  fun totalTime(): Time {
-    return trapezoidProfile.totalTime().seconds
+  fun duration(): Time {
+    return trapezoidProfile.duration().seconds
   }
 
   fun isFinished(t: Time): Boolean {
