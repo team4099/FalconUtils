@@ -1,11 +1,11 @@
 package org.team4099.lib.geometry
 
-import edu.wpi.first.math.Matrix
-import edu.wpi.first.math.Vector
-import edu.wpi.first.math.numbers.N3
 import org.team4099.lib.units.derived.Angle
 import org.team4099.lib.units.derived.inRadians
 import org.team4099.lib.units.derived.radians
+import org.wpilib.math.linalg.Matrix
+import org.wpilib.math.linalg.Vector
+import org.wpilib.math.numbers.N3
 
 class Rotation3d(quaternion: Quaternion) {
   val quaternion: Quaternion = quaternion.normalize()

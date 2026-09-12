@@ -54,11 +54,11 @@ data class Pose2d(val translation: Translation2d, val rotation: Angle) {
   }
 
   fun exp(twist: Twist2d): Pose2d {
-    return Pose2d(pose2d.exp(twist.twist2d))
+    return Pose2d(pose2d.plus(twist.twist2d.exp()))
   }
 
   fun log(end: Pose2d): Twist2d {
-    return Twist2d(pose2d.log(end.pose2d))
+    return Twist2d(end.minus(this).transform2d.log())
   }
 
   fun interpolate(endValue: Pose2d, t: Time): Pose2d {
