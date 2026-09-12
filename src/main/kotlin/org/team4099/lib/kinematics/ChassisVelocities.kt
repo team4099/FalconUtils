@@ -52,7 +52,7 @@ class ChassisVelocities(
     return ChassisVelocities(twist.dx / dt, twist.dy / dt, twist.dtheta / dt)
   }
 
-  fun div(scalar: Double): ChassisVelocities {
+  operator fun div(scalar: Double): ChassisVelocities {
     return times(1.0 / scalar)
   }
 
@@ -73,15 +73,15 @@ class ChassisVelocities(
     )
   }
 
-  fun minus(other: ChassisVelocities): ChassisVelocities {
+  operator fun minus(other: ChassisVelocities): ChassisVelocities {
     return ChassisVelocities(chassisVelocitiesWPILIB.minus(other.chassisVelocitiesWPILIB))
   }
 
-  fun plus(other: ChassisVelocities): ChassisVelocities {
+  operator fun plus(other: ChassisVelocities): ChassisVelocities {
     return ChassisVelocities(chassisVelocitiesWPILIB.plus(other.chassisVelocitiesWPILIB))
   }
 
-  fun times(scalar: Double): ChassisVelocities {
+  operator fun times(scalar: Double): ChassisVelocities {
     return ChassisVelocities(chassisVelocitiesWPILIB.times(scalar))
   }
 
@@ -95,7 +95,7 @@ class ChassisVelocities(
     return ChassisVelocities(rotated.x.perSecond, rotated.y.perSecond, omega)
   }
 
-  fun unaryMinus(): ChassisVelocities {
+  operator fun unaryMinus(): ChassisVelocities {
     return ChassisVelocities(chassisVelocitiesWPILIB.unaryMinus())
   }
 

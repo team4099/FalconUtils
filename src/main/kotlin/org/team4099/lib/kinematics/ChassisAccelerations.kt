@@ -39,19 +39,19 @@ class ChassisAccelerations(
           alpha.inRadiansPerSecondPerSecond,
       )
 
-  fun div(scalar: Double): ChassisAccelerations {
+  operator fun div(scalar: Double): ChassisAccelerations {
     return times(1.0 / scalar)
   }
 
-  fun minus(other: ChassisAccelerations): ChassisAccelerations {
+  operator fun minus(other: ChassisAccelerations): ChassisAccelerations {
     return ChassisAccelerations(chassisAccelerationsWPILIB.minus(other.chassisAccelerationsWPILIB))
   }
 
-  fun plus(other: ChassisAccelerations): ChassisAccelerations {
+  operator fun plus(other: ChassisAccelerations): ChassisAccelerations {
     return ChassisAccelerations(chassisAccelerationsWPILIB.plus(other.chassisAccelerationsWPILIB))
   }
 
-  fun times(scalar: Double): ChassisAccelerations {
+  operator fun times(scalar: Double): ChassisAccelerations {
     return ChassisAccelerations(chassisAccelerationsWPILIB.times(scalar))
   }
 
@@ -65,7 +65,7 @@ class ChassisAccelerations(
     return ChassisAccelerations(rotated.x.perSecond.perSecond, rotated.y.perSecond.perSecond, alpha)
   }
 
-  fun unaryMinus(): ChassisAccelerations {
+  operator fun unaryMinus(): ChassisAccelerations {
     return ChassisAccelerations(chassisAccelerationsWPILIB.unaryMinus())
   }
 
