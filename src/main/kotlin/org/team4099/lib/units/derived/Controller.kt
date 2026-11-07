@@ -98,8 +98,11 @@ inline val ProportionalGain<Velocity<Meter>, Volt>.inVoltsPerMetersPerSecond: Do
 inline val ProportionalGain<Velocity<Radian>, Volt>.inVoltsPerRadiansPerSecond: Double
   get() = value
 
+inline val ProportionalGain<Velocity<Radian>, Volt>.inVoltsPerRotationPerSecond: Double
+  get() = inVoltsPerRadiansPerSecond * RADIANS_PER_ROTATION
+
 inline val ProportionalGain<Velocity<Radian>, Volt>.inVoltsPerRotationPerMinute: Double
-  get() = inVoltsPerRadiansPerSecond * RADIANS_PER_ROTATION / SECONDS_PER_MINUTE
+  get() = inVoltsPerRotationPerSecond / SECONDS_PER_MINUTE
 
 inline val IntegralGain<Meter, Volt>.inVoltsPerMeterSeconds: Double
   get() = value
@@ -157,6 +160,9 @@ inline val DerivativeGain<Velocity<Radian>, Volt>.inVoltsPerRadiansPerSecondPerS
 
 inline val DerivativeGain<Velocity<Radian>, Volt>.inVoltsPerDegreesPerSecondPerSecond: Double
   get() = inVoltsPerRadiansPerSecondPerSecond * RADIANS_PER_DEGREES
+
+inline val DerivativeGain<Velocity<Radian>, Volt>.inVoltsPerRotationsPerSecondPerSecond: Double
+  get() = inVoltsPerRadiansPerSecondPerSecond * RADIANS_PER_ROTATION
 
 inline val DerivativeGain<Velocity<Radian>, Volt>.inVoltsPerRotationsPerMinutePerSecond: Double
   get() = inVoltsPerRadiansPerSecondPerSecond / SECONDS_PER_MINUTE * RADIANS_PER_ROTATION
