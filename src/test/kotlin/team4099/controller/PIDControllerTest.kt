@@ -1,6 +1,7 @@
 package com.team4099.controller
 
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 import org.team4099.lib.controller.ProfiledPIDController
 import org.team4099.lib.controller.SimpleMotorFeedforward
 import org.team4099.lib.controller.TrapezoidProfile
@@ -17,7 +18,9 @@ import org.team4099.lib.units.derived.degrees
 import org.team4099.lib.units.derived.inVoltsPerInch
 import org.team4099.lib.units.derived.inVoltsPerRotation
 import org.team4099.lib.units.derived.inVoltsPerRotationPerMinute
+import org.team4099.lib.units.derived.inVoltsPerRotationPerSecond
 import org.team4099.lib.units.derived.inVoltsPerRotationsPerMinutePerSecond
+import org.team4099.lib.units.derived.inVoltsPerRotationsPerSecondPerSecond
 import org.team4099.lib.units.derived.perInch
 import org.team4099.lib.units.derived.rotations
 import org.team4099.lib.units.derived.volts
@@ -80,9 +83,20 @@ class PIDControllerTest {
     val kI = 2.0.volts / 1.0.rotations
     val kD = 2.0.volts / 1.0.rotations.perMinute.perSecond
 
-    println(kp.inVoltsPerRotationPerMinute)
-    println(kI.inVoltsPerRotation)
-    println(kD.inVoltsPerRotationsPerMinutePerSecond)
+    assert(kp.inVoltsPerRotationPerMinute == 2.0)
+    assert(kI.inVoltsPerRotation == 2.0)
+    assert(kD.inVoltsPerRotationsPerMinutePerSecond == 2.0)
+  }
+
+  @Test
+  fun testRPS() {
+    val kp = 2.0.volts / 1.0.rotations.perSecond
+    val kI = 2.0.volts / 1.0.rotations
+    val kD = 2.0.volts / 1.0.rotations.perSecond.perSecond
+
+    assert(kp.inVoltsPerRotationPerSecond == 2.0)
+    assert(kI.inVoltsPerRotation == 2.0)
+    assert(kD.inVoltsPerRotationsPerSecondPerSecond == 2.0)
   }
 
   @Test
