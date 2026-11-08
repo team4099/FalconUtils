@@ -1,6 +1,5 @@
 package org.team4099.lib.controller
 
-import edu.wpi.first.math.controller.ElevatorFeedforward as WPIElevatorFeedforward
 import org.team4099.lib.units.LinearAcceleration
 import org.team4099.lib.units.LinearVelocity
 import org.team4099.lib.units.base.Meter
@@ -19,6 +18,7 @@ import org.team4099.lib.units.derived.volts
 import org.team4099.lib.units.inMetersPerSecond
 import org.team4099.lib.units.inMetersPerSecondPerSecond
 import org.team4099.lib.units.perSecond
+import org.wpilib.math.controller.ElevatorFeedforward as WPIElevatorFeedforward
 
 class ElevatorFeedforward(
     kS: StaticFeedforward<Volt>,
@@ -40,29 +40,16 @@ class ElevatorFeedforward(
       kV: VelocityFeedforward<Meter, Volt>,
   ) : this(kS, kG, kV, 0.0.volts.perMeterPerSecondPerSecond)
 
-  @Deprecated(
-      message = "Marked for removal since 2025. Use calculute(velocity: LinearVelocity) instead.",
-      level = DeprecationLevel.ERROR,
-  )
-  fun calculate(velocity: LinearVelocity, acceleration: LinearAcceleration): ElectricalPotential {
-    return feedforward
-        .calculate(
-            velocity.inMetersPerSecond,
-            acceleration.inMetersPerSecondPerSecond,
-        )
-        .volts
-  }
-
   fun calculate(velocity: LinearVelocity): ElectricalPotential {
     return feedforward.calculate(velocity.inMetersPerSecond).volts
   }
 
-  fun calculateWithVelocities(
+  fun calculate(
       currentVelocity: LinearVelocity,
       nextVelocity: LinearVelocity
   ): ElectricalPotential {
     return feedforward
-        .calculateWithVelocities(
+        .calculate(
             currentVelocity.inMetersPerSecond,
             nextVelocity.inMetersPerSecond,
         )

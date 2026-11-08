@@ -72,11 +72,11 @@ data class Pose3d(val translation: Translation3d, val rotation: Rotation3d) {
   }
 
   fun exp(twist: Twist3d): Pose3d {
-    return Pose3d(pose3d.exp(twist.twist3d))
+    return Pose3d(pose3d.plus(twist.twist3d.exp()))
   }
 
   fun log(end: Pose3d): Twist3d {
-    return Twist3d(pose3d.log(end.pose3d))
+    return Twist3d(end.minus(this).transform3d.log())
   }
 
   fun toPose2d(): Pose2d {

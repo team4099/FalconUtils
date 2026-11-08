@@ -1,6 +1,5 @@
 package org.team4099.lib.controller
 
-import edu.wpi.first.math.controller.ArmFeedforward as WPIArmFeedforward
 import org.team4099.lib.units.AngularAcceleration
 import org.team4099.lib.units.AngularVelocity
 import org.team4099.lib.units.derived.AccelerationFeedforward
@@ -21,6 +20,7 @@ import org.team4099.lib.units.derived.volts
 import org.team4099.lib.units.inRadiansPerSecond
 import org.team4099.lib.units.inRadiansPerSecondPerSecond
 import org.team4099.lib.units.perSecond
+import org.wpilib.math.controller.ArmFeedforward as WPIArmFeedforward
 
 class ArmFeedforward(
     kS: StaticFeedforward<Volt>,
@@ -42,27 +42,19 @@ class ArmFeedforward(
       kV: VelocityFeedforward<Radian, Volt>,
   ) : this(kS, kG, kV, 0.volts.perRadianPerSecondPerSecond)
 
-  @Deprecated(
-      message =
-          "Marked for removal since 2025. Use calculute(position: Angle, velocity: AngularVelocity) instead.",
-      level = DeprecationLevel.ERROR,
-  )
+  fun calculate(position: Angle, velocity: AngularVelocity): ElectricalPotential {
+    return feedforward.calculate(position.inRadians, velocity.inRadiansPerSecond).volts
+  }
+
   fun calculate(
       position: Angle,
-      velocity: AngularVelocity,
-      acceleration: AngularAcceleration
+      currentVelocity: AngularVelocity,
+      nextVelocity: AngularVelocity
   ): ElectricalPotential {
     return feedforward
         .calculate(
-            position.inRadians,
-            velocity.inRadiansPerSecond,
-            acceleration.inRadiansPerSecondPerSecond,
-        )
+            position.inRadians, currentVelocity.inRadiansPerSecond, nextVelocity.inRadiansPerSecond)
         .volts
-  }
-
-  fun calculate(position: Angle, velocity: AngularVelocity): ElectricalPotential {
-    return feedforward.calculate(position.inRadians, velocity.inRadiansPerSecond).volts
   }
 
   fun maxAchievableVelocity(

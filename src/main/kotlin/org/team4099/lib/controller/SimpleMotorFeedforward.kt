@@ -1,6 +1,5 @@
 package org.team4099.lib.controller
 
-import edu.wpi.first.math.controller.SimpleMotorFeedforward as WPISimpleFeedforward
 import org.team4099.lib.units.Acceleration
 import org.team4099.lib.units.UnitKey
 import org.team4099.lib.units.Value
@@ -8,6 +7,7 @@ import org.team4099.lib.units.Velocity
 import org.team4099.lib.units.derived.AccelerationFeedforward
 import org.team4099.lib.units.derived.StaticFeedforward
 import org.team4099.lib.units.derived.VelocityFeedforward
+import org.wpilib.math.controller.SimpleMotorFeedforward as WPISimpleFeedforward
 
 class SimpleMotorFeedforward<E : UnitKey, O : UnitKey>(
     val kS: StaticFeedforward<O>,
@@ -21,23 +21,12 @@ class SimpleMotorFeedforward<E : UnitKey, O : UnitKey>(
       kV: VelocityFeedforward<E, O>,
   ) : this(kS, kV, AccelerationFeedforward(0.0))
 
-  @Deprecated(
-      "calculate(Value<Velocity<E>>, Value<Velocity<E>>) is deprecated since version 2025 and marked for removal",
-      replaceWith =
-          ReplaceWith(
-              "calculateWithVelocities(currentVelocitySetpoint: Value<Velocity<E>>, nextVelocitySetpoint: Value<Velocity<E>>)",
-          ),
-  )
-  fun calculate(velocity: Value<Velocity<E>>, acceleration: Value<Acceleration<E>>): Value<O> {
-    return Value(feedforward.calculate(velocity.value, acceleration.value))
-  }
-
-  fun calculateWithVelocities(
+  fun calculate(
       currentVelocitySetpoint: Value<Velocity<E>>,
       nextVelocitySetpoint: Value<Velocity<E>>,
   ): Value<O> {
     return Value(
-        feedforward.calculateWithVelocities(
+        feedforward.calculate(
             currentVelocitySetpoint.value,
             nextVelocitySetpoint.value,
         ),

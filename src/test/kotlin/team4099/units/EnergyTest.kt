@@ -1,4 +1,4 @@
-package com.team4099.units
+package team4099.units
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

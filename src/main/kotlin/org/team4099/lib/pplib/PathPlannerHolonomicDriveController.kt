@@ -6,12 +6,11 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController
 import com.pathplanner.lib.path.GoalEndState as pplibGoalEndState
 import com.pathplanner.lib.path.PathConstraints
 import com.pathplanner.lib.trajectory.PathPlannerTrajectoryState
-import edu.wpi.first.math.system.plant.DCMotor
 import java.util.Optional
 import java.util.function.DoubleSupplier
 import org.team4099.lib.geometry.Pose2d
 import org.team4099.lib.geometry.Translation2d
-import org.team4099.lib.kinematics.ChassisSpeeds
+import org.team4099.lib.kinematics.ChassisVelocities
 import org.team4099.lib.units.AngularAcceleration
 import org.team4099.lib.units.AngularVelocity
 import org.team4099.lib.units.LinearAcceleration
@@ -33,6 +32,7 @@ import org.team4099.lib.units.inMetersPerSecond
 import org.team4099.lib.units.inMetersPerSecondPerSecond
 import org.team4099.lib.units.inRadiansPerSecond
 import org.team4099.lib.units.inRadiansPerSecondPerSecond
+import org.wpilib.math.system.DCMotor
 
 class PathPlannerHolonomicDriveController(
     translationConstants: PathPlannerTranslationPID,
@@ -51,14 +51,14 @@ class PathPlannerHolonomicDriveController(
   fun calculateRobotRelativeSpeeds(
       currentPose: Pose2d,
       targetState: PathPlannerTrajectoryState
-  ): ChassisSpeeds {
-    return ChassisSpeeds(
+  ): ChassisVelocities {
+    return ChassisVelocities(
         pplibController.calculateRobotRelativeSpeeds(currentPose.pose2d, targetState),
     )
   }
 
-  fun reset(currentPose: Pose2d, currentSpeeds: ChassisSpeeds) {
-    pplibController.reset(currentPose.pose2d, currentSpeeds.chassisSpeedsWPILIB)
+  fun reset(currentPose: Pose2d, currentSpeeds: ChassisVelocities) {
+    pplibController.reset(currentPose.pose2d, currentSpeeds.chassisVelocitiesWPILIB)
   }
 
   fun setEnabled(enabled: Boolean) {

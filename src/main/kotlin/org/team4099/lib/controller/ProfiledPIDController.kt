@@ -1,6 +1,5 @@
 package org.team4099.lib.controller
 
-import edu.wpi.first.math.controller.ProfiledPIDController as WPIProfiledPIDController
 import org.team4099.lib.units.Fraction
 import org.team4099.lib.units.Product
 import org.team4099.lib.units.UnitKey
@@ -12,6 +11,7 @@ import org.team4099.lib.units.base.seconds
 import org.team4099.lib.units.derived.DerivativeGain
 import org.team4099.lib.units.derived.IntegralGain
 import org.team4099.lib.units.derived.ProportionalGain
+import org.wpilib.math.controller.ProfiledPIDController as WPIProfiledPIDController
 
 class ProfiledPIDController<E : UnitKey, O : UnitKey>(
     proportionalGain: ProportionalGain<E, O>,

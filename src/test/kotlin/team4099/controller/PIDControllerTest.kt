@@ -1,4 +1,4 @@
-package com.team4099.controller
+package team4099.controller
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll

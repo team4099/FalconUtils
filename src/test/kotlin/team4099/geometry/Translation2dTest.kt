@@ -1,4 +1,4 @@
-package com.team4099.geometry
+package team4099.geometry
 
 import kotlin.math.sqrt
 import org.junit.jupiter.api.Assertions.assertAll

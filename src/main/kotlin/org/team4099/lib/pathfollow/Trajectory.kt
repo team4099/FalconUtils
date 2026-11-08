@@ -63,8 +63,8 @@ class Trajectory(private val states: List<TrajectoryState>) {
   //  private val trajectoryConfig: TrajectoryConfig
 
   //  public fun convertToTrajectory(pathPlannerTrajectory: PathPlannerTrajectory):
-  // edu.wpi.first.wpilibj.trajectory.Trajectory{
-  //    var traj: Trajectory = edu.wpi.first.wpilibj.trajectory.Trajectory(
+  // org.wpilib.wpilibj.trajectory.Trajectory{
+  //    var traj: Trajectory = org.wpilib.wpilibj.trajectory.Trajectory(
   //      e),
   //    pathPlannerTrajectory.
   //    )
