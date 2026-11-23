@@ -1,4 +1,4 @@
-package com.team4099.geometry
+package team4099.geometry
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

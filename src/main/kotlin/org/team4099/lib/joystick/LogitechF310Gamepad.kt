@@ -1,6 +1,7 @@
 package org.team4099.lib.joystick
 
-import edu.wpi.first.wpilibj.Joystick
+import org.wpilib.driverstation.Joystick
+import org.wpilib.driverstation.POVDirection
 
 /**
  * Controller Settings for Correct Mappings ---------------------------------------- X Emulation
@@ -56,14 +57,14 @@ class LogitechF310Gamepad(port: Int) : Joystick(port), Gamepad {
     get() = this.getRawButton(8)
 
   override val dPadUp: Boolean
-    get() = this.pov == 0 || this.pov == 360
+    get() = this.pov == POVDirection.UP
 
   override val dPadDown: Boolean
-    get() = this.pov == 180
+    get() = this.pov == POVDirection.DOWN
 
   override val dPadLeft: Boolean
-    get() = this.pov == 90
+    get() = this.pov == POVDirection.LEFT
 
   override val dPadRight: Boolean
-    get() = this.pov == 270
+    get() = this.pov == POVDirection.RIGHT
 }
